@@ -74,10 +74,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .app{max-width:1100px;margin:0 auto;padding:2rem;position:relative;z-index:1}
 
 /* ── NAV TABS ── */
-.nav-scroll{overflow-x:auto;margin-bottom:2rem;padding-bottom:4px;-webkit-overflow-scrolling:touch}
-.nav-scroll::-webkit-scrollbar{height:2px}
-.nav-scroll::-webkit-scrollbar-thumb{background:var(--border2)}
-.nav{display:flex;gap:4px;width:max-content;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:4px}
+.nav-scroll{margin-bottom:2rem}
+.nav-row{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:4px}
+.nav-btn{padding:8px 12px;border:none;background:none;border-radius:calc(var(--r) - 4px);font-size:12px;cursor:pointer;color:var(--text2);font-family:var(--font-body);transition:all .2s;white-space:nowrap;font-weight:400}.nav{display:flex;gap:4px;width:max-content;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:4px}
 .nav-btn{padding:9px 14px;border:none;background:none;border-radius:calc(var(--r) - 4px);font-size:12px;cursor:pointer;color:var(--text2);font-family:var(--font-body);transition:all .2s;white-space:nowrap;font-weight:400}
 .nav-btn:hover{color:var(--text);background:var(--surface2)}
 .nav-btn.active{background:var(--violet);color:#fff;font-weight:500}
@@ -359,11 +358,13 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
   <!-- NAV -->
   <div class="nav-scroll">
-    <div class="nav">
+    <div class="nav-row">
       <button class="nav-btn active" onclick="showScreen('home')"><span class="nav-dot" style="background:var(--violet)"></span>Inicio</button>
       <button class="nav-btn" onclick="showScreen('lab1')"><span class="nav-dot" style="background:var(--violet)"></span>Lab 1 · Memoria</button>
       <button class="nav-btn" onclick="showScreen('lab2')"><span class="nav-dot" style="background:var(--coral)"></span>Lab 2 · Inhibición</button>
       <button class="nav-btn" onclick="showScreen('lab3')"><span class="nav-dot" style="background:var(--amber)"></span>Lab 3 · Flexibilidad</button>
+    </div>
+    <div class="nav-row">
       <button class="nav-btn" onclick="showScreen('lab4')"><span class="nav-dot" style="background:var(--teal)"></span>Lab 4 · Planificación</button>
       <button class="nav-btn" onclick="showScreen('lab5')"><span class="nav-dot" style="background:var(--pink)"></span>Lab 5 · Metacognición</button>
       <button class="nav-btn" onclick="showScreen('lab6')"><span class="nav-dot" style="background:#e879f9"></span>Lab 6 · Mnemotécnicas</button>
@@ -2478,7 +2479,7 @@ function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('screen-'+id).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b=>{if(b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
+  document.querySelectorAll('.nav-btn').forEach(b=>{if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
   if(id==='diario')renderDiary();
   if(id==='home')updateHome();
 }
