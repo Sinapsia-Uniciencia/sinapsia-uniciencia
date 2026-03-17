@@ -366,6 +366,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <button class="nav-btn" onclick="showScreen('lab3')"><span class="nav-dot" style="background:var(--amber)"></span>Lab 3 · Flexibilidad</button>
       <button class="nav-btn" onclick="showScreen('lab4')"><span class="nav-dot" style="background:var(--teal)"></span>Lab 4 · Planificación</button>
       <button class="nav-btn" onclick="showScreen('lab5')"><span class="nav-dot" style="background:var(--pink)"></span>Lab 5 · Metacognición</button>
+      <button class="nav-btn" onclick="showScreen('lab6')"><span class="nav-dot" style="background:#e879f9"></span>Lab 6 · Mnemotécnicas</button>
       <button class="nav-btn" onclick="showScreen('diario')"><span class="nav-dot" style="background:var(--text3)"></span>Diario</button>
     </div>
   </div>
@@ -490,6 +491,13 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div class="lab-tags"><span class="tag tag-v">Triple Red DMN–SN–ECN</span></div>
         <span class="lab-arrow">→</span>
       </div>
+      <div class="lab-card" style="cursor:pointer;border-left:3px solid #e879f9" onclick="showScreen('lab6')">
+        <div class="lab-num">LAB 06</div>
+        <div class="lab-title">Estrategias Mnemotécnicas</div>
+        <div class="lab-desc">Método de Loci · Historia Encadenada · Técnica Feynman · Codificación Elaborativa · Acrónimos · Keyword</div>
+        <div class="lab-tags"><span class="tag" style="background:#3d0d42;color:#f0abfc">Hipocampo · Temporal · aPFC</span></div>
+        <span class="lab-arrow">→</span>
+      </div>
       <div class="lab-card" style="border-style:dashed" onclick="showScreen('diario')">
         <div class="lab-num">DIARIO</div>
         <div class="lab-title">Registro de Práctica</div>
@@ -508,6 +516,24 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="sec-sub">La "pizarra mental" del cerebro. Mantener y manipular información activa mientras realizas otra tarea.</div>
       <div class="neuro-badge">dlPFC ↔ Parietal Superior · Acoplamiento Theta-Gamma</div>
     </div>
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+<svg width="100%" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="160" fill="#0d1117"/>
+<ellipse cx="80" cy="60" rx="55" ry="35" fill="#2d2650" stroke="#8b7ff5" stroke-width="1.5" opacity=".9"/>
+<text x="80" y="55" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">dlPFC</text>
+<text x="80" y="68" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">Memoria activa</text>
+<ellipse cx="200" cy="60" rx="55" ry="35" fill="#0d3d38" stroke="#2dd4bf" stroke-width="1.5" opacity=".9"/>
+<text x="200" y="55" text-anchor="middle" font-size="9" fill="#99f6e4" font-family="monospace">Parietal Superior</text>
+<text x="200" y="68" text-anchor="middle" font-size="8" fill="#2dd4bf" font-family="monospace">Atención espacial</text>
+<ellipse cx="140" cy="130" rx="50" ry="22" fill="#1e2d4a" stroke="#60a5fa" stroke-width="1.5" opacity=".9"/>
+<text x="140" y="127" text-anchor="middle" font-size="9" fill="#93c5fd" font-family="monospace">Hipocampo</text>
+<text x="140" y="139" text-anchor="middle" font-size="8" fill="#60a5fa" font-family="monospace">Consolidación LTP</text>
+<path d="M135 60 Q140 90 140 108" fill="none" stroke="#8b7ff5" stroke-width="1.5" stroke-dasharray="4,3" opacity=".7"/>
+<path d="M145 60 Q140 90 140 108" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="4,3" opacity=".7"/>
+<rect x="95" y="78" width="90" height="18" rx="4" fill="#3d2d08" stroke="#fbbf24" stroke-width="1" opacity=".9"/>
+<text x="140" y="91" text-anchor="middle" font-size="9" fill="#fbbf24" font-family="monospace">Θ (4-8Hz) — γ (30-100Hz)</text>
+<text x="140" y="152" text-anchor="middle" font-size="8" fill="#5c5a7a" font-family="monospace">dlPFC ↔ Parietal · Acoplamiento Theta-Gamma</text>
+</svg></div>
 
     <!-- INSTRUCCIONES LAB 1 -->
     <div class="collapse-wrap">
@@ -1184,6 +1210,23 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="sec-sub">Suprime respuestas automáticas, resiste distracciones y piensa antes de actuar. El "freno" cognitivo.</div>
       <div class="neuro-badge" style="background:var(--coral3);border-color:rgba(249,112,102,.2);color:var(--coral2)">Circuito Fronto-Striatal · ACC · Theta Frontal</div>
     </div>
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+<svg width="100%" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="160" fill="#0d1117"/>
+<ellipse cx="140" cy="38" rx="65" ry="27" fill="#3d1a18" stroke="#f97066" stroke-width="1.5" opacity=".9"/>
+<text x="140" y="33" text-anchor="middle" font-size="9" fill="#fca5a1" font-family="monospace">Corteza Cingulada Anterior (ACC)</text>
+<text x="140" y="46" text-anchor="middle" font-size="8" fill="#f97066" font-family="monospace">Detección de conflicto · Theta frontal</text>
+<ellipse cx="70" cy="115" rx="50" ry="27" fill="#2d2650" stroke="#8b7ff5" stroke-width="1.5" opacity=".9"/>
+<text x="70" y="111" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">dlPFC derecho</text>
+<text x="70" y="122" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">Control inhibitorio</text>
+<ellipse cx="210" cy="115" rx="52" ry="27" fill="#0d3d28" stroke="#34d399" stroke-width="1.5" opacity=".9"/>
+<text x="210" y="111" text-anchor="middle" font-size="9" fill="#a7f3d0" font-family="monospace">Núcleo Subtalámico</text>
+<text x="210" y="122" text-anchor="middle" font-size="8" fill="#34d399" font-family="monospace">Circuito fronto-striatal</text>
+<line x1="110" y1="62" x2="80" y2="88" stroke="#f97066" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8"/>
+<line x1="170" y1="62" x2="200" y2="88" stroke="#f97066" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8"/>
+<line x1="120" y1="115" x2="158" y2="115" stroke="#fbbf24" stroke-width="2" opacity=".7"/>
+<text x="140" y="152" text-anchor="middle" font-size="8" fill="#5c5a7a" font-family="monospace">ACC → Theta frontal → Circuito fronto-striatal</text>
+</svg></div>
 
     <!-- INSTRUCCIONES LAB 2 -->
     <div class="collapse-wrap">
@@ -1431,6 +1474,24 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="sec-sub">Cambia de perspectiva, adáptate a nuevas reglas y piensa "fuera de la caja". El mecanismo de adaptación epistémica.</div>
       <div class="neuro-badge" style="background:var(--amber3);border-color:rgba(251,191,36,.2);color:var(--amber2)">DMN · Ganglios Basales · Variabilidad Conectiva</div>
     </div>
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+<svg width="100%" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="160" fill="#0d1117"/>
+<ellipse cx="80" cy="48" rx="58" ry="30" fill="#3d2d08" stroke="#fbbf24" stroke-width="1.5" opacity=".9"/>
+<text x="80" y="44" text-anchor="middle" font-size="9" fill="#fde68a" font-family="monospace">Orbitofrontal (OFC)</text>
+<text x="80" y="56" text-anchor="middle" font-size="8" fill="#fbbf24" font-family="monospace">Revaluación</text>
+<ellipse cx="200" cy="48" rx="58" ry="30" fill="#2d2650" stroke="#8b7ff5" stroke-width="1.5" opacity=".9"/>
+<text x="200" y="44" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">Red por Defecto (DMN)</text>
+<text x="200" y="56" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">Actualiza set mental</text>
+<ellipse cx="140" cy="125" rx="72" ry="27" fill="#0d3d28" stroke="#34d399" stroke-width="1.5" opacity=".9"/>
+<text x="140" y="121" text-anchor="middle" font-size="9" fill="#a7f3d0" font-family="monospace">Ganglios Basales · Estriado Ventral</text>
+<text x="140" y="132" text-anchor="middle" font-size="8" fill="#34d399" font-family="monospace">Suprime regla anterior · Actualiza conjunto</text>
+<path d="M105 72 Q115 95 112 98" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3" opacity=".8"/>
+<path d="M170 72 Q165 95 168 98" fill="none" stroke="#8b7ff5" stroke-width="1.5" stroke-dasharray="5,3" opacity=".8"/>
+<rect x="88" y="78" width="104" height="16" rx="4" fill="#1a1a2e" stroke="#c084fc" stroke-width="1"/>
+<text x="140" y="90" text-anchor="middle" font-size="9" fill="#c084fc" font-family="monospace">↑ Variabilidad conectiva temporal</text>
+<text x="140" y="152" text-anchor="middle" font-size="8" fill="#5c5a7a" font-family="monospace">OFC ↔ DMN ↔ Ganglios Basales</text>
+</svg></div>
 
     <!-- INSTRUCCIONES LAB 3 -->
     <div class="collapse-wrap">
@@ -1651,6 +1712,24 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="sec-sub">Anticipa metas, descompón objetivos y monitorea el progreso. La función ejecutiva más demandada por la vida universitaria.</div>
       <div class="neuro-badge" style="background:var(--teal3);border-color:rgba(45,212,191,.2);color:var(--teal2)">aPFC · Red Frontoparietal · GMT</div>
     </div>
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+<svg width="100%" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="160" fill="#0d1117"/>
+<ellipse cx="140" cy="33" rx="78" ry="24" fill="#0d3d38" stroke="#2dd4bf" stroke-width="2" opacity=".95"/>
+<text x="140" y="29" text-anchor="middle" font-size="9" fill="#99f6e4" font-family="monospace">Polo Frontal — aPFC (mayor jerarquía)</text>
+<text x="140" y="41" text-anchor="middle" font-size="8" fill="#2dd4bf" font-family="monospace">Planificación prospectiva · Subgoals complejos</text>
+<ellipse cx="72" cy="108" rx="52" ry="26" fill="#2d2650" stroke="#8b7ff5" stroke-width="1.5" opacity=".9"/>
+<text x="72" y="104" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">dlPFC</text>
+<text x="72" y="116" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">Ejecución del plan</text>
+<ellipse cx="208" cy="108" rx="56" ry="26" fill="#3d1a18" stroke="#f97066" stroke-width="1.5" opacity=".9"/>
+<text x="208" y="104" text-anchor="middle" font-size="9" fill="#fca5a1" font-family="monospace">Red de Saliencia</text>
+<text x="208" y="116" text-anchor="middle" font-size="8" fill="#f97066" font-family="monospace">Detecta desvíos del plan</text>
+<line x1="96" y1="54" x2="82" y2="82" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="5,3" opacity=".8"/>
+<line x1="184" y1="54" x2="198" y2="82" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="5,3" opacity=".8"/>
+<line x1="124" y1="108" x2="152" y2="108" stroke="#fbbf24" stroke-width="1.5" opacity=".7"/>
+<rect x="88" y="136" width="104" height="16" rx="4" fill="#0d3d38" stroke="#2dd4bf" stroke-width="1"/>
+<text x="140" y="148" text-anchor="middle" font-size="9" fill="#2dd4bf" font-family="monospace">GMT · 8-10 sesiones semanales</text>
+</svg></div>
 
     <!-- INSTRUCCIONES LAB 4 -->
     <div class="collapse-wrap">
@@ -1857,6 +1936,41 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       </div>
       <button class="btn btn-t btn-full" id="il-gen-btn" onclick="ilGenerate()" style="display:none">Generar plan intercalado</button>
     </div>
+
+    <!-- CALENDARIO DE ESPACIADO -->
+    <div class="collapse-wrap">
+      <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span>📋 Instrucciones — Calendario de Espaciado Semestral</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="collapse-body open">
+        <div class="instrucciones">
+          <div class="instr-title">Planificación del estudio con curva del olvido</div>
+          <div class="paso"><div class="paso-num t">1</div><div><div class="paso-label">Ingresa tus exámenes con fechas</div><div class="paso-desc">Registra cada examen o evaluación del semestre con su fecha exacta. El sistema calculará automáticamente cuándo debes estudiar cada tema para máxima retención.</div></div></div>
+          <div class="paso"><div class="paso-num t">2</div><div><div class="paso-label">El sistema genera el plan de repasos</div><div class="paso-desc">Basado en la curva del olvido de Ebbinghaus, el sistema programa repasos en los intervalos óptimos: 1 día, 3 días, 7 días, 14 días y 30 días antes del examen.</div><div class="paso-tip">📊 Ebbinghaus: repasar en el momento exacto de máximo olvido potencial consolida la memoria a largo plazo hasta 10 veces más eficientemente que repasos aleatorios.</div></div></div>
+          <div class="paso"><div class="paso-num t">3</div><div><div class="paso-label">Consulta el calendario antes de cada sesión de estudio</div><div class="paso-desc">Cada día el calendario te muestra qué materia está programada para repasar hoy según el algoritmo. Combínalo con el Pomodoro e Interleaving para máximo impacto.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-accent-t">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;flex-wrap:wrap;gap:8px">
+        <div class="card-title">Calendario de Espaciado Semestral</div>
+        <span class="pill" id="cal-phase">Listo</span>
+      </div>
+      <div class="card-sub">Ingresa tus exámenes y el sistema genera automáticamente los intervalos de repaso óptimos basados en la curva del olvido de Ebbinghaus.</div>
+      <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <input type="text" id="cal-materia" placeholder="Materia o tema" style="flex:2;min-width:120px">
+        <input type="date" id="cal-fecha" style="flex:1;min-width:120px">
+        <button class="btn btn-t btn-sm" onclick="calAdd()">+ Agregar</button>
+      </div>
+      <div id="cal-exams-list" style="margin-bottom:12px"></div>
+      <div id="cal-schedule" style="display:none">
+        <div style="font-size:11px;color:var(--teal2);font-family:monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Plan de repasos generado</div>
+        <div id="cal-plan"></div>
+      </div>
+      <button class="btn btn-t btn-full" id="cal-gen-btn" onclick="calGenerate()" style="display:none">Generar calendario de repasos</button>
+    </div>
   </div>
   <div id="screen-lab5" class="screen">
     <div class="sec-header">
@@ -1865,6 +1979,25 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="sec-sub">Observa, entiende y regula tus propios procesos de aprendizaje. La función ejecutiva integradora.</div>
       <div class="neuro-badge" style="background:var(--pink3);border-color:rgba(232,121,249,.2);color:#f0abfc">aPFC · Triple Red · Introspección Ejecutiva</div>
     </div>
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+<svg width="100%" viewBox="0 0 280 165" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="165" fill="#0d1117"/>
+<ellipse cx="140" cy="38" rx="68" ry="26" fill="#3d0d42" stroke="#e879f9" stroke-width="1.5" opacity=".9"/>
+<text x="140" y="33" text-anchor="middle" font-size="9" fill="#f0abfc" font-family="monospace">Triple Red: DMN · SN · ECN</text>
+<text x="140" y="46" text-anchor="middle" font-size="8" fill="#e879f9" font-family="monospace">↑ Interconectividad · 4-8 semanas</text>
+<ellipse cx="68" cy="112" rx="52" ry="26" fill="#2d2650" stroke="#8b7ff5" stroke-width="1.5" opacity=".9"/>
+<text x="68" y="108" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">vlPFC</text>
+<text x="68" y="119" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">Regula amígdala ↓</text>
+<ellipse cx="212" cy="112" rx="52" ry="26" fill="#0d3d38" stroke="#2dd4bf" stroke-width="1.5" opacity=".9"/>
+<text x="212" y="108" text-anchor="middle" font-size="9" fill="#99f6e4" font-family="monospace">aPFC</text>
+<text x="212" y="119" text-anchor="middle" font-size="8" fill="#2dd4bf" font-family="monospace">Introspección ejecutiva</text>
+<ellipse cx="140" cy="148" rx="38" ry="14" fill="#3d1a18" stroke="#f97066" stroke-width="1" opacity=".8"/>
+<text x="140" y="152" text-anchor="middle" font-size="8" fill="#fca5a1" font-family="monospace">Amígdala ↓ cortisol</text>
+<line x1="98" y1="60" x2="78" y2="86" stroke="#e879f9" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8"/>
+<line x1="182" y1="60" x2="202" y2="86" stroke="#e879f9" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8"/>
+<line x1="85" y1="130" x2="102" y2="138" stroke="#8b7ff5" stroke-width="1.5" opacity=".7"/>
+<line x1="163" y1="130" x2="178" y2="138" stroke="#2dd4bf" stroke-width="1.5" opacity=".7"/>
+</svg></div>
 
     <!-- INSTRUCCIONES LAB 5 -->
     <div class="collapse-wrap">
@@ -2059,6 +2192,249 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <button class="btn btn-full" style="border-color:var(--pink);color:#f0abfc;margin-top:8px" onclick="aeSave()">Guardar sesión</button>
       <div class="saved-msg" id="ae-saved-msg">Sesión guardada.</div>
     </div>
+
+    <!-- REVALUACIÓN COGNITIVA -->
+    <div class="collapse-wrap">
+      <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span>📋 Instrucciones — Revaluación Cognitiva (Gross)</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="collapse-body open">
+        <div class="instrucciones">
+          <div class="instr-title">Protocolo de Regulación Emocional para el Aprendizaje</div>
+          <div class="paso"><div class="paso-num v" style="background:var(--pink3);color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Identifica la situación académica estresante</div><div class="paso-desc">Escribe la situación concreta que genera estrés o bloqueo: un examen difícil, una materia que no entiendes, miedo a reprobar. Sé específico — no "me estresa la universidad" sino "el parcial de Cálculo del viernes".</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:var(--pink3);color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Escribe tu interpretación inicial</div><div class="paso-desc">¿Cómo estás interpretando esta situación ahora mismo? ¿Qué significa para ti? ¿Qué predices que va a ocurrir? Sin filtros — escribe el pensamiento automático tal como aparece.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:var(--pink3);color:#f0abfc;border-color:rgba(232,121,249,.3)">3</div><div><div class="paso-label">Genera 3 revaluaciones alternativas</div><div class="paso-desc">Sin negar el problema, busca 3 interpretaciones alternativas válidas de la misma situación. No son afirmaciones positivas falsas — son perspectivas genuinamente posibles que tu cerebro no está considerando por el estrés.</div><div class="paso-tip">🧠 Gross (2001): la revaluación cognitiva reduce la activación de la amígdala y el cortisol más eficientemente que la supresión emocional, liberando recursos prefrontales para el aprendizaje.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:var(--pink3);color:#f0abfc;border-color:rgba(232,121,249,.3)">4</div><div><div class="paso-label">Elige la revaluación más útil y actúa desde ella</div><div class="paso-desc">De las 3 alternativas, ¿cuál abre más posibilidades de acción? Elige esa y escribe una acción concreta que puedes hacer en las próximas 2 horas desde esa nueva perspectiva.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:2px solid var(--pink)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;flex-wrap:wrap;gap:8px">
+        <div class="card-title">Revaluación Cognitiva</div>
+        <span class="pill">Metacognición</span>
+      </div>
+      <div class="card-sub">Reformula situaciones académicas estresantes antes de estudiar. Gross (2001): reduce cortisol y activa regulación descendente vlPFC → amígdala, liberando recursos cognitivos para el aprendizaje.</div>
+      <div style="margin-bottom:10px"><label class="lbl">Situación académica estresante</label><input type="text" id="rv-situation" placeholder="ej: Parcial de Cálculo el viernes, no entiendo integrales"></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--coral2)">Interpretación inicial (pensamiento automático)</label><textarea id="rv-initial" rows="2" placeholder="ej: Voy a reprobar, no soy capaz, siempre me va mal en matemáticas..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--teal2)">Revaluación 1 — Perspectiva de crecimiento</label><textarea id="rv-r1" rows="2" placeholder="ej: Esta dificultad significa que estoy en el límite de mi zona de desarrollo próximo..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--violet2)">Revaluación 2 — Perspectiva de contexto</label><textarea id="rv-r2" rows="2" placeholder="ej: Un examen difícil es solo un punto de datos, no define mi capacidad total..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--amber2)">Revaluación 3 — Perspectiva de acción</label><textarea id="rv-r3" rows="2" placeholder="ej: Lo que puedo controlar es estudiar 2 horas hoy enfocado en los ejercicios que no entiendo..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--green2)">Acción concreta en las próximas 2 horas (desde la revaluación más útil)</label><input type="text" id="rv-action" placeholder="ej: Buscar 3 videos de integrales por partes y resolver 5 ejercicios guiados"></div>
+      <button class="btn btn-full" style="border-color:var(--pink);color:#f0abfc" onclick="rvSave()">Guardar revaluación</button>
+      <div class="saved-msg" id="rv-saved-msg">Revaluación guardada.</div>
+    </div>
+  </div>
+
+  <!-- LAB 6: MNEMOTÉCNICAS -->
+  <div id="screen-lab6" class="screen">
+    <div class="sec-header">
+      <button class="sec-back" onclick="showScreen('home')">← Volver</button>
+      <div class="sec-title">Estrategias Mnemotécnicas</div>
+      <div class="sec-sub">Técnicas de codificación profunda que activan el hipocampo, la amígdala y la corteza temporal simultáneamente. Producen huellas mnémicas distribuidas y resistentes al olvido.</div>
+      <div class="neuro-badge" style="background:#3d0d42;border-color:rgba(232,121,249,.2);color:#f0abfc">Hipocampo · Corteza Temporal · aPFC · Amígdala</div>
+    </div>
+
+    <!-- SVG Lab6 -->
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+      <svg width="100%" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="160" fill="#0d1117"/>
+        <ellipse cx="140" cy="35" rx="70" ry="25" fill="#3d0d42" stroke="#e879f9" stroke-width="1.5" opacity=".9"/>
+        <text x="140" y="31" text-anchor="middle" font-size="9" fill="#f0abfc" font-family="monospace">Corteza Temporal Anterior</text>
+        <text x="140" y="43" text-anchor="middle" font-size="8" fill="#e879f9" font-family="monospace">Integración semántica · Red semántica</text>
+        <ellipse cx="70" cy="110" rx="52" ry="26" fill="#1e2d4a" stroke="#60a5fa" stroke-width="1.5" opacity=".9"/>
+        <text x="70" y="106" text-anchor="middle" font-size="9" fill="#93c5fd" font-family="monospace">Hipocampo</text>
+        <text x="70" y="117" text-anchor="middle" font-size="8" fill="#60a5fa" font-family="monospace">Codificación episódica</text>
+        <ellipse cx="210" cy="110" rx="52" ry="26" fill="#3d1a18" stroke="#f97066" stroke-width="1.5" opacity=".9"/>
+        <text x="210" y="106" text-anchor="middle" font-size="9" fill="#fca5a1" font-family="monospace">Amígdala</text>
+        <text x="210" y="117" text-anchor="middle" font-size="8" fill="#f97066" font-family="monospace">Codificación emocional</text>
+        <ellipse cx="140" cy="145" rx="40" ry="13" fill="#0d3d38" stroke="#2dd4bf" stroke-width="1" opacity=".8"/>
+        <text x="140" y="149" text-anchor="middle" font-size="8" fill="#99f6e4" font-family="monospace">aPFC · Imaginación deliberada</text>
+        <line x1="100" y1="56" x2="80" y2="84" stroke="#e879f9" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8"/>
+        <line x1="180" y1="56" x2="200" y2="84" stroke="#e879f9" stroke-width="1.5" stroke-dasharray="4,3" opacity=".8"/>
+        <line x1="100" y1="118" x2="158" y2="118" stroke="#fbbf24" stroke-width="1.5" opacity=".7"/>
+        <line x1="118" y1="128" x2="130" y2="132" stroke="#2dd4bf" stroke-width="1" opacity=".6"/>
+        <line x1="162" y1="128" x2="150" y2="132" stroke="#2dd4bf" stroke-width="1" opacity=".6"/>
+      </svg>
+    </div>
+
+    <!-- MÉTODO DE LOCI -->
+    <div class="collapse-wrap">
+      <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span>📋 Instrucciones — Método de Loci (Palacio de la Memoria)</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="collapse-body open">
+        <div class="instrucciones">
+          <div class="instr-title">La técnica de memoria más poderosa conocida</div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Elige tu recorrido</div><div class="paso-desc">Selecciona un lugar que conoces perfectamente — tu casa, la universidad, un camino habitual. Cada punto del recorrido será una "estación" donde depositarás un concepto.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Carga tus conceptos al palacio</div><div class="paso-desc">Ingresa los conceptos que necesitas memorizar. El sistema los asigna a las estaciones automáticamente.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">3</div><div><div class="paso-label">Crea una imagen mental absurda en cada estación</div><div class="paso-desc">Para cada estación, imagina una escena ridícula, exagerada o imposible que conecte el lugar con el concepto. Cuanto más absurda, mejor. Incluye detalles sensoriales: colores, olores, sonidos.</div><div class="paso-tip">🧠 Las imágenes absurdas activan la amígdala (procesamiento emocional) junto al hipocampo, creando una huella mnémica dual verbal-visual que es 10x más resistente al olvido.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">4</div><div><div class="paso-label">Practica el recorrido de memoria</div><div class="paso-desc">El sistema te muestra cada estación y debes recordar qué concepto está ahí. Tu porcentaje de retención es tu índice de consolidación sináptica.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:2px solid #e879f9">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;flex-wrap:wrap;gap:8px">
+        <div class="card-title">🏛️ Palacio de la Memoria</div>
+        <span id="loci-phase" class="pill">Listo</span>
+      </div>
+      <div class="card-sub">Construye tu recorrido, deposita conceptos en cada estación con una imagen absurda y practica la recuperación. Foer (2011): permite memorizar cantidades extraordinarias con práctica regular.</div>
+
+      <!-- Tabs del palacio -->
+      <div style="display:flex;gap:4px;background:#0d0d15;border-radius:8px;padding:3px;margin-bottom:12px">
+        <button id="lt1" onclick="lociTab(1)" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:#2d2650;color:#b3abff">① Recorrido</button>
+        <button id="lt2" onclick="lociTab(2)" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a">② Conceptos</button>
+        <button id="lt3" onclick="lociTab(3)" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a">③ Imágenes</button>
+        <button id="lt4" onclick="lociTab(4)" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a">④ Recordar</button>
+      </div>
+
+      <!-- Tab 1: Recorrido -->
+      <div id="loci-t1">
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+          <button class="btn" id="lrec-casa" onclick="lociSelectRec('casa')" style="justify-content:flex-start;gap:10px">🏠 Mi casa <span style="font-size:11px;color:#5c5a7a;font-family:monospace">(10 estaciones)</span></button>
+          <button class="btn" id="lrec-uni" onclick="lociSelectRec('uni')" style="justify-content:flex-start;gap:10px">🎓 La universidad <span style="font-size:11px;color:#5c5a7a;font-family:monospace">(10 estaciones)</span></button>
+          <button class="btn" id="lrec-calle" onclick="lociSelectRec('calle')" style="justify-content:flex-start;gap:10px">🛣️ Mi camino habitual <span style="font-size:11px;color:#5c5a7a;font-family:monospace">(10 estaciones)</span></button>
+        </div>
+        <div id="loci-rec-selected" style="display:none;padding:8px 12px;background:#0d3d38;border-radius:8px;border:1px solid rgba(45,212,191,.3);font-size:12px;color:#99f6e4;margin-bottom:10px"></div>
+        <button class="btn btn-v btn-full" onclick="lociTab(2)" id="loci-next1" style="display:none">Siguiente → Cargar conceptos</button>
+      </div>
+
+      <!-- Tab 2: Conceptos -->
+      <div id="loci-t2" style="display:none">
+        <div style="margin-bottom:10px"><label class="lbl">Tema o materia</label><input type="text" id="loci-tema" placeholder="ej: Parcial de Neuropsicología — jueves"></div>
+        <label class="lbl">Conceptos a memorizar (uno por línea, máx. 10)</label>
+        <textarea id="loci-conceptos" rows="8" placeholder="Neuroplasticidad&#10;Memoria de trabajo&#10;Control inhibitorio&#10;Flexibilidad cognitiva&#10;Planificación&#10;Metacognición&#10;Conectoma&#10;Theta-Gamma&#10;dlPFC&#10;Hipocampo"></textarea>
+        <button class="btn btn-v btn-full" style="margin-top:10px" onclick="lociCargar()">Asignar a estaciones →</button>
+        <div class="saved-msg" id="loci-carga-msg">Conceptos asignados.</div>
+      </div>
+
+      <!-- Tab 3: Imágenes -->
+      <div id="loci-t3" style="display:none">
+        <div id="loci-stations-map" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px"></div>
+        <div id="loci-station-form" style="display:none;background:#16161f;border-radius:10px;padding:1rem;border:1px solid #2a2a3a">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span id="loci-st-emoji" style="font-size:1.8rem"></span>
+            <div><div style="font-size:13px;font-weight:600;color:#f0abfc" id="loci-st-place"></div><div style="font-size:11px;color:#5c5a7a;font-family:monospace" id="loci-st-concept"></div></div>
+          </div>
+          <label class="lbl">Imagen mental absurda (¿qué ves en este lugar con este concepto?)</label>
+          <textarea id="loci-img-text" rows="3" placeholder="ej: En la puerta hay un cerebro gigante con zapatillas que grita 'NEUROPLASTICIDAD'..."></textarea>
+          <label class="lbl" style="margin-top:8px;display:block">Detalle sensorial (color, olor, sonido)</label>
+          <input type="text" id="loci-img-sensory" placeholder="ej: Huele a chicle, es de color naranja brillante...">
+          <button class="btn btn-v btn-full" style="margin-top:10px" onclick="lociGuardarImg()">Guardar imagen ✓</button>
+          <div class="saved-msg" id="loci-img-msg">Imagen guardada.</div>
+        </div>
+        <button class="btn btn-v btn-full" id="loci-to-recall" onclick="lociTab(4)" style="display:none;margin-top:8px">Practicar recuperación →</button>
+      </div>
+
+      <!-- Tab 4: Recordar -->
+      <div id="loci-t4" style="display:none">
+        <div style="display:flex;gap:8px;margin-bottom:10px">
+          <div style="flex:1;background:#0d0d15;border-radius:8px;padding:8px;text-align:center"><div style="font-size:1.5rem;font-weight:600;color:#f0abfc" id="loci-r-score">0</div><div style="font-size:10px;color:#5c5a7a;font-family:monospace">Aciertos</div></div>
+          <div style="flex:1;background:#0d0d15;border-radius:8px;padding:8px;text-align:center"><div style="font-size:1.5rem;font-weight:600;color:#9996b8" id="loci-r-total">0</div><div style="font-size:10px;color:#5c5a7a;font-family:monospace">Total</div></div>
+          <div style="flex:1;background:#0d0d15;border-radius:8px;padding:8px;text-align:center"><div style="font-size:1.3rem;font-weight:600;color:#2dd4bf" id="loci-r-pct">—</div><div style="font-size:10px;color:#5c5a7a;font-family:monospace">Retención</div></div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="loci-r-bar" style="width:0%;background:#e879f9"></div></div>
+        <div id="loci-recall-card" style="background:#16161f;border-radius:12px;padding:1.5rem;text-align:center;margin:10px 0;border:1px solid #2a2a3a">
+          <div style="font-size:3rem;margin-bottom:8px" id="loci-r-emoji">🏛️</div>
+          <div style="font-size:13px;color:#9996b8;margin-bottom:4px" id="loci-r-place"></div>
+          <div style="font-size:14px;font-weight:600;color:#f0eff8;margin-bottom:14px" id="loci-r-question">¿Qué concepto está aquí?</div>
+          <div style="display:flex;flex-direction:column;gap:6px" id="loci-r-options"></div>
+          <div class="feedback-box" id="loci-r-fb" style="margin-top:8px"></div>
+        </div>
+        <button class="btn btn-sm" onclick="lociInitRecall()">Reiniciar recorrido</button>
+      </div>
+    </div>
+
+    <!-- TÉCNICA FEYNMAN -->
+    <div class="collapse-wrap">
+      <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span>📋 Instrucciones — Técnica Feynman (Comprensión Profunda)</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="collapse-body open">
+        <div class="instrucciones">
+          <div class="instr-title">4 pasos para comprensión genuina</div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Estudia el concepto</div><div class="paso-desc">Lee el material hasta que creas entenderlo. No pases al siguiente paso hasta tener una idea completa del concepto.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Explícalo como a un niño de 12 años</div><div class="paso-desc">Sin tecnicismos, sin jerga académica. Si necesitas una palabra técnica, defínela primero en términos simples. Este paso es el más difícil y el más valioso — revela exactamente qué entiendes y qué no.</div><div class="paso-tip">🧠 El acto de simplificar activa la corteza prefrontal anterior de manera única — más que cualquier otra estrategia de estudio. Feynman: "Si no puedes explicarlo simplemente, no lo entiendes realmente."</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">3</div><div><div class="paso-label">Identifica las lagunas y vuelve al material</div><div class="paso-desc">¿En qué parte de la explicación simple necesitaste usar jerga que no pudiste simplificar? Ahí está tu laguna. Vuelve al material específicamente para resolver esa laguna.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">4</div><div><div class="paso-label">Simplifica y usa analogías</div><div class="paso-desc">Reescribe la explicación aún más simple, usando analogías del mundo cotidiano. Si puedes explicarlo con una historia o una metáfora que un niño entienda, has alcanzado comprensión genuina.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:2px solid #e879f9">
+      <div class="card-title">Técnica Feynman</div>
+      <div class="card-sub">Explica cualquier concepto como si se lo enseñaras a un niño de 12 años. La incapacidad de simplificar es la señal más precisa de comprensión superficial.</div>
+      <div style="margin-bottom:10px"><label class="lbl">Concepto a dominar</label><input type="text" id="fey-concept" placeholder="ej: Potencial de acción neuronal, Teorema de Bayes..."></div>
+      <div style="margin-bottom:10px">
+        <label class="lbl" style="color:#f0abfc">Paso 2 — Explícalo como a un niño de 12 años (sin tecnicismos)</label>
+        <textarea id="fey-simple" rows="4" placeholder="Escribe la explicación más simple posible. Si usas una palabra técnica, defínela primero en palabras cotidianas..."></textarea>
+      </div>
+      <div style="margin-bottom:10px">
+        <label class="lbl" style="color:var(--coral2)">Paso 3 — ¿Qué palabras técnicas no pudiste simplificar? (tus lagunas)</label>
+        <textarea id="fey-gaps" rows="2" placeholder="ej: No pude explicar 'gradiente electroquímico' sin usar términos técnicos..."></textarea>
+      </div>
+      <div style="margin-bottom:10px">
+        <label class="lbl" style="color:var(--teal2)">Paso 4 — Analogía final (con qué del mundo cotidiano se parece)</label>
+        <textarea id="fey-analogy" rows="2" placeholder="ej: Es como una presa de agua que se abre cuando la presión supera un límite..."></textarea>
+      </div>
+      <button class="btn btn-full" style="border-color:#e879f9;color:#f0abfc" onclick="feynmanSave()">Guardar explicación Feynman</button>
+      <div class="saved-msg" id="fey-saved-msg">Guardado.</div>
+      <div id="fey-history" style="margin-top:12px"></div>
+    </div>
+
+    <!-- HISTORIA ENCADENADA -->
+    <div class="collapse-wrap">
+      <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span>📋 Instrucciones — Historia Encadenada</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="collapse-body open">
+        <div class="instrucciones">
+          <div class="instr-title">Narrativa absurda para listas de conceptos</div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Ingresa tu lista de conceptos</div><div class="paso-desc">Cualquier lista que necesites memorizar en orden: pasos de un proceso, autores y teorías, etapas de desarrollo, partes de un sistema.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Construye una historia que los encadene todos</div><div class="paso-desc">La historia debe ser lo más absurda, exagerada e imposible posible. Cada concepto debe aparecer en orden y estar conectado con el anterior y el siguiente por una acción concreta.</div><div class="paso-tip">🧠 Lo absurdo y emocional activa la amígdala junto al hipocampo — la combinación más potente para la consolidación mnémica. Una historia ridícula de 30 segundos puede retener 10 conceptos durante semanas.</div></div></div>
+          <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">3</div><div><div class="paso-label">Lee la historia en voz alta 3 veces</div><div class="paso-desc">El canal auditivo añade una tercera vía de codificación. Luego cierra los ojos e imagina la historia como una película. Al día siguiente intenta recordarla sin leerla.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:2px solid #e879f9">
+      <div class="card-title">Historia Encadenada</div>
+      <div class="card-sub">Crea una historia absurda que encadene todos los conceptos en orden. Lo ridículo activa la amígdala junto al hipocampo — la combinación más potente para la memoria.</div>
+      <div style="margin-bottom:10px"><label class="lbl">Lista de conceptos (uno por línea, en el orden que deben memorizarse)</label><textarea id="hc-lista" rows="6" placeholder="Concepto 1&#10;Concepto 2&#10;Concepto 3&#10;Concepto 4&#10;Concepto 5"></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:#f0abfc">Tu historia absurda (deben aparecer todos en orden)</label><textarea id="hc-historia" rows="5" placeholder="Érase una vez [Concepto 1] que caminaba por... cuando de repente [Concepto 2] apareció y..."></textarea></div>
+      <button class="btn btn-full" style="border-color:#e879f9;color:#f0abfc" onclick="hcSave()">Guardar historia</button>
+      <div class="saved-msg" id="hc-saved-msg">Historia guardada.</div>
+    </div>
+
+    <!-- CODIFICACIÓN ELABORATIVA -->
+    <div class="card" style="border-left:2px solid #e879f9">
+      <div class="card-title">Codificación Elaborativa</div>
+      <div class="card-sub">Antes de memorizar un concepto, responde las 3 preguntas de elaboración. Craik & Lockhart: el procesamiento emocional y autobiográfico produce las huellas mnémicas más duraderas.</div>
+      <div style="margin-bottom:10px"><label class="lbl">Concepto a memorizar</label><input type="text" id="ce-concept" placeholder="ej: Neuroplasticidad sináptica"></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:#f0abfc">¿Qué imagen mental vívida te genera?</label><textarea id="ce-imagen" rows="2" placeholder="Describe la imagen más detallada posible — colores, movimiento, tamaño..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--amber2)">¿Qué emoción o recuerdo personal te evoca?</label><textarea id="ce-emocion" rows="2" placeholder="Conéctalo con algo que hayas vivido, sentido o experimentado..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:var(--teal2)">¿Con qué experiencia propia lo conectas?</label><textarea id="ce-conexion" rows="2" placeholder="¿Cuándo has visto o experimentado algo similar en tu vida?"></textarea></div>
+      <button class="btn btn-full" style="border-color:#e879f9;color:#f0abfc" onclick="ceSave()">Guardar elaboración</button>
+      <div class="saved-msg" id="ce-saved-msg">Elaboración guardada.</div>
+    </div>
+
+    <!-- ACRÓNIMOS GENERATIVOS -->
+    <div class="card" style="border-left:2px solid #e879f9">
+      <div class="card-title">Acrónimos Generativos</div>
+      <div class="card-sub">Crea tu propio acrónimo para una lista de conceptos. El acto de <strong style="color:#f0abfc">crear</strong> el acrónimo activa el dlPFC más intensamente que simplemente memorizarlo.</div>
+      <div style="margin-bottom:10px"><label class="lbl">Lista de conceptos (uno por línea)</label><textarea id="acro-lista" rows="5" placeholder="Memoria de trabajo&#10;Inhibición&#10;Flexibilidad&#10;Planificación&#10;Metacognición"></textarea></div>
+      <button class="btn btn-sm" style="border-color:#e879f9;color:#f0abfc;margin-bottom:10px" onclick="acroGenerar()">Generar sugerencias de acrónimo</button>
+      <div id="acro-sugerencias" style="margin-bottom:10px"></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:#f0abfc">Tu acrónimo final</label><input type="text" id="acro-result" placeholder="ej: MIFPM — Mi Increíble Fórmula Para Memorizar"></div>
+      <button class="btn btn-full" style="border-color:#e879f9;color:#f0abfc" onclick="acroSave()">Guardar acrónimo</button>
+      <div class="saved-msg" id="acro-saved-msg">Acrónimo guardado.</div>
+      <div id="acro-history" style="margin-top:12px"></div>
+    </div>
   </div>
 
   <!-- DIARIO GENERAL -->
@@ -2075,6 +2451,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
             <option>Lab 1 — Memoria de Trabajo</option><option>Lab 2 — Control Inhibitorio</option>
             <option>Lab 3 — Flexibilidad Cognitiva</option><option>Lab 4 — Planificación</option>
             <option>Lab 5 — Metacognición</option>
+            <option>Lab 6 — Mnemotécnicas</option>
           </select>
         </div>
         <div><label class="lbl">Minutos practicados</label><input type="text" id="d-min" placeholder="ej: 20"></div>
@@ -3476,6 +3853,271 @@ function aeSave(){
   showSaved('ae-saved-msg');
   document.getElementById('ae-phase').textContent='Guardado';
   logSes('Lab 5 — Metacognición',3);updateHome();
+}
+
+/* ── MÉTODO DE LOCI ── */
+var LOCI_RECS={
+  casa:{label:'🏠 Mi casa',emojis:['🚪','🛋️','🍳','🛏️','🚿','📚','🌿','🅿️','💡','🪟'],names:['Puerta','Sala','Cocina','Cuarto','Baño','Estudio','Patio','Garage','Pasillo','Ventana']},
+  uni:{label:'🎓 Universidad',emojis:['🚌','🏢','🎓','📚','🍽️','⚗️','🌳','🏋️','🏥','🅿️'],names:['Entrada','Recepción','Aula','Biblioteca','Cafetería','Laboratorio','Jardín','Gimnasio','Bienestar','Parqueadero']},
+  calle:{label:'🛣️ Mi camino',emojis:['🏠','🌳','🏪','🚦','🌉','🏫','⛪','🏦','🛒','🎯'],names:['Casa','Árbol grande','Tienda','Semáforo','Puente','Colegio','Iglesia','Banco','Supermercado','Destino']}
+};
+var loci={rec:null,estaciones:[],tema:'',recallIdx:0,recallScore:0,recallOrder:[]};
+function lociTab(n){
+  for(var i=1;i<=4;i++){
+    var t=document.getElementById('loci-t'+i);
+    var btn=document.getElementById('lt'+i);
+    if(t)t.style.display=i===n?'block':'none';
+    if(btn){btn.style.background=i===n?'#2d2650':'none';btn.style.color=i===n?'#b3abff':'#5c5a7a';}
+  }
+  if(n===3)lociRenderMap();
+  if(n===4)lociInitRecall();
+}
+function lociSelectRec(key){
+  loci.rec=key;
+  var r=LOCI_RECS[key];
+  document.getElementById('loci-rec-selected').style.display='block';
+  document.getElementById('loci-rec-selected').textContent='✓ '+r.label+' seleccionado';
+  document.getElementById('loci-next1').style.display='';
+  ['casa','uni','calle'].forEach(function(k){
+    var b=document.getElementById('lrec-'+k);
+    if(b){b.style.borderColor=k===key?'#8b7ff5':'#2a2a3a';b.style.color=k===key?'#b3abff':'#9996b8';}
+  });
+}
+function lociCargar(){
+  if(!loci.rec){showSaved('loci-carga-msg');return;}
+  var texto=document.getElementById('loci-conceptos').value.trim();
+  var tema=document.getElementById('loci-tema').value.trim();
+  if(!texto)return;
+  var conceptos=texto.split('\n').filter(function(c){return c.trim();}).slice(0,10);
+  loci.tema=tema;
+  var r=LOCI_RECS[loci.rec];
+  loci.estaciones=conceptos.map(function(c,i){
+    return {emoji:r.emojis[i],name:r.names[i],concept:c,imagen:'',sensory:''};
+  });
+  showSaved('loci-carga-msg');
+  document.getElementById('loci-phase').textContent=conceptos.length+' conceptos cargados';
+  setTimeout(function(){lociTab(3);},600);
+}
+function lociRenderMap(){
+  var el=document.getElementById('loci-stations-map');
+  if(!loci.estaciones.length){el.innerHTML='<div style="color:#5c5a7a;font-size:12px;text-align:center;grid-column:1/-1;padding:1rem">Carga conceptos primero ↑</div>';return;}
+  el.innerHTML=loci.estaciones.map(function(e,i){
+    var ok=e.imagen.length>0;
+    return '<div onclick="lociOpenStation('+i+')" style="height:58px;border-radius:8px;background:'+(ok?'#2d2650':'#1c1c28')+';border:2px solid '+(ok?'#8b7ff5':'#2a2a3a')+';cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .15s;font-size:1.2rem">'+
+      e.emoji+'<div style="font-size:8px;color:'+(ok?'#b3abff':'#5c5a7a')+';font-family:monospace;margin-top:2px">'+(ok?'✓':'+')+' '+e.name+'</div></div>';
+  }).join('');
+  var loaded=loci.estaciones.filter(function(e){return e.imagen;}).length;
+  document.getElementById('loci-to-recall').style.display=loaded>0?'':'none';
+}
+function lociOpenStation(i){
+  var e=loci.estaciones[i];
+  var form=document.getElementById('loci-station-form');
+  form.style.display='block';form.setAttribute('data-idx',i);
+  document.getElementById('loci-st-emoji').textContent=e.emoji;
+  document.getElementById('loci-st-place').textContent=e.name;
+  document.getElementById('loci-st-concept').textContent='Concepto: '+e.concept;
+  document.getElementById('loci-img-text').value=e.imagen||'';
+  document.getElementById('loci-img-sensory').value=e.sensory||'';
+  document.getElementById('loci-img-msg').style.display='none';
+  form.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function lociGuardarImg(){
+  var idx=parseInt(document.getElementById('loci-station-form').getAttribute('data-idx'));
+  var img=document.getElementById('loci-img-text').value.trim();
+  if(!img)return;
+  loci.estaciones[idx].imagen=img;
+  loci.estaciones[idx].sensory=document.getElementById('loci-img-sensory').value;
+  showSaved('loci-img-msg');
+  setTimeout(function(){lociRenderMap();},400);
+}
+function lociInitRecall(){
+  var loaded=loci.estaciones.filter(function(e){return e.imagen;});
+  if(!loaded.length){document.getElementById('loci-recall-card').innerHTML='<div style="color:#5c5a7a;font-size:13px;padding:1rem;text-align:center">Agrega imágenes mentales en el paso ③ primero</div>';return;}
+  loci.recallOrder=loaded.sort(function(){return Math.random()-.5;});
+  loci.recallIdx=0;loci.recallScore=0;
+  document.getElementById('loci-r-total').textContent=loci.recallOrder.length;
+  document.getElementById('loci-r-score').textContent=0;
+  document.getElementById('loci-r-pct').textContent='—';
+  document.getElementById('loci-r-bar').style.width='0%';
+  lociShowRecall();
+}
+function lociShowRecall(){
+  if(loci.recallIdx>=loci.recallOrder.length){
+    var pct=Math.round(loci.recallScore/loci.recallOrder.length*100);
+    document.getElementById('loci-r-pct').textContent=pct+'%';
+    document.getElementById('loci-recall-card').innerHTML=
+      '<div style="font-size:2.5rem;margin-bottom:8px">🏆</div>'+
+      '<div style="font-size:15px;font-weight:600;color:#b3abff;margin-bottom:6px">Recorrido completado</div>'+
+      '<div style="font-size:13px;color:#9996b8">Retención: <strong style="color:'+(pct>=80?'#34d399':pct>=60?'#fbbf24':'#f97066')+'">'+pct+'%</strong></div>'+
+      '<div style="font-size:11px;color:#5c5a7a;margin-top:6px;font-family:monospace">'+(pct>=80?'Consolidación sináptica óptima ✓':'Repasa el recorrido mañana')+'</div>';
+    logSes('Lab 6 — Mnemotécnicas',3);updateHome();
+    return;
+  }
+  var e=loci.recallOrder[loci.recallIdx];
+  document.getElementById('loci-r-emoji').textContent=e.emoji;
+  document.getElementById('loci-r-place').textContent=e.name;
+  document.getElementById('loci-r-question').textContent='¿Qué concepto está en "'+e.name+'"?';
+  document.getElementById('loci-r-bar').style.width=Math.round(loci.recallIdx/loci.recallOrder.length*100)+'%';
+  var wrong=loci.estaciones.filter(function(s){return s.concept!==e.concept;}).sort(function(){return Math.random()-.5;}).slice(0,3).map(function(s){return s.concept;});
+  var opts=[e.concept].concat(wrong).sort(function(){return Math.random()-.5;});
+  document.getElementById('loci-r-options').innerHTML=opts.map(function(o){
+    return '<button onclick="lociRecallAnswer(this,\''+o.replace(/'/g,"\\'")+'\')" style="padding:10px 14px;border:1px solid #2a2a3a;background:#16161f;border-radius:8px;font-size:13px;cursor:pointer;color:#9996b8;text-align:left;transition:all .15s">'+o+'</button>';
+  }).join('');
+  document.getElementById('loci-r-fb').style.display='none';
+}
+function lociRecallAnswer(btn,chosen){
+  var correct=loci.recallOrder[loci.recallIdx].concept;
+  document.getElementById('loci-r-options').querySelectorAll('button').forEach(function(b){b.onclick=null;});
+  if(chosen===correct){
+    btn.style.background='#0d3d28';btn.style.borderColor='#34d399';btn.style.color='#a7f3d0';
+    loci.recallScore++;document.getElementById('loci-r-score').textContent=loci.recallScore;
+    showFB('loci-r-fb','Correcto ✓','ok');
+  } else {
+    btn.style.background='#3d1a18';btn.style.borderColor='#f97066';btn.style.color='#fca5a1';
+    document.getElementById('loci-r-options').querySelectorAll('button').forEach(function(b){if(b.textContent===correct){b.style.background='#0d3d28';b.style.borderColor='#34d399';b.style.color='#a7f3d0';}});
+    showFB('loci-r-fb','Era: '+correct,'err');
+  }
+  loci.recallIdx++;
+  setTimeout(lociShowRecall,1200);
+}
+
+/* ── TÉCNICA FEYNMAN ── */
+function feynmanSave(){
+  var c=document.getElementById('fey-concept').value.trim();
+  if(!c)return;
+  S.push('feynman',{date:new Date().toLocaleDateString('es-CO'),concept:c,
+    simple:document.getElementById('fey-simple').value,
+    gaps:document.getElementById('fey-gaps').value,
+    analogy:document.getElementById('fey-analogy').value});
+  showSaved('fey-saved-msg');
+  feynmanRenderHistory();
+  logSes('Lab 6 — Mnemotécnicas',5);updateHome();
+}
+function feynmanRenderHistory(){
+  var a=S.get('feynman')||[];
+  var el=document.getElementById('fey-history');
+  if(!a.length){el.innerHTML='';return;}
+  el.innerHTML=a.slice(0,3).map(function(e){
+    return '<div class="diary-entry"><div class="diary-meta"><span class="diary-date">'+e.date+'</span><span class="diary-lab" style="background:#3d0d42;color:#f0abfc">'+e.concept+'</span></div></div>';
+  }).join('');
+}
+
+/* ── HISTORIA ENCADENADA ── */
+function hcSave(){
+  var lista=document.getElementById('hc-lista').value.trim();
+  var historia=document.getElementById('hc-historia').value.trim();
+  if(!lista||!historia)return;
+  S.push('hcadenadada',{date:new Date().toLocaleDateString('es-CO'),lista:lista,historia:historia});
+  showSaved('hc-saved-msg');
+  logSes('Lab 6 — Mnemotécnicas',3);updateHome();
+}
+
+/* ── CODIFICACIÓN ELABORATIVA ── */
+function ceSave(){
+  var c=document.getElementById('ce-concept').value.trim();
+  if(!c)return;
+  S.push('elaborativa',{date:new Date().toLocaleDateString('es-CO'),concept:c,
+    imagen:document.getElementById('ce-imagen').value,
+    emocion:document.getElementById('ce-emocion').value,
+    conexion:document.getElementById('ce-conexion').value});
+  showSaved('ce-saved-msg');
+  logSes('Lab 6 — Mnemotécnicas',2);updateHome();
+}
+
+/* ── ACRÓNIMOS GENERATIVOS ── */
+function acroGenerar(){
+  var lista=document.getElementById('acro-lista').value.trim().split('\n').filter(function(l){return l.trim();});
+  if(!lista.length)return;
+  var iniciales=lista.map(function(l){return l.trim()[0].toUpperCase();}).join('');
+  var el=document.getElementById('acro-sugerencias');
+  el.innerHTML='<div style="padding:10px;background:#1c1c28;border-radius:8px;border:1px solid #2a2a3a;margin-bottom:8px">'+
+    '<div style="font-size:11px;color:#5c5a7a;font-family:monospace;margin-bottom:6px">Iniciales extraídas:</div>'+
+    '<div style="font-size:1.5rem;font-weight:700;color:#b3abff;font-family:monospace;letter-spacing:4px">'+iniciales+'</div>'+
+    '<div style="font-size:11px;color:#5c5a7a;margin-top:6px">Crea una frase memorable donde cada palabra empiece con estas letras</div></div>';
+  document.getElementById('acro-result').placeholder='ej: '+iniciales+' — [tu frase aquí]';
+}
+function acroSave(){
+  var lista=document.getElementById('acro-lista').value.trim();
+  var result=document.getElementById('acro-result').value.trim();
+  if(!lista||!result)return;
+  S.push('acronimos',{date:new Date().toLocaleDateString('es-CO'),lista:lista,acronimo:result});
+  showSaved('acro-saved-msg');
+  acroRenderHistory();
+  logSes('Lab 6 — Mnemotécnicas',2);updateHome();
+}
+function acroRenderHistory(){
+  var a=S.get('acronimos')||[];
+  var el=document.getElementById('acro-history');
+  if(!a.length){el.innerHTML='';return;}
+  el.innerHTML=a.slice(0,3).map(function(e){
+    return '<div class="diary-entry"><div class="diary-meta"><span class="diary-date">'+e.date+'</span><span class="diary-lab" style="background:#3d0d42;color:#f0abfc">'+e.acronimo+'</span></div></div>';
+  }).join('');
+}
+
+/* ── REVALUACIÓN COGNITIVA ── */
+function rvSave(){
+  var sit=document.getElementById('rv-situation').value.trim();
+  if(!sit)return;
+  S.push('revaluacion',{date:new Date().toLocaleDateString('es-CO'),situation:sit,
+    initial:document.getElementById('rv-initial').value,
+    r1:document.getElementById('rv-r1').value,
+    r2:document.getElementById('rv-r2').value,
+    r3:document.getElementById('rv-r3').value,
+    action:document.getElementById('rv-action').value});
+  showSaved('rv-saved-msg');
+  logSes('Lab 5 — Metacognición',5);updateHome();
+}
+
+/* ── CALENDARIO DE ESPACIADO ── */
+var calExams=[];
+function calAdd(){
+  var mat=document.getElementById('cal-materia').value.trim();
+  var fecha=document.getElementById('cal-fecha').value;
+  if(!mat||!fecha)return;
+  calExams.push({materia:mat,fecha:fecha});
+  document.getElementById('cal-materia').value='';
+  document.getElementById('cal-fecha').value='';
+  calRenderList();
+  if(calExams.length>0)document.getElementById('cal-gen-btn').style.display='';
+}
+function calRenderList(){
+  var el=document.getElementById('cal-exams-list');
+  if(!calExams.length){el.innerHTML='';return;}
+  el.innerHTML=calExams.map(function(e,i){
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px;background:#1c1c28;border-radius:8px;margin-bottom:6px;border:1px solid #2a2a3a">'+
+      '<div style="flex:1;font-size:13px;color:#f0eff8">'+e.materia+'</div>'+
+      '<div style="font-size:11px;font-family:monospace;color:#2dd4bf">'+e.fecha+'</div>'+
+      '<button onclick="calRemove('+i+')" style="background:none;border:none;color:#5c5a7a;cursor:pointer;font-size:14px">✕</button></div>';
+  }).join('');
+}
+function calRemove(i){calExams.splice(i,1);calRenderList();if(!calExams.length)document.getElementById('cal-gen-btn').style.display='none';}
+function calGenerate(){
+  var INTERVALS=[1,3,7,14,30];
+  var LABELS=['1 día antes','3 días antes','1 semana antes','2 semanas antes','1 mes antes'];
+  var colors=['#3d1a18','#3d2d08','#0d3d38','#2d2650','#1e2d4a'];
+  var textColors=['#fca5a1','#fde68a','#99f6e4','#b3abff','#93c5fd'];
+  var plan=[];
+  calExams.forEach(function(e){
+    var examDate=new Date(e.fecha);
+    INTERVALS.forEach(function(days,j){
+      var repaso=new Date(examDate);
+      repaso.setDate(repaso.getDate()-days);
+      if(repaso>=new Date()){
+        plan.push({materia:e.materia,fecha:repaso.toLocaleDateString('es-CO'),dias:days,label:LABELS[j],ci:j});
+      }
+    });
+  });
+  plan.sort(function(a,b){return new Date(a.fecha)-new Date(b.fecha);});
+  document.getElementById('cal-plan').innerHTML=plan.length?plan.map(function(p){
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:'+colors[p.ci]+';border-radius:8px;margin-bottom:6px;border:1px solid '+textColors[p.ci]+'33">'+
+      '<div style="font-size:11px;font-family:monospace;color:'+textColors[p.ci]+';min-width:80px">'+p.fecha+'</div>'+
+      '<div style="flex:1;font-size:13px;color:'+textColors[p.ci]+';font-weight:500">'+p.materia+'</div>'+
+      '<div style="font-size:10px;color:'+textColors[p.ci]+'99;font-family:monospace">'+p.label+'</div></div>';
+  }).join(''):'<div style="color:#5c5a7a;font-size:12px;text-align:center;padding:1rem">Todos los repasos ya pasaron — agrega fechas futuras</div>';
+  document.getElementById('cal-schedule').style.display='block';
+  document.getElementById('cal-phase').textContent=plan.length+' repasos programados';
+  S.set('calendario',{exams:calExams,plan:plan,date:new Date().toLocaleDateString('es-CO')});
+  logSes('Lab 4 — Planificación',1);updateHome();
 }
 
 /* ── PWA ── */
