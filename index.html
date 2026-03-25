@@ -5352,7 +5352,6 @@ function rankingTab(tab){
   var d=getDashData();
   updateRanking(d);
 }
-var MATERIAS_DOCENTES=['Neuropsicología','Neuroeducación','Psicología','Pedagogía','Ciencias Básicas','Humanidades','Ciencias Económicas','Otra materia'];
 function updateRanking(d){
   var el=document.getElementById('ranking-card');
   if(!el)return;
@@ -5362,29 +5361,31 @@ function updateRanking(d){
   var myPx=d.px;
   var seed=myPx||10;
   var medals=['🥇','🥈','🥉'];
-  var estList=PROGRAMAS.map(function(p,i){
-    var px=p===myProg&&myRol==='estudiante'?myPx:Math.max(5,Math.floor(seed*0.6+i*7+Math.sin(i*2.3)*15));
-    return {name:p,px:px,rol:'estudiante',icon:'🎓'};
-  });
-  var docList=MATERIAS_DOCENTES.map(function(p,i){
-    var px=p===myProg&&myRol==='docente'?myPx:Math.max(8,Math.floor(seed*0.8+i*9+Math.cos(i*1.7)*12));
-    return {name:p,px:px,rol:'docente',icon:'👨‍🏫'};
-  });
   var tab=currentRankingTab;
-  var list=tab==='general'?estList.concat(docList):tab==='estudiantes'?estList:docList;
+
+  // Siempre los mismos 8 programas, cambia solo el rol mostrado
+  var list=PROGRAMAS.map(function(p,i){
+    var isMe=p===myProg&&((tab==='general')||(tab==='estudiantes'&&myRol==='estudiante')||(tab==='docentes'&&myRol==='docente'));
+    var baseRol=tab==='docentes'?'docente':'estudiante';
+    var icon=tab==='docentes'?'👨‍🏫':'🎓';
+    // PX simulados distintos para cada pestaña para dar variedad
+    var offset=tab==='docentes'?7:0;
+    var px=isMe?myPx:Math.max(5,Math.floor(seed*0.6+(i+offset)*7+Math.sin((i+offset)*2.3)*15));
+    return {name:p,px:px,rol:baseRol,icon:icon,isMe:isMe};
+  });
+
   list.sort(function(a,b){return b.px-a.px;});
   var maxPx=list[0]?list[0].px:1;
   el.innerHTML=list.map(function(p,i){
-    var isMe=p.name===myProg&&p.rol===myRol;
     var barW=Math.round(p.px/maxPx*100);
-    var bg=isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
-    var nc=isMe?'color:#b3abff;font-weight:600;':'';
-    var bc=isMe?'#8b7ff5':p.rol==='docente'?'#2dd4bf':'#2a2a3a';
+    var bg=p.isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
+    var nc=p.isMe?'color:#b3abff;font-weight:600;':'';
+    var bc=p.isMe?'#8b7ff5':tab==='docentes'?'#2dd4bf':'#2a2a3a';
     return '<div class="ranking-row" style="'+bg+'">'+
       '<div class="ranking-pos '+(i<3?['gold','silver','bronze'][i]:'')+'">'+
       (i<3?medals[i]:i+1)+'</div>'+
       '<div style="font-size:11px;margin-right:4px">'+p.icon+'</div>'+
-      '<div class="ranking-prog" style="'+nc+'">'+p.name+(isMe?' ← tú':'')+'</div>'+
+      '<div class="ranking-prog" style="'+nc+'">'+p.name+(p.isMe?' ← tú':'')+'</div>'+
       '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+bc+'"></div></div>'+
       '<div class="ranking-px">'+p.px+' PX</div>'+
       '</div>';
