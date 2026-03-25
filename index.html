@@ -456,6 +456,10 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <button class="nav-btn" onclick="showScreen('lab4')"><span class="nav-dot" style="background:var(--teal)"></span>Lab 4 · Planificación</button>
       <button class="nav-btn" onclick="showScreen('lab5')"><span class="nav-dot" style="background:var(--pink)"></span>Lab 5 · Metacognición</button>
       <button class="nav-btn" onclick="showScreen('lab6')"><span class="nav-dot" style="background:#e879f9"></span>Lab 6 · Mnemotécnicas</button>
+      <button class="nav-btn doc-nav-btn" id="nav-labd1-btn" onclick="showScreen('labd1')" style="display:none"><span class="nav-dot" style="background:#2dd4bf"></span>D1 · FE Aula</button>
+      <button class="nav-btn doc-nav-btn" id="nav-labd2-btn" onclick="showScreen('labd2')" style="display:none"><span class="nav-dot" style="background:#60a5fa"></span>D2 · Atención</button>
+      <button class="nav-btn doc-nav-btn" id="nav-labd3-btn" onclick="showScreen('labd3')" style="display:none"><span class="nav-dot" style="background:#fbbf24"></span>D3 · Memoria</button>
+      <button class="nav-btn doc-nav-btn" id="nav-labd4-btn" onclick="showScreen('labd4')" style="display:none"><span class="nav-dot" style="background:#e879f9"></span>D4 · Neuropsico</button>
       <button class="nav-btn" onclick="showScreen('diario')"><span class="nav-dot" style="background:var(--text3)"></span>Diario</button>
     </div>
   </div>
@@ -1080,8 +1084,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   <div id="screen-lab1" class="screen">
     <div class="sec-header">
       <button class="sec-back" onclick="showScreen('home')">← Volver</button>
-      <div class="sec-title">Memoria de Trabajo</div>
-      <div class="sec-sub">La "pizarra mental" del cerebro. Mantener y manipular información activa mientras realizas otra tarea.</div>
+      <div class="sec-title" id="lab1-title">Memoria de Trabajo</div>
+      <div class="sec-sub" id="lab1-sub">La "pizarra mental" del cerebro. Mantener y manipular información activa mientras realizas otra tarea.</div>
       <div class="neuro-badge">dlPFC ↔ Parietal Superior · Acoplamiento Theta-Gamma</div>
     </div>
     <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
@@ -1825,8 +1829,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   <div id="screen-lab2" class="screen">
     <div class="sec-header">
       <button class="sec-back" onclick="showScreen('home')">← Volver</button>
-      <div class="sec-title">Control Inhibitorio</div>
-      <div class="sec-sub">Suprime respuestas automáticas, resiste distracciones y piensa antes de actuar. El "freno" cognitivo.</div>
+      <div class="sec-title" id="lab2-title">Control Inhibitorio</div>
+      <div class="sec-sub" id="lab2-sub">Suprime respuestas automáticas, resiste distracciones y piensa antes de actuar. El "freno" cognitivo.</div>
       <div class="neuro-badge" style="background:var(--coral3);border-color:rgba(249,112,102,.2);color:var(--coral2)">Circuito Fronto-Striatal · ACC · Theta Frontal</div>
     </div>
     <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
@@ -2093,8 +2097,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   <div id="screen-lab3" class="screen">
     <div class="sec-header">
       <button class="sec-back" onclick="showScreen('home')">← Volver</button>
-      <div class="sec-title">Flexibilidad Cognitiva</div>
-      <div class="sec-sub">Cambia de perspectiva, adáptate a nuevas reglas y piensa "fuera de la caja". El mecanismo de adaptación epistémica.</div>
+      <div class="sec-title" id="lab3-title">Flexibilidad Cognitiva</div>
+      <div class="sec-sub" id="lab3-sub">Cambia de perspectiva, adáptate a nuevas reglas y piensa "fuera de la caja". El mecanismo de adaptación epistémica.</div>
       <div class="neuro-badge" style="background:var(--amber3);border-color:rgba(251,191,36,.2);color:var(--amber2)">DMN · Ganglios Basales · Variabilidad Conectiva</div>
     </div>
     <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
@@ -2335,8 +2339,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   <div id="screen-lab4" class="screen">
     <div class="sec-header">
       <button class="sec-back" onclick="showScreen('home')">← Volver</button>
-      <div class="sec-title">Planificación y Organización</div>
-      <div class="sec-sub">Anticipa metas, descompón objetivos y monitorea el progreso. La función ejecutiva más demandada por la vida universitaria.</div>
+      <div class="sec-title" id="lab4-title">Planificación y Organización</div>
+      <div class="sec-sub" id="lab4-sub">Anticipa metas, descompón objetivos y monitorea el progreso. La función ejecutiva más demandada por la vida universitaria.</div>
       <div class="neuro-badge" style="background:var(--teal3);border-color:rgba(45,212,191,.2);color:var(--teal2)">aPFC · Red Frontoparietal · GMT</div>
     </div>
     <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
@@ -2602,8 +2606,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   <div id="screen-lab5" class="screen">
     <div class="sec-header">
       <button class="sec-back" onclick="showScreen('home')">← Volver</button>
-      <div class="sec-title">Metacognición y Autorregulación</div>
-      <div class="sec-sub">Observa, entiende y regula tus propios procesos de aprendizaje. La función ejecutiva integradora.</div>
+      <div class="sec-title" id="lab5-title">Metacognición y Autorregulación</div>
+      <div class="sec-sub" id="lab5-sub">Observa, entiende y regula tus propios procesos de aprendizaje. La función ejecutiva integradora.</div>
       <div class="neuro-badge" style="background:var(--pink3);border-color:rgba(232,121,249,.2);color:#f0abfc">aPFC · Triple Red · Introspección Ejecutiva</div>
     </div>
     <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
@@ -2858,8 +2862,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   <div id="screen-lab6" class="screen">
     <div class="sec-header">
       <button class="sec-back" onclick="showScreen('home')">← Volver</button>
-      <div class="sec-title">Estrategias Mnemotécnicas</div>
-      <div class="sec-sub">Técnicas de codificación profunda que activan el hipocampo, la amígdala y la corteza temporal simultáneamente. Producen huellas mnémicas distribuidas y resistentes al olvido.</div>
+      <div class="sec-title" id="lab6-title">Estrategias Mnemotécnicas</div>
+      <div class="sec-sub" id="lab6-sub">Técnicas de codificación profunda que activan el hipocampo, la amígdala y la corteza temporal simultáneamente. Producen huellas mnémicas distribuidas y resistentes al olvido.</div>
       <div class="neuro-badge" style="background:#3d0d42;border-color:rgba(232,121,249,.2);color:#f0abfc">Hipocampo · Corteza Temporal · aPFC · Amígdala</div>
     </div>
 
@@ -3108,6 +3112,7 @@ function showScreen(id){
   document.querySelectorAll('.nav-btn').forEach(b=>{if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
   if(id==='diario')renderDiary();
   if(id==='home'){dashUpdate();}
+  if(id.startsWith('lab'))applyRolTextos();
 }
 function updateHome(){
   const d=S.get('diary')||[];const m=S.get('meta')||[];const all=[...d,...m];
@@ -4554,6 +4559,94 @@ function wcstFinalizar(){
 var _nbStartOrig=window.nbStart;
 var _spanStartOrig=window.spanStart;
 
+/* ── ADAPTACIÓN DE LENGUAJE POR ROL ── */
+var TEXTOS_DOC={
+  'lab1-title':'Memoria de Trabajo — Entrenamiento Docente',
+  'lab1-sub':'Fortalece tu MdT para gestionar múltiples demandas simultáneas del aula: recordar nombres, monitorear la comprensión del grupo y seguir tu hilo explicativo al mismo tiempo.',
+  'lab2-title':'Control Inhibitorio — Entrenamiento Docente',
+  'lab2-sub':'Entrena tu capacidad de inhibir respuestas impulsivas ante situaciones difíciles del aula: el estudiante que interrumpe, el comentario desafiante, la presión de terminar el tema.',
+  'lab3-title':'Flexibilidad Cognitiva — Entrenamiento Docente',
+  'lab3-sub':'Desarrolla la capacidad de cambiar de estrategia pedagógica cuando la actual no funciona. Adaptar el enfoque en tiempo real es la habilidad docente más exigente cognitivamente.',
+  'lab4-title':'Planificación — Entrenamiento Docente',
+  'lab4-sub':'Optimiza la planificación de tus clases, secuencias curriculares y proyectos académicos. Las mismas técnicas que enseñas, aplicadas a tu propia práctica pedagógica.',
+  'lab5-title':'Metacognición Docente',
+  'lab5-sub':'Observa y regula tu propia práctica pedagógica. ¿Qué estrategias funcionan? ¿Cuándo pierdes el hilo? ¿Cómo gestionas la carga cognitiva del aula? La función ejecutiva del docente reflexivo.',
+  'lab6-title':'Estrategias Mnemotécnicas — Aplicación Pedagógica',
+  'lab6-sub':'Domina estas técnicas para enseñarlas a tus estudiantes con propiedad y para diseñar clases que las integren. Un docente que usa el Método de Loci enseña el Método de Loci de manera incomparablemente más efectiva.'
+};
+
+var TEXTOS_EST={
+  'lab1-title':'Memoria de Trabajo',
+  'lab1-sub':'La "pizarra mental" del cerebro. Mantener y manipular información activa mientras realizas otra tarea.',
+  'lab2-title':'Control Inhibitorio',
+  'lab2-sub':'Suprime respuestas automáticas, resiste distracciones y piensa antes de actuar. El "freno" cognitivo.',
+  'lab3-title':'Flexibilidad Cognitiva',
+  'lab3-sub':'Cambia de perspectiva, adáptate a nuevas reglas y piensa "fuera de la caja". El mecanismo de adaptación epistémica.',
+  'lab4-title':'Planificación y Organización',
+  'lab4-sub':'Anticipa metas, descompón objetivos y monitorea el progreso. La función ejecutiva más demandada por la vida universitaria.',
+  'lab5-title':'Metacognición y Autorregulación',
+  'lab5-sub':'Observa, entiende y regula tus propios procesos de aprendizaje. La función ejecutiva integradora.',
+  'lab6-title':'Estrategias Mnemotécnicas',
+  'lab6-sub':'Técnicas de codificación profunda que activan el hipocampo, la amígdala y la corteza temporal simultáneamente. Producen huellas mnémicas distribuidas y resistentes al olvido.'
+};
+
+// Placeholders adaptados para formularios clave
+var PLACEHOLDERS_DOC={
+  'pt-topic':'ej: Tema de la próxima clase — Funciones ejecutivas en el aprendizaje',
+  'sq-text':'ej: Artículo de investigación — Neuroplasticidad en adultos',
+  'loci-tema':'ej: Conceptos clave para mi próxima clase magistral',
+  'fey-concept':'ej: Potencial de acción neuronal para explicar a estudiantes de primer semestre',
+  'ae-topic':'ej: Capítulo 3 del libro base — leído para preparar la clase del jueves',
+  'rv-situation':'ej: Grupo que no participa, evaluación con resultados muy bajos',
+  'ew-exam':'ej: Clase difícil del viernes, presentación del proyecto de investigación'
+};
+
+var PLACEHOLDERS_EST={
+  'pt-topic':'ej: Derivadas parciales, Teorema de Bayes, ADN y ARN...',
+  'sq-text':'ej: Capítulo 3 de Microeconomía — La curva de demanda',
+  'loci-tema':'ej: Parcial de Neuropsicología — jueves',
+  'fey-concept':'ej: Potencial de acción neuronal, Teorema de Bayes...',
+  'ae-topic':'ej: Página 45-47 de Fisiología — Potencial de reposo',
+  'rv-situation':'ej: Parcial de Cálculo el viernes, no entiendo integrales',
+  'ew-exam':'ej: Parcial de Cálculo — jueves próximo'
+};
+
+function applyRolTextos(){
+  var profile=S.get('userProfile');
+  var esDocente=profile&&profile.rol==='docente';
+  var textos=esDocente?TEXTOS_DOC:TEXTOS_EST;
+  var placeholders=esDocente?PLACEHOLDERS_DOC:PLACEHOLDERS_EST;
+
+  // Actualizar títulos y subtítulos
+  Object.keys(textos).forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.textContent=textos[id];
+  });
+
+  // Actualizar placeholders de formularios
+  Object.keys(placeholders).forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.placeholder=placeholders[id];
+  });
+
+  // Badge docente en cada lab header
+  ['lab1','lab2','lab3','lab4','lab5','lab6'].forEach(function(lab){
+    var existing=document.getElementById(lab+'-doc-badge');
+    if(esDocente&&!existing){
+      var titleEl=document.getElementById(lab+'-title');
+      if(titleEl&&titleEl.parentElement){
+        var badge=document.createElement('div');
+        badge.id=lab+'-doc-badge';
+        badge.style.cssText='display:inline-block;font-size:10px;font-family:monospace;padding:3px 10px;border-radius:10px;background:#0d3d38;color:#2dd4bf;border:1px solid rgba(45,212,191,.3);margin-top:6px';
+        badge.textContent='👨‍🏫 Modo Docente — Entrenamiento personal de FE';
+        titleEl.parentElement.insertBefore(badge,titleEl.nextSibling);
+      }
+    } else if(!esDocente&&existing){
+      existing.remove();
+    }
+  });
+}
+
 /* ── DIFERENCIACIÓN VISUAL DOCENTE/ESTUDIANTE ── */
 function applyRolUI(){
   var profile=S.get('userProfile');
@@ -4564,10 +4657,12 @@ function applyRolUI(){
   var pd=document.getElementById('panel-docente');
   if(pd)pd.style.display=esDocente?'block':'none';
 
-  // Labs docentes
+  // Labs docentes visibles solo para docentes
   ['d1','d2','d3','d4'].forEach(function(d){
     var lc=document.getElementById('lc-'+d);
     if(lc)lc.style.display=esDocente?'block':'none';
+    var nb=document.getElementById('nav-lab'+d+'-btn');
+    if(nb)nb.style.display=esDocente?'':'none';
   });
 
   // Etiquetas pedagógicas en labs compartidos
@@ -4576,19 +4671,20 @@ function applyRolUI(){
     if(lp)lp.style.display=esDocente?'block':'none';
   }
 
-  // Color del mapa cerebral según rol
-  var brainEl=document.getElementById('brain-svg');
-  if(brainEl){
-    if(esDocente){
-      // Cambiar conexiones a teal para docentes
-      var lines=brainEl.querySelectorAll('g#brain-connections line');
-      lines.forEach(function(l){l.setAttribute('stroke','#2dd4bf');});
-    }
-  }
-
   // Título de labs
   var lt=document.getElementById('labs-grid-title');
-  if(lt)lt.textContent=esDocente?'🔬 Laboratorios — Estudiante + Docente':'🔬 Laboratorios';
+  if(lt){
+    lt.innerHTML=esDocente?
+      '🔬 Laboratorios de Funciones Ejecutivas<br><span style="font-size:10px;color:#2dd4bf;font-family:monospace">+ 4 Laboratorios exclusivos docentes ↓</span>':
+      '🔬 Laboratorios';
+  }
+
+  // Color mapa cerebral
+  var brainEl=document.getElementById('brain-svg');
+  if(brainEl){
+    var lines=brainEl.querySelectorAll('g#brain-connections line');
+    lines.forEach(function(l){l.setAttribute('stroke',esDocente?'#2dd4bf':'#8b7ff5');});
+  }
 
   // Panel docente con datos simulados
   if(esDocente){
@@ -4597,57 +4693,17 @@ function applyRolUI(){
     if(dlabel)dlabel.textContent=prog;
     var d=getDashData();
     var seed=d.px||10;
-    var active=Math.max(1,Math.floor(seed*0.3+3));
-    var avgPx=Math.max(10,Math.floor(seed*0.8+15));
-    var labs=['Lab 1','Lab 2','Lab 3','Lab 4','Lab 5','Lab 6'];
-    var topLab=labs[Math.floor(seed*7)%6];
     var da=document.getElementById('doc-active');
     var dp=document.getElementById('doc-avg-px');
     var dl=document.getElementById('doc-top-lab');
-    if(da)da.textContent=active;
-    if(dp)dp.textContent=avgPx;
-    if(dl)dl.textContent=topLab;
-  }
-
-  // Nav: agregar labs docentes si no existen
-  var nav=document.querySelector('.nav-row:last-of-type');
-  if(nav&&esDocente&&!document.getElementById('nav-labd1')){
-    var btn=document.createElement('button');
-    btn.id='nav-labd1';
-    btn.className='nav-btn';
-    btn.innerHTML='<span class="nav-dot" style="background:#2dd4bf"></span>Labs Docente';
-    btn.onclick=function(){showDocenteMenu();};
-    nav.appendChild(btn);
+    if(da)da.textContent=Math.max(1,Math.floor(seed*0.3+3));
+    if(dp)dp.textContent=Math.max(10,Math.floor(seed*0.8+15));
+    var topLabs=['Lab 1','Lab 2','Lab 3','Lab 4','Lab 5','Lab 6'];
+    if(dl)dl.textContent=topLabs[Math.floor(seed*7)%6];
   }
 }
 
-function showDocenteMenu(){
-  // Mostrar mini-menú de labs docentes
-  var existing=document.getElementById('docente-menu');
-  if(existing){existing.remove();return;}
-  var menu=document.createElement('div');
-  menu.id='docente-menu';
-  menu.style.cssText='position:fixed;bottom:80px;right:16px;background:#0d3d38;border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:10px;z-index:200;display:flex;flex-direction:column;gap:6px';
-  var labs=[
-    {id:'labd1',label:'D1 · FE en el Aula',color:'#2dd4bf'},
-    {id:'labd2',label:'D2 · Atención',color:'#60a5fa'},
-    {id:'labd3',label:'D3 · Memoria',color:'#fbbf24'},
-    {id:'labd4',label:'D4 · Neuropsicopedagogía',color:'#e879f9'},
-  ];
-  labs.forEach(function(l){
-    var btn=document.createElement('button');
-    btn.style.cssText='padding:8px 14px;border:1px solid '+l.color+'33;background:none;border-radius:8px;font-size:12px;cursor:pointer;color:'+l.color+';font-family:monospace;text-align:left';
-    btn.textContent=l.label;
-    btn.onclick=function(){showScreen(l.id);menu.remove();};
-    menu.appendChild(btn);
-  });
-  document.body.appendChild(menu);
-  setTimeout(function(){
-    document.addEventListener('click',function handler(e){
-      if(!menu.contains(e.target)&&e.target.id!=='nav-labd1'){menu.remove();document.removeEventListener('click',handler);}
-    });
-  },100);
-}
+
 
 /* ── DIARIO DOCENTE ── */
 function dpdSave(){
@@ -5161,6 +5217,7 @@ function obFinish(){
 function applyUserProfile(){
   if(!obData.nombre)return;
   applyRolUI();
+  applyRolTextos();
   var esDocente=obData.rol==='docente';
   var greeting=esDocente?
     'Bienvenido, Prof. '+obData.nombre+'. Tu mente enseña mejor cuando está entrenada.' :
@@ -5358,28 +5415,28 @@ function updateRanking(d){
   var seed=myPx||10;
   var medals=['🥇','🥈','🥉'];
   var tab=currentRankingTab;
-
-  // Siempre los mismos 8 programas, cambia solo el rol mostrado
+  var esDocente=tab==='docentes';
+  var EST_BASE=[312,287,254,231,198,176,154,132];
+  var DOC_BASE=[187,164,143,121,108,94,82,71];
+  var baseArr=esDocente?DOC_BASE:EST_BASE;
   var list=PROGRAMAS.map(function(p,i){
-    var isMe=p===myProg&&((tab==='general')||(tab==='estudiantes'&&myRol==='estudiante')||(tab==='docentes'&&myRol==='docente'));
-    var baseRol=tab==='docentes'?'docente':'estudiante';
-    var icon=tab==='docentes'?'👨‍🏫':'🎓';
-    // PX simulados distintos para cada pestaña para dar variedad
-    var offset=tab==='docentes'?7:0;
-    var px=isMe?myPx:Math.max(5,Math.floor(seed*0.6+(i+offset)*7+Math.sin((i+offset)*2.3)*15));
-    return {name:p,px:px,rol:baseRol,icon:icon,isMe:isMe};
+    var isMe=p===myProg&&((tab==='estudiantes'&&myRol==='estudiante')||(tab==='docentes'&&myRol==='docente'));
+    var variation=Math.floor(Math.sin(i*1.7+seed*0.01)*20);
+    var px=isMe?myPx:Math.max(5,baseArr[i]+variation);
+    return {name:p,px:px,icon:esDocente?'👨‍🏫':'🎓',isMe:isMe};
   });
-
   list.sort(function(a,b){return b.px-a.px;});
   var maxPx=list[0]?list[0].px:1;
-  el.innerHTML=list.map(function(p,i){
+  var header=esDocente?
+    '<div style="font-size:11px;color:#2dd4bf;font-family:monospace;margin-bottom:8px;padding:6px 8px;background:#0d3d38;border-radius:6px">👨‍🏫 Ranking docentes · PX promedio por programa</div>':
+    '<div style="font-size:11px;color:#b3abff;font-family:monospace;margin-bottom:8px;padding:6px 8px;background:#2d2650;border-radius:6px">🎓 Ranking estudiantes · PX promedio por programa</div>';
+  el.innerHTML=header+list.map(function(p,i){
     var barW=Math.round(p.px/maxPx*100);
     var bg=p.isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
     var nc=p.isMe?'color:#b3abff;font-weight:600;':'';
-    var bc=p.isMe?'#8b7ff5':tab==='docentes'?'#2dd4bf':'#2a2a3a';
+    var bc=p.isMe?'#8b7ff5':esDocente?'#2dd4bf':'#2a2a3a';
     return '<div class="ranking-row" style="'+bg+'">'+
-      '<div class="ranking-pos '+(i<3?['gold','silver','bronze'][i]:'')+'">'+
-      (i<3?medals[i]:i+1)+'</div>'+
+      '<div class="ranking-pos '+(i<3?['gold','silver','bronze'][i]:'')+'">'+(i<3?medals[i]:i+1)+'</div>'+
       '<div style="font-size:11px;margin-right:4px">'+p.icon+'</div>'+
       '<div class="ranking-prog" style="'+nc+'">'+p.name+(p.isMe?' ← tú':'')+'</div>'+
       '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+bc+'"></div></div>'+
