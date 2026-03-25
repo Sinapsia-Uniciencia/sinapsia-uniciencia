@@ -473,12 +473,30 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <input type="text" id="ob-nombre" placeholder="Tu nombre" style="margin-bottom:1.5rem;margin-top:6px">
         <button class="btn btn-v btn-full" onclick="obNext(2)">Continuar →</button>
       </div>
-      <!-- Paso 2: Programa -->
+
+      <!-- Paso 2: Rol -->
       <div class="onboarding-step" id="ob-step2">
-        <div style="font-size:3rem;margin-bottom:12px">🎓</div>
-        <div class="onboarding-title">¿Cuál es tu programa?</div>
-        <div class="onboarding-sub">Esto nos permite personalizar el ranking de facultades y las recomendaciones.</div>
-        <div class="programa-grid" id="ob-programas">
+        <div style="font-size:3rem;margin-bottom:12px">🎭</div>
+        <div class="onboarding-title">¿Cuál es tu rol?</div>
+        <div class="onboarding-sub">Esto personaliza tu experiencia y el ranking de UNICIENCIA.</div>
+        <div style="display:flex;gap:10px;margin-bottom:1.5rem">
+          <button class="programa-btn" id="rol-est" onclick="obSelectRol(this,'estudiante')" style="flex:1;padding:20px 8px;font-size:14px">
+            🎓<br><strong>Estudiante</strong><br><span style="font-size:11px;color:#5c5a7a">Accede a los 6 laboratorios de funciones ejecutivas</span>
+          </button>
+          <button class="programa-btn" id="rol-doc" onclick="obSelectRol(this,'docente')" style="flex:1;padding:20px 8px;font-size:14px">
+            👨‍🏫<br><strong>Docente</strong><br><span style="font-size:11px;color:#5c5a7a">Entrena tu mente y monitorea el progreso del grupo</span>
+          </button>
+        </div>
+        <button class="btn btn-v btn-full" id="ob-rol-btn" onclick="obNext(3)" style="opacity:.4" disabled>Continuar →</button>
+      </div>
+
+      <!-- Paso 3: Programa/Materia -->
+      <div class="onboarding-step" id="ob-step3">
+        <div style="font-size:3rem;margin-bottom:12px" id="ob-step3-icon">🎓</div>
+        <div class="onboarding-title" id="ob-step3-title">¿Cuál es tu programa?</div>
+        <div class="onboarding-sub" id="ob-step3-sub">Esto nos permite personalizar el ranking por facultad.</div>
+        <!-- Programas estudiante -->
+        <div class="programa-grid" id="ob-programas-est">
           <button class="programa-btn" onclick="obSelectProg(this,'Derecho')">⚖️ Derecho</button>
           <button class="programa-btn" onclick="obSelectProg(this,'Economía')">📈 Economía</button>
           <button class="programa-btn" onclick="obSelectProg(this,'Adm. de Empresas')">💼 Adm. de Empresas</button>
@@ -488,10 +506,22 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
           <button class="programa-btn" onclick="obSelectProg(this,'Contaduría Pública')">🧾 Contaduría Pública</button>
           <button class="programa-btn" onclick="obSelectProg(this,'Publicidad')">📢 Publicidad</button>
         </div>
-        <button class="btn btn-v btn-full" id="ob-prog-btn" onclick="obNext(3)" style="opacity:.4" disabled>Continuar →</button>
+        <!-- Materias docente -->
+        <div class="programa-grid" id="ob-programas-doc" style="display:none">
+          <button class="programa-btn" onclick="obSelectProg(this,'Neuropsicología')">🧠 Neuropsicología</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Neuroeducación')">📚 Neuroeducación</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Psicología')">💭 Psicología</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Pedagogía')">✏️ Pedagogía</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Ciencias Básicas')">🔬 Ciencias Básicas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Humanidades')">📖 Humanidades</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Ciencias Económicas')">💹 Ciencias Económicas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Otra materia')">🎯 Otra materia</button>
+        </div>
+        <button class="btn btn-v btn-full" id="ob-prog-btn" onclick="obNext(4)" style="opacity:.4;margin-top:10px" disabled>Continuar →</button>
       </div>
-      <!-- Paso 3: Color avatar -->
-      <div class="onboarding-step" id="ob-step3">
+
+      <!-- Paso 4: Color avatar -->
+      <div class="onboarding-step" id="ob-step4">
         <div style="font-size:3rem;margin-bottom:12px">✨</div>
         <div class="onboarding-title">Elige el color de tu mente</div>
         <div class="onboarding-sub">Este color representará tu red neuronal en el mapa de conectividad.</div>
@@ -502,7 +532,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
           <div class="color-opt" style="background:#f97066" onclick="obSelectColor(this,'#f97066','coral')" title="Coral inhibitorio"></div>
           <div class="color-opt" style="background:#e879f9" onclick="obSelectColor(this,'#e879f9','pink')" title="Rosa mnemotécnico"></div>
         </div>
-        <button class="btn btn-v btn-full" onclick="obFinish()">Iniciar mi entrenamiento →</button>
+        <button class="btn btn-v btn-full" id="ob-finish-btn" onclick="obFinish()">Iniciar mi entrenamiento →</button>
       </div>
     </div>
   </div>
@@ -696,9 +726,15 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
     <!-- RANKING FACULTADES -->
     <div class="dashboard-section">
-      <div class="dash-title">🏛️ Ranking de Facultades UNICIENCIA</div>
+      <div class="dash-title">🏛️ Ranking UNICIENCIA</div>
+      <!-- Tabs del ranking -->
+      <div style="display:flex;gap:4px;background:#0d0d15;border-radius:8px;padding:3px;margin-bottom:10px">
+        <button id="rtab-general" onclick="rankingTab('general')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:#2d2650;color:#b3abff;transition:all .2s">🏆 General</button>
+        <button id="rtab-est" onclick="rankingTab('estudiantes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a;transition:all .2s">🎓 Estudiantes</button>
+        <button id="rtab-doc" onclick="rankingTab('docentes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a;transition:all .2s">👨‍🏫 Docentes</button>
+      </div>
       <div class="ranking-card" id="ranking-card"></div>
-      <div style="font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:6px;text-align:center">Ranking simulado · Basado en promedio de Puntos de Plasticidad por programa</div>
+      <div style="font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:6px;text-align:center">Ranking simulado · Puntos de Plasticidad promedio por programa</div>
     </div>
 
     <!-- LABS GRID -->
@@ -4677,7 +4713,7 @@ var LOGROS=[
 ];
 
 // ── ONBOARDING ──
-var obData={nombre:'',programa:'',color:'#8b7ff5',colorName:'violet'};
+var obData={nombre:'',rol:'estudiante',programa:'',color:'#8b7ff5',colorName:'violet'};
 function obCheck(){
   var profile=S.get('userProfile');
   if(!profile){
@@ -4696,9 +4732,30 @@ function obNext(step){
   document.querySelectorAll('.onboarding-step').forEach(function(s){s.classList.remove('active');});
   document.getElementById('ob-step'+step).classList.add('active');
 }
+function obSelectRol(btn,rol){
+  obData.rol=rol;
+  document.querySelectorAll('#ob-step2 .programa-btn').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+  document.getElementById('ob-rol-btn').disabled=false;
+  document.getElementById('ob-rol-btn').style.opacity='1';
+  // Preparar paso 3 según rol
+  if(rol==='docente'){
+    document.getElementById('ob-step3-icon').textContent='👨‍🏫';
+    document.getElementById('ob-step3-title').textContent='¿Qué materia enseñas?';
+    document.getElementById('ob-step3-sub').textContent='Esto personaliza el ranking docente y las recomendaciones pedagógicas.';
+    document.getElementById('ob-programas-est').style.display='none';
+    document.getElementById('ob-programas-doc').style.display='grid';
+  } else {
+    document.getElementById('ob-step3-icon').textContent='🎓';
+    document.getElementById('ob-step3-title').textContent='¿Cuál es tu programa?';
+    document.getElementById('ob-step3-sub').textContent='Esto nos permite personalizar el ranking por facultad.';
+    document.getElementById('ob-programas-est').style.display='grid';
+    document.getElementById('ob-programas-doc').style.display='none';
+  }
+}
 function obSelectProg(btn,prog){
   obData.programa=prog;
-  document.querySelectorAll('.programa-btn').forEach(function(b){b.classList.remove('selected');});
+  document.querySelectorAll('#ob-step3 .programa-btn').forEach(function(b){b.classList.remove('selected');});
   btn.classList.add('selected');
   var obBtn=document.getElementById('ob-prog-btn');
   obBtn.disabled=false;obBtn.style.opacity='1';
@@ -4716,7 +4773,23 @@ function obFinish(){
 }
 function applyUserProfile(){
   if(!obData.nombre)return;
-  document.getElementById('hero-greeting').textContent='Bienvenido de nuevo, '+obData.nombre+'. Tu conectoma te espera.';
+  var esDocente=obData.rol==='docente';
+  var greeting=esDocente?
+    'Bienvenido, Prof. '+obData.nombre+'. Tu mente enseña mejor cuando está entrenada.' :
+    'Bienvenido de nuevo, '+obData.nombre+'. Tu conectoma te espera.';
+  document.getElementById('hero-greeting').textContent=greeting;
+  // Mostrar badge de rol en el header
+  var badge=document.getElementById('rol-badge');
+  if(!badge){
+    badge=document.createElement('div');
+    badge.id='rol-badge';
+    badge.style.cssText='font-size:10px;font-family:monospace;padding:2px 8px;border-radius:10px;margin-left:6px;display:inline-block';
+    var sub=document.querySelector('.header-sub');
+    if(sub)sub.appendChild(badge);
+  }
+  badge.textContent=esDocente?'👨‍🏫 Docente':'🎓 Estudiante';
+  badge.style.background=esDocente?'#0d3d38':'#2d2650';
+  badge.style.color=esDocente?'#2dd4bf':'#b3abff';
 }
 
 // ── DATOS DEL DASHBOARD ──
@@ -4874,29 +4947,56 @@ function showLogroToast(l){
 }
 
 // ── RANKING FACULTADES ──
+var currentRankingTab='general';
+function rankingTab(tab){
+  currentRankingTab=tab;
+  var tabs=['general','est','doc'];
+  var tabMap={'general':'general','estudiantes':'est','docentes':'doc'};
+  tabs.forEach(function(t){
+    var btn=document.getElementById('rtab-'+t);
+    if(btn){
+      var active=tabMap[tab]===t;
+      btn.style.background=active?'#2d2650':'none';
+      btn.style.color=active?'#b3abff':'#5c5a7a';
+    }
+  });
+  var d=getDashData();
+  updateRanking(d);
+}
+var MATERIAS_DOCENTES=['Neuropsicología','Neuroeducación','Psicología','Pedagogía','Ciencias Básicas','Humanidades','Ciencias Económicas','Otra materia'];
 function updateRanking(d){
   var el=document.getElementById('ranking-card');
   if(!el)return;
   var profile=S.get('userProfile');
   var myProg=profile?profile.programa:'';
+  var myRol=profile?profile.rol:'estudiante';
   var myPx=d.px;
-  // Simular datos de otros programas con variación realista
   var seed=myPx||10;
-  var programs=PROGRAMAS.map(function(p,i){
-    var basePx=p===myProg?myPx:Math.max(5,Math.floor(seed*0.6+i*7+Math.sin(i*2.3)*15));
-    return {name:p,px:basePx};
-  });
-  programs.sort(function(a,b){return b.px-a.px;});
-  var maxPx=programs[0].px;
   var medals=['🥇','🥈','🥉'];
-  var posClasses=['gold','silver','bronze'];
-  el.innerHTML=programs.map(function(p,i){
-    var isMe=p.name===myProg;
+  var estList=PROGRAMAS.map(function(p,i){
+    var px=p===myProg&&myRol==='estudiante'?myPx:Math.max(5,Math.floor(seed*0.6+i*7+Math.sin(i*2.3)*15));
+    return {name:p,px:px,rol:'estudiante',icon:'🎓'};
+  });
+  var docList=MATERIAS_DOCENTES.map(function(p,i){
+    var px=p===myProg&&myRol==='docente'?myPx:Math.max(8,Math.floor(seed*0.8+i*9+Math.cos(i*1.7)*12));
+    return {name:p,px:px,rol:'docente',icon:'👨‍🏫'};
+  });
+  var tab=currentRankingTab;
+  var list=tab==='general'?estList.concat(docList):tab==='estudiantes'?estList:docList;
+  list.sort(function(a,b){return b.px-a.px;});
+  var maxPx=list[0]?list[0].px:1;
+  el.innerHTML=list.map(function(p,i){
+    var isMe=p.name===myProg&&p.rol===myRol;
     var barW=Math.round(p.px/maxPx*100);
-    return '<div class="ranking-row" style="'+(isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'')+'">'+
-      '<div class="ranking-pos '+(posClasses[i]||'')+'">'+(i<3?medals[i]:i+1)+'</div>'+
-      '<div class="ranking-prog" style="'+(isMe?'color:#b3abff;font-weight:600;':'')+'">'+p.name+(isMe?' (tú)':'')+'</div>'+
-      '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+(isMe?'#8b7ff5':'#2a2a3a')+'"></div></div>'+
+    var bg=isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
+    var nc=isMe?'color:#b3abff;font-weight:600;':'';
+    var bc=isMe?'#8b7ff5':p.rol==='docente'?'#2dd4bf':'#2a2a3a';
+    return '<div class="ranking-row" style="'+bg+'">'+
+      '<div class="ranking-pos '+(i<3?['gold','silver','bronze'][i]:'')+'">'+
+      (i<3?medals[i]:i+1)+'</div>'+
+      '<div style="font-size:11px;margin-right:4px">'+p.icon+'</div>'+
+      '<div class="ranking-prog" style="'+nc+'">'+p.name+(isMe?' ← tú':'')+'</div>'+
+      '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+bc+'"></div></div>'+
       '<div class="ranking-px">'+p.px+' PX</div>'+
       '</div>';
   }).join('');
