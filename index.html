@@ -294,6 +294,78 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .collapse-btn.open .chev{transform:rotate(180deg);color:var(--teal2)}
 .collapse-body{display:none;background:var(--bg3)}
 .collapse-body.open{display:block}
+
+/* ── ONBOARDING ── */
+.onboarding-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem}
+.onboarding-card{background:#0d1117;border:1px solid #2a2a3a;border-radius:20px;padding:2rem;max-width:420px;width:100%;text-align:center}
+.onboarding-step{display:none}.onboarding-step.active{display:block}
+.onboarding-title{font-size:1.4rem;font-weight:700;color:#f0eff8;margin-bottom:8px}
+.onboarding-sub{font-size:13px;color:#9996b8;margin-bottom:1.5rem;line-height:1.6}
+.programa-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.5rem}
+.programa-btn{padding:10px 8px;border:1px solid #2a2a3a;background:#1c1c28;border-radius:10px;font-size:12px;cursor:pointer;color:#9996b8;transition:all .15s;text-align:center}
+.programa-btn.selected{background:#2d2650;border-color:#8b7ff5;color:#b3abff}
+.color-grid{display:flex;gap:10px;justify-content:center;margin-bottom:1.5rem}
+.color-opt{width:44px;height:44px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .2s}
+.color-opt.selected{border-color:#fff;transform:scale(1.15)}
+
+/* ── DASHBOARD ── */
+.dashboard-section{margin-bottom:1.5rem}
+.dash-title{font-size:11px;color:#5c5a7a;font-family:monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+
+/* Avatar cerebral */
+.brain-container{position:relative;width:100%;max-width:320px;margin:0 auto 1rem}
+.brain-zone{transition:opacity .8s,filter .8s}
+.brain-zone.warm{opacity:1}
+.brain-zone.cool{opacity:.25;filter:grayscale(1)}
+.brain-zone.cold{opacity:.12;filter:grayscale(1) blur(1px)}
+.brain-pulse{animation:brain-pulse-anim 2s infinite}
+@keyframes brain-pulse-anim{0%,100%{opacity:1}50%{opacity:.7}}
+
+/* Rango */
+.rank-card{background:linear-gradient(135deg,#16161f,#1c1c28);border:1px solid #2a2a3a;border-radius:14px;padding:1.25rem;text-align:center;margin-bottom:1rem}
+.rank-badge{font-size:2.5rem;margin-bottom:6px}
+.rank-name{font-size:16px;font-weight:700;color:#f0eff8;margin-bottom:4px}
+.rank-sub{font-size:11px;color:#5c5a7a;font-family:monospace;margin-bottom:12px}
+.rank-bar-wrap{background:#1c1c28;border-radius:4px;height:8px;overflow:hidden;margin-bottom:6px}
+.rank-bar-fill{height:100%;border-radius:4px;transition:width .8s ease}
+.rank-next{font-size:11px;color:#9996b8;font-family:monospace}
+
+/* Métricas */
+.dash-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+.dash-metric{background:#1c1c28;border:1px solid #2a2a3a;border-radius:12px;padding:12px 8px;text-align:center}
+.dash-metric-icon{font-size:1.4rem;margin-bottom:4px}
+.dash-metric-val{font-size:1.3rem;font-weight:700;color:#f0eff8;display:block}
+.dash-metric-lbl{font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:2px;line-height:1.4}
+.streak-active{color:#f97066}
+.px-val{color:#fbbf24}
+.focus-val{color:#2dd4bf}
+
+/* Logros */
+.logros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.logro{background:#1c1c28;border:1px solid #2a2a3a;border-radius:10px;padding:10px 6px;text-align:center;transition:all .2s}
+.logro.unlocked{border-color:#8b7ff5;background:#2d2650}
+.logro.unlocked .logro-icon{filter:none;opacity:1}
+.logro-icon{font-size:1.5rem;display:block;margin-bottom:4px;filter:grayscale(1);opacity:.3;transition:all .3s}
+.logro-name{font-size:9px;color:#5c5a7a;font-family:monospace;line-height:1.3}
+.logro.unlocked .logro-name{color:#b3abff}
+.logro-tooltip{display:none;position:absolute;background:#1c1c28;border:1px solid #8b7ff5;border-radius:8px;padding:8px 10px;font-size:11px;color:#f0eff8;z-index:100;max-width:180px;line-height:1.5;pointer-events:none}
+
+/* Ranking facultades */
+.ranking-card{background:#1c1c28;border:1px solid #2a2a3a;border-radius:12px;padding:1rem}
+.ranking-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #1a1a26}
+.ranking-row:last-child{border-bottom:none}
+.ranking-pos{width:20px;font-size:12px;font-weight:700;font-family:monospace;color:#5c5a7a;flex-shrink:0}
+.ranking-pos.gold{color:#fbbf24}
+.ranking-pos.silver{color:#9996b8}
+.ranking-pos.bronze{color:#cd7f32}
+.ranking-prog{flex:1;font-size:12px;color:#f0eff8}
+.ranking-bar{height:6px;border-radius:3px;background:#8b7ff5;transition:width .6s ease}
+.ranking-px{font-size:11px;font-family:monospace;color:#b3abff;flex-shrink:0}
+
+/* Notificación de logro desbloqueado */
+.logro-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:#2d2650;border:1px solid #8b7ff5;border-radius:12px;padding:12px 16px;font-size:13px;color:#f0eff8;z-index:300;transition:transform .4s ease;display:flex;align-items:center;gap:10px;max-width:300px;white-space:nowrap}
+.logro-toast.show{transform:translateX(-50%) translateY(0)}
+
 /* ── RUIDO ROSA FLOTANTE ── */
 .noise-fab{position:fixed;bottom:24px;right:24px;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .noise-btn{width:52px;height:52px;border-radius:50%;background:var(--violet);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 20px rgba(139,127,245,.4);transition:all .2s}
@@ -372,6 +444,59 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
     </div>
   </div>
 
+
+  <!-- ONBOARDING -->
+  <div class="onboarding-overlay" id="onboarding-overlay" style="display:none">
+    <div class="onboarding-card">
+      <!-- Paso 1: Nombre -->
+      <div class="onboarding-step active" id="ob-step1">
+        <div style="font-size:3rem;margin-bottom:12px">🧠</div>
+        <div class="onboarding-title">Bienvenido a SINAPSIA</div>
+        <div class="onboarding-sub">Tu plataforma de neuroeducación personalizada. Antes de comenzar, cuéntanos un poco sobre ti.</div>
+        <label class="lbl">¿Cómo te llamas?</label>
+        <input type="text" id="ob-nombre" placeholder="Tu nombre" style="margin-bottom:1.5rem;margin-top:6px">
+        <button class="btn btn-v btn-full" onclick="obNext(2)">Continuar →</button>
+      </div>
+      <!-- Paso 2: Programa -->
+      <div class="onboarding-step" id="ob-step2">
+        <div style="font-size:3rem;margin-bottom:12px">🎓</div>
+        <div class="onboarding-title">¿Cuál es tu programa?</div>
+        <div class="onboarding-sub">Esto nos permite personalizar el ranking de facultades y las recomendaciones.</div>
+        <div class="programa-grid" id="ob-programas">
+          <button class="programa-btn" onclick="obSelectProg(this,'Derecho')">⚖️ Derecho</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Economía')">📈 Economía</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Adm. de Empresas')">💼 Adm. de Empresas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Ing. de Sistemas')">💻 Ing. de Sistemas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Ing. Industrial')">⚙️ Ing. Industrial</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Diseño de Modas')">👗 Diseño de Modas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Contaduría Pública')">🧾 Contaduría Pública</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Publicidad')">📢 Publicidad</button>
+        </div>
+        <button class="btn btn-v btn-full" id="ob-prog-btn" onclick="obNext(3)" style="opacity:.4" disabled>Continuar →</button>
+      </div>
+      <!-- Paso 3: Color avatar -->
+      <div class="onboarding-step" id="ob-step3">
+        <div style="font-size:3rem;margin-bottom:12px">✨</div>
+        <div class="onboarding-title">Elige el color de tu mente</div>
+        <div class="onboarding-sub">Este color representará tu red neuronal en el mapa de conectividad.</div>
+        <div class="color-grid">
+          <div class="color-opt selected" style="background:#8b7ff5" onclick="obSelectColor(this,'#8b7ff5','violet')" title="Violeta neural"></div>
+          <div class="color-opt" style="background:#2dd4bf" onclick="obSelectColor(this,'#2dd4bf','teal')" title="Teal cognitivo"></div>
+          <div class="color-opt" style="background:#fbbf24" onclick="obSelectColor(this,'#fbbf24','gold')" title="Dorado ejecutivo"></div>
+          <div class="color-opt" style="background:#f97066" onclick="obSelectColor(this,'#f97066','coral')" title="Coral inhibitorio"></div>
+          <div class="color-opt" style="background:#e879f9" onclick="obSelectColor(this,'#e879f9','pink')" title="Rosa mnemotécnico"></div>
+        </div>
+        <button class="btn btn-v btn-full" onclick="obFinish()">Iniciar mi entrenamiento →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST DE LOGRO -->
+  <div class="logro-toast" id="logro-toast">
+    <span id="logro-toast-icon" style="font-size:1.5rem">🏅</span>
+    <div><div style="font-weight:600;font-size:12px" id="logro-toast-name">Logro desbloqueado</div><div style="font-size:11px;color:#9996b8" id="logro-toast-desc">Descripción</div></div>
+  </div>
+
   <!-- HOME -->
   <!-- RUIDO ROSA FLOTANTE -->
   <div class="noise-fab" id="noise-fab">
@@ -440,69 +565,183 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
     <div class="hero">
       <div class="hero-eyebrow">UNICIENCIA — Proyecto de Investigación Neuroeducativa</div>
       <h1>Tu mente es <em>arquitectura</em> en construcción</h1>
-      <p>Seis laboratorios basados en conectómica cerebral para potenciar tus funciones ejecutivas este semestre.</p>
-      <div class="stats-row">
-        <div class="stat-card"><span class="stat-val" id="h-ses">0</span><div class="stat-lbl">Sesiones</div></div>
-        <div class="stat-card"><span class="stat-val" id="h-min">0</span><div class="stat-lbl">Minutos</div></div>
-        <div class="stat-card"><span class="stat-val" id="h-dias">0</span><div class="stat-lbl">Días activo</div></div>
+      <p id="hero-greeting">Seis laboratorios basados en conectómica cerebral para potenciar tus funciones ejecutivas este semestre.</p>
+    </div>
+
+    <!-- DASHBOARD: AVATAR CEREBRAL + RANGO -->
+    <div class="dashboard-section">
+      <div class="dash-title">🧠 Mapa de Conectividad Neural</div>
+      <div class="brain-container">
+        <svg id="brain-svg" viewBox="0 0 320 220" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <!-- Fondo -->
+          <rect width="320" height="220" fill="#0a0a0f" rx="16"/>
+          <!-- Conexiones sinápticas de fondo -->
+          <g id="brain-connections" opacity=".3">
+            <line x1="160" y1="60" x2="80" y2="100" stroke="#8b7ff5" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="160" y1="60" x2="240" y2="100" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="80" y1="100" x2="60" y2="150" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="240" y1="100" x2="260" y2="150" stroke="#f97066" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="80" y1="100" x2="160" y2="170" stroke="#e879f9" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="240" y1="100" x2="160" y2="170" stroke="#8b7ff5" stroke-width="1" stroke-dasharray="4,4"/>
+          </g>
+          <!-- Zona Lab1: Memoria (dlPFC izq) -->
+          <g id="zone-lab1" class="brain-zone cool">
+            <ellipse cx="85" cy="75" rx="52" ry="35" fill="#2d2650" stroke="#8b7ff5" stroke-width="2"/>
+            <text x="85" y="70" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">Lab 1</text>
+            <text x="85" y="82" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">Memoria</text>
+            <circle cx="85" cy="75" r="3" fill="#8b7ff5" id="z1-pulse"/>
+          </g>
+          <!-- Zona Lab2: Inhibición (ACC centro) -->
+          <g id="zone-lab2" class="brain-zone cool">
+            <ellipse cx="235" cy="75" rx="52" ry="35" fill="#3d1a18" stroke="#f97066" stroke-width="2"/>
+            <text x="235" y="70" text-anchor="middle" font-size="9" fill="#fca5a1" font-family="monospace">Lab 2</text>
+            <text x="235" y="82" text-anchor="middle" font-size="8" fill="#f97066" font-family="monospace">Inhibición</text>
+            <circle cx="235" cy="75" r="3" fill="#f97066" id="z2-pulse"/>
+          </g>
+          <!-- Zona Lab3: Flexibilidad (OFC) -->
+          <g id="zone-lab3" class="brain-zone cool">
+            <ellipse cx="60" cy="148" rx="46" ry="30" fill="#3d2d08" stroke="#fbbf24" stroke-width="2"/>
+            <text x="60" y="144" text-anchor="middle" font-size="9" fill="#fde68a" font-family="monospace">Lab 3</text>
+            <text x="60" y="155" text-anchor="middle" font-size="8" fill="#fbbf24" font-family="monospace">Flexibilidad</text>
+            <circle cx="60" cy="148" r="3" fill="#fbbf24" id="z3-pulse"/>
+          </g>
+          <!-- Zona Lab4: Planificación (aPFC) -->
+          <g id="zone-lab4" class="brain-zone cool">
+            <ellipse cx="160" cy="55" rx="48" ry="28" fill="#0d3d38" stroke="#2dd4bf" stroke-width="2"/>
+            <text x="160" y="51" text-anchor="middle" font-size="9" fill="#99f6e4" font-family="monospace">Lab 4</text>
+            <text x="160" y="62" text-anchor="middle" font-size="8" fill="#2dd4bf" font-family="monospace">Planificación</text>
+            <circle cx="160" cy="55" r="3" fill="#2dd4bf" id="z4-pulse"/>
+          </g>
+          <!-- Zona Lab5: Metacognición (vlPFC) -->
+          <g id="zone-lab5" class="brain-zone cool">
+            <ellipse cx="260" cy="148" rx="46" ry="30" fill="#3d0d42" stroke="#e879f9" stroke-width="2"/>
+            <text x="260" y="144" text-anchor="middle" font-size="9" fill="#f0abfc" font-family="monospace">Lab 5</text>
+            <text x="260" y="155" text-anchor="middle" font-size="8" fill="#e879f9" font-family="monospace">Metacognición</text>
+            <circle cx="260" cy="148" r="3" fill="#e879f9" id="z5-pulse"/>
+          </g>
+          <!-- Zona Lab6: Mnemotécnicas (Hipocampo) -->
+          <g id="zone-lab6" class="brain-zone cool">
+            <ellipse cx="160" cy="178" rx="55" ry="28" fill="#1e2d4a" stroke="#60a5fa" stroke-width="2"/>
+            <text x="160" y="174" text-anchor="middle" font-size="9" fill="#93c5fd" font-family="monospace">Lab 6</text>
+            <text x="160" y="185" text-anchor="middle" font-size="8" fill="#60a5fa" font-family="monospace">Mnemotécnicas</text>
+            <circle cx="160" cy="178" r="3" fill="#60a5fa" id="z6-pulse"/>
+          </g>
+          <!-- Etiqueta estado -->
+          <text id="brain-status" x="160" y="212" text-anchor="middle" font-size="9" fill="#5c5a7a" font-family="monospace">Inicia sesiones para iluminar tu conectoma</text>
+        </svg>
+        <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+          <div style="font-size:10px;font-family:monospace;color:#5c5a7a;display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:50%;background:#8b7ff5"></div>Activa</div>
+          <div style="font-size:10px;font-family:monospace;color:#5c5a7a;display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:50%;background:#3a3a4a"></div>Sin sesiones recientes</div>
+          <div style="font-size:10px;font-family:monospace;color:#5c5a7a;display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:50%;background:#1c1c28"></div>Enfriándose &gt;72h</div>
+        </div>
       </div>
     </div>
 
+    <!-- RANGO ACTUAL -->
+    <div class="rank-card" id="rank-card">
+      <div class="rank-badge" id="rank-badge">🧬</div>
+      <div class="rank-name" id="rank-name">Potencial Sináptico</div>
+      <div class="rank-sub" id="rank-sub">Completa tu primera sesión para activar tu conectoma</div>
+      <div class="rank-bar-wrap"><div class="rank-bar-fill" id="rank-bar" style="width:0%;background:#8b7ff5"></div></div>
+      <div class="rank-next" id="rank-next">0 / 5 sesiones para el siguiente nivel</div>
+    </div>
+
+    <!-- MÉTRICAS NEURO-CONTADOR -->
+    <div class="dash-metrics">
+      <div class="dash-metric">
+        <div class="dash-metric-icon">🔥</div>
+        <span class="dash-metric-val streak-active" id="dash-streak">0</span>
+        <div class="dash-metric-lbl">Racha<br>sináptica</div>
+      </div>
+      <div class="dash-metric">
+        <div class="dash-metric-icon">⚡</div>
+        <span class="dash-metric-val px-val" id="dash-px">0</span>
+        <div class="dash-metric-lbl">Puntos de<br>Plasticidad</div>
+      </div>
+      <div class="dash-metric">
+        <div class="dash-metric-icon">🕒</div>
+        <span class="dash-metric-val focus-val" id="dash-focus">0</span>
+        <div class="dash-metric-lbl">Min. Foco<br>Profundo</div>
+      </div>
+    </div>
+
+    <!-- STATS CLÁSICAS -->
+    <div class="stats-row" style="margin-bottom:1.5rem">
+      <div class="stat-card"><span class="stat-val" id="h-ses">0</span><div class="stat-lbl">Sesiones</div></div>
+      <div class="stat-card"><span class="stat-val" id="h-min">0</span><div class="stat-lbl">Minutos</div></div>
+      <div class="stat-card"><span class="stat-val" id="h-dias">0</span><div class="stat-lbl">Días activo</div></div>
+    </div>
+
+    <!-- LOGROS -->
+    <div class="dashboard-section">
+      <div class="dash-title">🏅 Hitos de la Red Neuronal</div>
+      <div class="logros-grid" id="logros-grid"></div>
+    </div>
+
+    <!-- RANKING FACULTADES -->
+    <div class="dashboard-section">
+      <div class="dash-title">🏛️ Ranking de Facultades UNICIENCIA</div>
+      <div class="ranking-card" id="ranking-card"></div>
+      <div style="font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:6px;text-align:center">Ranking simulado · Basado en promedio de Puntos de Plasticidad por programa</div>
+    </div>
+
+    <!-- LABS GRID -->
+    <div class="dash-title" style="margin-top:1.5rem">🔬 Laboratorios</div>
     <div class="labs-grid">
       <div class="install-banner" onclick="openInstallModal()" style="grid-column:1/-1">
         <div class="install-banner-icon">📲</div>
         <div class="install-banner-text">
           <strong>Instalar como app en tu celular</strong>
-          Agrega SINAPSIA a tu pantalla de inicio — funciona sin internet. Toca para ver las instrucciones paso a paso.
+          Agrega SINAPSIA a tu pantalla de inicio — funciona sin internet.
         </div>
         <div style="color:var(--violet2);font-size:18px;flex-shrink:0">›</div>
       </div>
       <div class="lab-card c1" onclick="showScreen('lab1')">
         <div class="lab-num">LAB 01</div>
         <div class="lab-title">Memoria de Trabajo</div>
-        <div class="lab-desc">Dual N-Back · Método de Loci · Respiración Theta · Recuperación activa</div>
+        <div class="lab-desc">Dual N-Back · Corsi Block · Span de Lectura · SM-2</div>
         <div class="lab-tags"><span class="tag tag-v">dlPFC · Parietal</span><span class="tag tag-t">Theta-Gamma</span></div>
         <span class="lab-arrow">→</span>
       </div>
       <div class="lab-card c2" onclick="showScreen('lab2')">
         <div class="lab-num">LAB 02</div>
         <div class="lab-title">Control Inhibitorio</div>
-        <div class="lab-desc">Stroop · Go/No-Go · Intención de Implementación · Pomodoro</div>
+        <div class="lab-desc">Stroop · Go/No-Go · Intención de Implementación</div>
         <div class="lab-tags"><span class="tag tag-c">Fronto-striatal</span><span class="tag tag-t">Theta frontal</span></div>
         <span class="lab-arrow">→</span>
       </div>
       <div class="lab-card c3" onclick="showScreen('lab3')">
         <div class="lab-num">LAB 03</div>
         <div class="lab-title">Flexibilidad Cognitiva</div>
-        <div class="lab-desc">Task Switching · Reencuadre de errores · Perspectiva múltiple</div>
+        <div class="lab-desc">Task Switching · Torre de Hanói · Flanker · WCST</div>
         <div class="lab-tags"><span class="tag tag-a">DMN · Ganglios Basales</span></div>
         <span class="lab-arrow">→</span>
       </div>
       <div class="lab-card c4" onclick="showScreen('lab4')">
         <div class="lab-num">LAB 04</div>
         <div class="lab-title">Planificación</div>
-        <div class="lab-desc">Técnica 3-2-1 · Goal Management Training · Pomodoro · Lista GMT</div>
+        <div class="lab-desc">SQ4R · Pomodoro · Interleaving · Calendario espaciado</div>
         <div class="lab-tags"><span class="tag tag-t">aPFC · Frontoparietal</span></div>
         <span class="lab-arrow">→</span>
       </div>
       <div class="lab-card c5" onclick="showScreen('lab5')">
         <div class="lab-num">LAB 05</div>
         <div class="lab-title">Metacognición</div>
-        <div class="lab-desc">Diario estructurado · Self-distancing · Samatha · Body scan</div>
+        <div class="lab-desc">Diario · Auto-explicación · Samatha · Revaluación</div>
         <div class="lab-tags"><span class="tag tag-v">Triple Red DMN–SN–ECN</span></div>
         <span class="lab-arrow">→</span>
       </div>
       <div class="lab-card" style="cursor:pointer;border-left:3px solid #e879f9" onclick="showScreen('lab6')">
         <div class="lab-num">LAB 06</div>
         <div class="lab-title">Estrategias Mnemotécnicas</div>
-        <div class="lab-desc">Método de Loci · Historia Encadenada · Técnica Feynman · Codificación Elaborativa · Acrónimos · Keyword</div>
+        <div class="lab-desc">Método de Loci · Feynman · Historia Encadenada · Acrónimos</div>
         <div class="lab-tags"><span class="tag" style="background:#3d0d42;color:#f0abfc">Hipocampo · Temporal · aPFC</span></div>
         <span class="lab-arrow">→</span>
       </div>
       <div class="lab-card" style="border-style:dashed" onclick="showScreen('diario')">
         <div class="lab-num">DIARIO</div>
         <div class="lab-title">Registro de Práctica</div>
-        <div class="lab-desc">Autorregistro semanal de todos los laboratorios. Tu bitácora de neuroplasticidad.</div>
+        <div class="lab-desc">Autorregistro semanal de todos los laboratorios.</div>
         <div class="lab-tags"><span class="tag" style="background:var(--surface2);color:var(--text3)">Metacognición activa</span></div>
         <span class="lab-arrow">→</span>
       </div>
@@ -2481,14 +2720,12 @@ function showScreen(id){
   document.getElementById('screen-'+id).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b=>{if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
   if(id==='diario')renderDiary();
-  if(id==='home')updateHome();
+  if(id==='home'){dashUpdate();}
 }
 function updateHome(){
   const d=S.get('diary')||[];const m=S.get('meta')||[];const all=[...d,...m];
-  document.getElementById('h-ses').textContent=all.length;
-  document.getElementById('h-min').textContent=d.reduce((a,e)=>a+(parseInt(e.min)||0),0);
-  document.getElementById('h-dias').textContent=Math.min(all.length,7);
   document.getElementById('header-sesiones').textContent=all.length+' sesiones';
+  dashUpdate();
 }
 
 /* ── UTILS ── */
@@ -4121,6 +4358,272 @@ function calGenerate(){
   logSes('Lab 4 — Planificación',1);updateHome();
 }
 
+
+/* ── DASHBOARD SISTEMA COMPLETO ── */
+var PROGRAMAS=['Derecho','Economía','Adm. de Empresas','Ing. de Sistemas','Ing. Industrial','Diseño de Modas','Contaduría Pública','Publicidad'];
+var RANGOS=[
+  {min:0,name:'Potencial Sináptico',badge:'🧬',sub:'Completa tu primera sesión para activar tu conectoma',color:'#5c5a7a'},
+  {min:5,name:'Explorador Prefrontal',badge:'🔬',sub:'Has activado tu corteza prefrontal. El viaje comienza.',color:'#8b7ff5'},
+  {min:20,name:'Arquitecto de Memoria',badge:'🏛️',sub:'Tu hipocampo está construyendo estructuras duraderas.',color:'#2dd4bf'},
+  {min:50,name:'Estratega de Conectómica',badge:'⚡',sub:'Tus redes prefrontales operan en sincronía theta-gamma.',color:'#fbbf24'},
+  {min:100,name:'Maestro de la Plasticidad',badge:'🧠',sub:'Has alcanzado el nivel máximo de neuroplasticidad entrenada.',color:'#e879f9'}
+];
+var LOGROS=[
+  {id:'primera',icon:'🌱',name:'Señal Dopaminérgica',desc:'Completaste tu primera sesión. El viaje neuroplástico comienza.',cond:function(d){return d.totalSes>=1;}},
+  {id:'racha7',icon:'🔥',name:'Poda Superada',desc:'7 días consecutivos. La sinapsis que se usa, sobrevive.',cond:function(d){return d.racha>=7;}},
+  {id:'racha30',icon:'🏆',name:'Corredor de Fondo',desc:'30 días activo. Neuroplasticidad estructural consolidada.',cond:function(d){return d.racha>=30;}},
+  {id:'explorador',icon:'🗺️',name:'Explorador del Conectoma',desc:'Has visitado los 6 laboratorios. Tu red prefrontal está mapeada.',cond:function(d){return d.labsVisited>=6;}},
+  {id:'theta',icon:'🌊',name:'Sincronía Theta',desc:'5 sesiones de respiración. Tus ondas theta están calibradas.',cond:function(d){return d.respiracion>=5;}},
+  {id:'feynman',icon:'💡',name:'Efecto Feynman',desc:'10 conceptos simplificados. Complejidad que se vuelve claridad.',cond:function(d){return d.feynman>=10;}},
+  {id:'inhibidor',icon:'🛑',name:'Inhibidor Maestro',desc:'0 falsas alarmas en Go/No-Go. Control prefrontal absoluto.',cond:function(d){return d.gonogoPerf===true;}},
+  {id:'loci3',icon:'🏰',name:'Maestro del Loci',desc:'3 palacios de memoria construidos. El hipocampo navega en el espacio.',cond:function(d){return d.lociPalacios>=3;}},
+  {id:'sm50',icon:'📚',name:'Arquitecto Hipocampal',desc:'50 flashcards SM-2. Tu hipocampo construye palacios de conocimiento.',cond:function(d){return d.sm2Cards>=50;}},
+  {id:'nback3',icon:'🎯',name:'Sincronía Theta-Gamma',desc:'N-Back nivel 3 alcanzado. Acoplamiento de alta frecuencia.',cond:function(d){return d.nbackLevel>=3;}},
+  {id:'pomodoro10',icon:'⏱️',name:'Flujo Cognitivo',desc:'10 Pomodoros completados. Estado de flow repetido y consolidado.',cond:function(d){return d.pomodoros>=10;}},
+  {id:'meditacion10',icon:'🧘',name:'Mente Samatha',desc:'10 sesiones de meditación. Calma prefrontal entrenada y sostenida.',cond:function(d){return d.meditaciones>=10;}},
+  {id:'stroop0',icon:'🌈',name:'Impulso Inhibido',desc:'Stroop sin errores. El dlPFC venció al automatismo verbal.',cond:function(d){return d.stroopPerf===true;}},
+  {id:'span7',icon:'🔢',name:'Bucle Fonológico',desc:'Span de dígitos nivel 7. Memoria verbal de élite.',cond:function(d){return d.spanLevel>=7;}},
+  {id:'revaluacion5',icon:'💭',name:'Regulador Emocional',desc:'5 revaluaciones cognitivas. El vlPFC domina la amígdala.',cond:function(d){return d.revaluaciones>=5;}},
+  {id:'focus60',icon:'🎵',name:'Vigilia Cortical',desc:'60 minutos de foco profundo con ruido rosa. Arousal óptimo sostenido.',cond:function(d){return d.focusMin>=60;}},
+  {id:'analogias10',icon:'🔗',name:'Pensamiento Relacional',desc:'10 analogías estructurales. Razonamiento frontal avanzado activado.',cond:function(d){return d.analogias>=10;}},
+  {id:'ses100',icon:'💎',name:'Constructor de Redes',desc:'100 sesiones totales. Tu conectoma está en plena expansión.',cond:function(d){return d.totalSes>=100;}},
+  {id:'calendario',icon:'📅',name:'Arquitecto del Tiempo',desc:'Primer calendario de espaciado generado. Ebbinghaus en acción.',cond:function(d){return d.calendario===true;}},
+  {id:'maestro',icon:'🧠',name:'Arquitecto de la Mente',desc:'Rango Maestro de Plasticidad alcanzado. Neuroplasticidad completa.',cond:function(d){return d.totalSes>=100&&d.racha>=30;}}
+];
+
+// ── ONBOARDING ──
+var obData={nombre:'',programa:'',color:'#8b7ff5',colorName:'violet'};
+function obCheck(){
+  var profile=S.get('userProfile');
+  if(!profile){
+    document.getElementById('onboarding-overlay').style.display='flex';
+  } else {
+    obData=profile;
+    applyUserProfile();
+  }
+}
+function obNext(step){
+  if(step===2){
+    var n=document.getElementById('ob-nombre').value.trim();
+    if(!n)return;
+    obData.nombre=n;
+  }
+  document.querySelectorAll('.onboarding-step').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('ob-step'+step).classList.add('active');
+}
+function obSelectProg(btn,prog){
+  obData.programa=prog;
+  document.querySelectorAll('.programa-btn').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+  var obBtn=document.getElementById('ob-prog-btn');
+  obBtn.disabled=false;obBtn.style.opacity='1';
+}
+function obSelectColor(el,color,name){
+  obData.color=color;obData.colorName=name;
+  document.querySelectorAll('.color-opt').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+}
+function obFinish(){
+  S.set('userProfile',obData);
+  document.getElementById('onboarding-overlay').style.display='none';
+  applyUserProfile();
+  dashUpdate();
+}
+function applyUserProfile(){
+  if(!obData.nombre)return;
+  document.getElementById('hero-greeting').textContent='Bienvenido de nuevo, '+obData.nombre+'. Tu conectoma te espera.';
+}
+
+// ── DATOS DEL DASHBOARD ──
+function getDashData(){
+  var diary=S.get('diary')||[];
+  var meta=S.get('meta')||[];
+  var all=[...diary,...meta];
+  var totalSes=all.length;
+  var totalMin=diary.reduce(function(a,e){return a+(parseInt(e.min)||0);},0);
+  // Racha
+  var racha=0;
+  if(all.length>0){
+    var today=new Date().toLocaleDateString('es-CO');
+    var dates=[...new Set(all.map(function(e){return e.date;}))].sort();
+    var consecutive=0;
+    var checkDate=new Date();
+    for(var i=0;i<30;i++){
+      var d=checkDate.toLocaleDateString('es-CO');
+      if(dates.includes(d)){consecutive++;}
+      else if(i>0)break;
+      checkDate.setDate(checkDate.getDate()-1);
+    }
+    racha=consecutive;
+  }
+  // Labs visitados
+  var labsVisited=0;
+  ['lab1','lab2','lab3','lab4','lab5','lab6'].forEach(function(lab){
+    if(diary.some(function(e){return e.lab&&e.lab.toLowerCase().includes(lab.replace('lab','lab '));}))labsVisited++;
+  });
+  // Actividades específicas
+  var respiracion=diary.filter(function(e){return e.lab&&e.lab.includes('Memoria')&&parseInt(e.min)<=3;}).length;
+  var feynman=(S.get('feynman')||[]).length;
+  var lociPalacios=S.get('loci_palaces_count')||0;
+  var sm2Cards=(S.get('sm2cards')||[]).length;
+  var nbackLevel=S.get('nback_best_level')||1;
+  var pomodoros=S.get('pom_total')||0;
+  var meditaciones=diary.filter(function(e){return e.lab&&e.lab.includes('Metacog')&&parseInt(e.min)>=5;}).length;
+  var revaluaciones=(S.get('revaluacion')||[]).length;
+  var analogias=(S.get('analogies')||[]).length;
+  var focusMin=S.get('focus_minutes')||0;
+  var spanLevel=S.get('span_best')||1;
+  var calendario=!!(S.get('calendario'));
+  // PX: 10 por sesión + 5 bonus por racha
+  var px=totalSes*10+(racha>3?racha*5:0);
+  return {totalSes:totalSes,totalMin:totalMin,racha:racha,labsVisited:labsVisited,
+    respiracion:respiracion,feynman:feynman,lociPalacios:lociPalacios,sm2Cards:sm2Cards,
+    nbackLevel:nbackLevel,pomodoros:pomodoros,meditaciones:meditaciones,
+    revaluaciones:revaluaciones,analogias:analogias,focusMin:focusMin,
+    spanLevel:spanLevel,calendario:calendario,px:px,
+    gonogoPerf:S.get('gng_perfect')||false,stroopPerf:S.get('stroop_perfect')||false};
+}
+
+// ── CEREBRO SVG ──
+function updateBrain(d){
+  var now=Date.now();
+  var diary=S.get('diary')||[];
+  var labs=['lab1','lab2','lab3','lab4','lab5','lab6'];
+  var labNames=['Memoria de Trabajo','Control Inhibitorio','Flexibilidad','Planificación','Metacognición','Mnemotécnicas'];
+  labs.forEach(function(lab,i){
+    var zone=document.getElementById('zone-'+lab);
+    if(!zone)return;
+    var lastEntry=diary.filter(function(e){return e.lab&&e.lab.toLowerCase().includes(labNames[i].toLowerCase().split(' ')[0]);}).pop();
+    if(!lastEntry){
+      zone.classList.remove('warm','cool');zone.classList.add('cold');
+    } else {
+      var lastDate=new Date(lastEntry.date.split('/').reverse().join('-')||Date.now());
+      var hoursAgo=(now-lastDate.getTime())/3600000;
+      zone.classList.remove('warm','cool','cold');
+      if(hoursAgo<72){zone.classList.add('warm');}
+      else if(hoursAgo<168){zone.classList.add('cool');}
+      else{zone.classList.add('cold');}
+    }
+  });
+  // Pulso en zonas activas
+  var warmZones=document.querySelectorAll('.brain-zone.warm');
+  warmZones.forEach(function(z){
+    var pulse=z.querySelector('circle');
+    if(pulse){pulse.style.animation='brain-pulse-anim 2s infinite';}
+  });
+  // Status text
+  var activeCount=document.querySelectorAll('.brain-zone.warm').length;
+  var statusEl=document.getElementById('brain-status');
+  if(statusEl){
+    if(activeCount===0)statusEl.textContent='Inicia sesiones para iluminar tu conectoma';
+    else if(activeCount<3)statusEl.textContent=activeCount+' zona'+(activeCount>1?'s':'')+' activa'+(activeCount>1?'s':'')+' · Continúa entrenando';
+    else if(activeCount<6)statusEl.textContent=activeCount+' zonas activas · Tu red prefrontal se expande';
+    else statusEl.textContent='¡Conectoma completo activo! Neuroplasticidad máxima ✓';
+  }
+}
+
+// ── RANGO ──
+function updateRango(d){
+  var rango=RANGOS[0];
+  for(var i=RANGOS.length-1;i>=0;i--){if(d.totalSes>=RANGOS[i].min){rango=RANGOS[i];break;}}
+  var nextRango=RANGOS[Math.min(RANGOS.indexOf(rango)+1,RANGOS.length-1)];
+  var progress=rango===nextRango?100:Math.round((d.totalSes-rango.min)/(nextRango.min-rango.min)*100);
+  document.getElementById('rank-badge').textContent=rango.badge;
+  document.getElementById('rank-name').textContent=rango.name;
+  document.getElementById('rank-sub').textContent=rango.sub;
+  document.getElementById('rank-bar').style.width=progress+'%';
+  document.getElementById('rank-bar').style.background=rango.color;
+  if(rango===nextRango){
+    document.getElementById('rank-next').textContent='¡Nivel máximo alcanzado! '+rango.badge;
+  } else {
+    document.getElementById('rank-next').textContent=d.totalSes+' / '+nextRango.min+' sesiones para "'+nextRango.name+'"';
+  }
+}
+
+// ── MÉTRICAS ──
+function updateMetrics(d){
+  document.getElementById('dash-streak').textContent=d.racha;
+  document.getElementById('dash-px').textContent=d.px;
+  document.getElementById('dash-focus').textContent=d.focusMin;
+  document.getElementById('h-ses').textContent=d.totalSes;
+  document.getElementById('h-min').textContent=d.totalMin;
+  document.getElementById('h-dias').textContent=d.racha;
+}
+
+// ── LOGROS ──
+var logrosUnlocked=[];
+function updateLogros(d){
+  var prev=S.get('logros_unlocked')||[];
+  var newUnlocks=[];
+  LOGROS.forEach(function(l){
+    if(l.cond(d)&&!prev.includes(l.id)){newUnlocks.push(l);prev.push(l.id);}
+  });
+  if(newUnlocks.length)S.set('logros_unlocked',prev);
+  logrosUnlocked=prev;
+  // Mostrar toast para nuevos
+  if(newUnlocks.length>0){
+    setTimeout(function(){showLogroToast(newUnlocks[0]);},500);
+  }
+  // Render grid
+  var el=document.getElementById('logros-grid');
+  if(!el)return;
+  el.innerHTML=LOGROS.map(function(l){
+    var ok=prev.includes(l.id);
+    return '<div class="logro '+(ok?'unlocked':'')+'" title="'+l.desc+'">'+
+      '<span class="logro-icon">'+l.icon+'</span>'+
+      '<div class="logro-name">'+(ok?l.name:'???')+'</div>'+
+      '</div>';
+  }).join('');
+}
+function showLogroToast(l){
+  var toast=document.getElementById('logro-toast');
+  document.getElementById('logro-toast-icon').textContent=l.icon;
+  document.getElementById('logro-toast-name').textContent='🏅 '+l.name;
+  document.getElementById('logro-toast-desc').textContent=l.desc;
+  toast.classList.add('show');
+  setTimeout(function(){toast.classList.remove('show');},4000);
+}
+
+// ── RANKING FACULTADES ──
+function updateRanking(d){
+  var el=document.getElementById('ranking-card');
+  if(!el)return;
+  var profile=S.get('userProfile');
+  var myProg=profile?profile.programa:'';
+  var myPx=d.px;
+  // Simular datos de otros programas con variación realista
+  var seed=myPx||10;
+  var programs=PROGRAMAS.map(function(p,i){
+    var basePx=p===myProg?myPx:Math.max(5,Math.floor(seed*0.6+i*7+Math.sin(i*2.3)*15));
+    return {name:p,px:basePx};
+  });
+  programs.sort(function(a,b){return b.px-a.px;});
+  var maxPx=programs[0].px;
+  var medals=['🥇','🥈','🥉'];
+  var posClasses=['gold','silver','bronze'];
+  el.innerHTML=programs.map(function(p,i){
+    var isMe=p.name===myProg;
+    var barW=Math.round(p.px/maxPx*100);
+    return '<div class="ranking-row" style="'+(isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'')+'">'+
+      '<div class="ranking-pos '+(posClasses[i]||'')+'">'+(i<3?medals[i]:i+1)+'</div>'+
+      '<div class="ranking-prog" style="'+(isMe?'color:#b3abff;font-weight:600;':'')+'">'+p.name+(isMe?' (tú)':'')+'</div>'+
+      '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+(isMe?'#8b7ff5':'#2a2a3a')+'"></div></div>'+
+      '<div class="ranking-px">'+p.px+' PX</div>'+
+      '</div>';
+  }).join('');
+}
+
+// ── UPDATE PRINCIPAL ──
+function dashUpdate(){
+  var d=getDashData();
+  updateBrain(d);
+  updateRango(d);
+  updateMetrics(d);
+  updateLogros(d);
+  updateRanking(d);
+  applyUserProfile();
+}
+
 /* ── PWA ── */
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
@@ -4141,7 +4644,7 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
 }
 /* ── INIT ── */
-renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();
+renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();
 </script>
 </body>
 </html>
