@@ -3112,7 +3112,9 @@ function showScreen(id){
   document.querySelectorAll('.nav-btn').forEach(b=>{if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
   if(id==='diario')renderDiary();
   if(id==='home'){dashUpdate();}
-  if(id.startsWith('lab'))applyRolTextos();
+  if(id.startsWith('lab')){
+    setTimeout(function(){applyRolTextos();},10);
+  }
 }
 function updateHome(){
   const d=S.get('diary')||[];const m=S.get('meta')||[];const all=[...d,...m];
@@ -4612,15 +4614,16 @@ var PLACEHOLDERS_EST={
 };
 
 function applyRolTextos(){
-  var profile=S.get('userProfile');
+  var profile=S.get('userProfile')||obData;
   var esDocente=profile&&profile.rol==='docente';
+  if(!profile||!profile.rol)return;
   var textos=esDocente?TEXTOS_DOC:TEXTOS_EST;
   var placeholders=esDocente?PLACEHOLDERS_DOC:PLACEHOLDERS_EST;
 
   // Actualizar títulos y subtítulos
   Object.keys(textos).forEach(function(id){
     var el=document.getElementById(id);
-    if(el)el.textContent=textos[id];
+    if(el){el.textContent=textos[id];el.style.opacity='0';setTimeout(function(){el.style.opacity='1';el.style.transition='opacity .3s';},10);}
   });
 
   // Actualizar placeholders de formularios
@@ -5476,7 +5479,7 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
 }
 /* ── INIT ── */
-renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();
+renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);
 </script>
 </body>
 </html>
