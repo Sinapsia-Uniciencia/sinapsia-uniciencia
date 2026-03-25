@@ -379,6 +379,22 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .noise-type-btn{flex:1;padding:6px 8px;border:1px solid var(--border);background:none;border-radius:var(--r2);font-size:11px;cursor:pointer;color:var(--text2);font-family:var(--font-mono);transition:all .15s;min-width:60px}
 .noise-type-btn.active{background:var(--teal3);border-color:var(--teal);color:var(--teal2)}
 .noise-vol{width:100%;margin-bottom:8px}
+/* ── PANEL DE SESIÓN ACTIVA ── */
+.session-panel{background:#0d3d38;border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:12px 16px;margin-bottom:10px;display:none}
+.session-panel.active{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.session-timer{font-family:monospace;font-size:1.2rem;color:#2dd4bf;font-weight:700;min-width:52px}
+.session-info{flex:1;font-size:12px;color:#99f6e4;line-height:1.4}
+.session-fin-btn{padding:8px 16px;background:#2dd4bf;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;color:#0a0a0f;white-space:nowrap}
+.session-fin-btn:hover{background:#5eead4}
+/* ── RESUMEN DE SESIÓN ── */
+.sesion-resumen{background:#1c1c28;border:1px solid #2a2a3a;border-radius:12px;padding:1.25rem;margin-bottom:10px;display:none}
+.sesion-resumen.show{display:block;animation:fadeIn .3s ease}
+.resumen-title{font-size:14px;font-weight:600;color:#2dd4bf;margin-bottom:12px;font-family:monospace}
+.resumen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.resumen-item{background:#0d0d15;border-radius:8px;padding:8px;text-align:center}
+.resumen-val{font-size:1.3rem;font-weight:700;color:#f0eff8;display:block}
+.resumen-lbl{font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:2px}
+.resumen-msg{font-size:12px;color:#99f6e4;text-align:center;padding:8px;background:#0d3d38;border-radius:8px;margin-bottom:10px;line-height:1.5}
 /* ── MODAL INSTALACIÓN ── */
 .install-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:flex-end;justify-content:center;padding:0}
 .install-sheet{background:var(--bg2);border-radius:20px 20px 0 0;padding:2rem 1.5rem 2.5rem;width:100%;max-width:520px;border-top:1px solid var(--border2)}
@@ -858,6 +874,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <button class="btn" id="nb-pos-btn" onclick="nbAnswer('pos')" disabled>Posición coincide</button>
         <button class="btn" id="nb-let-btn" onclick="nbAnswer('letter')" disabled>Letra coincide</button>
       </div>
+      <div class="session-panel" id="nb-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="nbFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="nb-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Aciertos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Errores</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Nivel N</div></div></div><div class="resumen-msg"></div></div>
       <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
         <button class="btn btn-v" id="nb-start-btn" onclick="nbStart()">Iniciar sesión (20 turnos)</button>
         <button class="btn btn-sm" onclick="nbLevel(-1)">N −</button>
@@ -899,7 +917,16 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <button class="btn btn-v btn-full" onclick="spanCheck()">Confirmar respuesta</button>
       </div>
       <div id="span-fb" class="feedback-box"></div>
-      <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
+<div class="session-panel" id="span-ses-panel">
+        <div class="session-timer">00:00</div>
+        <div class="session-info">Actividad en curso...</div>
+        <button class="session-fin-btn" onclick="spanFinalizar()">Finalizar y guardar</button>
+      </div>
+<div class="sesion-resumen" id="span-resumen">
+        <div class="resumen-title">✓ Sesión completada</div>
+        <div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Aciertos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Mejor span</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Nivel</div></div></div>
+        <div class="resumen-msg"></div>
+      </div>      <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap">
         <button class="btn btn-v" id="span-start-btn" onclick="spanStart('direct')">Orden directo</button>
         <button class="btn" style="border-color:var(--teal);color:var(--teal2)" onclick="spanStart('inverse')">Orden inverso</button>
       </div>
@@ -923,6 +950,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div style="text-align:center">
         <button class="btn btn-lg btn-g" id="cpt-tap-btn" onclick="cptTap()" disabled style="width:100%;font-size:1.1rem;padding:18px">¡ES LA X! — Presiona aquí</button>
       </div>
+      <div class="session-panel" id="cpt-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="cptFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="cpt-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Detecciones</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Falsas alarmas</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Omisiones</div></div></div><div class="resumen-msg"></div></div>
       <div style="text-align:center;margin-top:12px">
         <button class="btn btn-v btn-lg" id="cpt-start-btn" onclick="cptStart()">Iniciar CPT · 3 minutos</button>
       </div>
@@ -993,7 +1022,16 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div id="cb8" onclick="corsiTap(8)" style="height:68px;border-radius:10px;background:#1c1c28;border:2px solid #2a2a3a;cursor:pointer;transition:background .1s,border .1s"></div>
       </div>
       <div id="corsi-fb" class="feedback-box" style="margin:8px 0"></div>
-      <div style="text-align:center;margin-top:10px">
+<div class="session-panel" id="corsi-ses-panel">
+        <div class="session-timer">00:00</div>
+        <div class="session-info">Actividad en curso...</div>
+        <button class="session-fin-btn" onclick="corsiFinalizar()">Finalizar y guardar</button>
+      </div>
+<div class="sesion-resumen" id="corsi-resumen">
+        <div class="resumen-title">✓ Sesión completada</div>
+        <div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Aciertos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Mejor span</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Nivel</div></div></div>
+        <div class="resumen-msg"></div>
+      </div>      <div style="text-align:center;margin-top:10px">
         <button class="btn btn-v btn-lg" id="corsi-start-btn" onclick="corsiStart()">&#9654; Iniciar Corsi Block</button>
       </div>
     </div>
@@ -1064,7 +1102,16 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <button class="btn btn-v btn-full" style="margin-top:8px" onclick="rspanCheck()">Confirmar palabras</button>
       </div>
       <div id="rspan-fb" class="feedback-box" style="margin:8px 0"></div>
-      <div style="text-align:center;margin-top:10px">
+<div class="session-panel" id="rspan-ses-panel">
+        <div class="session-timer">00:00</div>
+        <div class="session-info">Actividad en curso...</div>
+        <button class="session-fin-btn" onclick="rspanFinalizar()">Finalizar y guardar</button>
+      </div>
+<div class="sesion-resumen" id="rspan-resumen">
+        <div class="resumen-title">✓ Sesión completada</div>
+        <div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Palabras</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Mejor nivel</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Nivel</div></div></div>
+        <div class="resumen-msg"></div>
+      </div>      <div style="text-align:center;margin-top:10px">
         <button class="btn btn-v btn-lg" id="rspan-start-btn" onclick="rspanStart()">&#9654; Iniciar Span de Lectura</button>
       </div>
     </div>
@@ -1128,7 +1175,16 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div id="kt-questions"></div>
       </div>
       <div id="kt-fb" class="feedback-box" style="margin:8px 0"></div>
-      <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<div class="session-panel" id="kt-ses-panel">
+        <div class="session-timer">00:00</div>
+        <div class="session-info">Actividad en curso...</div>
+        <button class="session-fin-btn" onclick="ktFinalizar()">Finalizar y guardar</button>
+      </div>
+<div class="sesion-resumen" id="kt-resumen">
+        <div class="resumen-title">✓ Sesión completada</div>
+        <div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Aciertos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Rondas</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Categorías</div></div></div>
+        <div class="resumen-msg"></div>
+      </div>      <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
         <button class="btn" style="border-color:#8b7ff5;color:#b3abff" onclick="ktSetCats(3)">3 categorías</button>
         <button class="btn" style="border-color:#8b7ff5;color:#b3abff" onclick="ktSetCats(4)">4 categorías</button>
         <button class="btn" style="border-color:#8b7ff5;color:#b3abff" onclick="ktSetCats(5)">5 categorías</button>
@@ -1336,7 +1392,16 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div id="mxc15" onclick="mxTap(15)" style="height:58px;border-radius:8px;background:#1c1c28;border:2px solid #2a2a3a;cursor:pointer;transition:background .12s,border .12s"></div>
       </div>
       <div id="mx-feedback" class="feedback-box" style="margin:8px 0"></div>
-      <div style="text-align:center;margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<div class="session-panel" id="mx-ses-panel">
+        <div class="session-timer">00:00</div>
+        <div class="session-info">Actividad en curso...</div>
+        <button class="session-fin-btn" onclick="mxFinalizar()">Finalizar y guardar</button>
+      </div>
+<div class="sesion-resumen" id="mx-resumen">
+        <div class="resumen-title">✓ Sesión completada</div>
+        <div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Aciertos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Mejor nivel</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Celdas</div></div></div>
+        <div class="resumen-msg"></div>
+      </div>      <div style="text-align:center;margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
         <button class="btn btn-v" id="mx-confirm-btn" onclick="mxConfirm()" style="display:none">Confirmar respuesta</button>
         <button class="btn btn-v btn-lg" id="mx-start-btn" onclick="mxStart()">&#9654; Iniciar</button>
       </div>
@@ -1436,6 +1501,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div id="sd-stimulus" style="text-align:center;font-size:5rem;min-height:100px;display:flex;align-items:center;justify-content:center;background:#1c1c28;border-radius:12px;margin-bottom:1rem;border:2px solid #2a2a3a">—</div>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px" id="sd-options"></div>
       <div id="sd-fb" class="feedback-box" style="margin-bottom:8px"></div>
+      <div class="session-panel" id="sd-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="sdFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="sd-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Correctas</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Errores</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Resp/min</div></div></div><div class="resumen-msg"></div></div>
       <div style="text-align:center">
         <button class="btn btn-t btn-lg" id="sd-start-btn" onclick="sdStart()">Iniciar Symbol-Digit</button>
       </div>
@@ -1553,6 +1620,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="stroop-word" id="stroop-word">———</div>
       <div id="st-feedback" class="feedback-box"></div>
       <div class="stroop-opts" id="stroop-opts"></div>
+      <div class="session-panel" id="stroop-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="stroopFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="stroop-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Correctas</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Errores</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Rondas</div></div></div><div class="resumen-msg"></div></div>
       <div style="text-align:center;margin-top:1rem">
         <button class="btn btn-c btn-lg" id="stroop-start-btn" onclick="stroopStart()">Iniciar Stroop · 20 rondas</button>
       </div>
@@ -1665,6 +1734,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       </div>
       <div class="gng-circle gng-blank" id="gng-circle" onclick="gngTap()">Listo</div>
       <div id="gng-feedback" class="feedback-box"></div>
+      <div class="session-panel" id="gng-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="gngFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="gng-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Hits</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Falsas alarmas</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Omisiones</div></div></div><div class="resumen-msg"></div></div>
       <div style="text-align:center;margin-top:1rem">
         <button class="btn btn-g btn-lg" id="gng-start-btn" onclick="gngStart()">Iniciar Go/No-Go · 30 trials</button>
       </div>
@@ -1840,6 +1911,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       </div>
       <div id="hanoi-board" style="display:flex;justify-content:center;gap:12px;margin:1rem 0;align-items:flex-end;min-height:140px"></div>
       <div id="hanoi-msg" class="feedback-box" style="margin-bottom:8px"></div>
+      <div class="session-panel" id="hanoi-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="hanoiFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="hanoi-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Movimientos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Mínimo posible</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Discos</div></div></div><div class="resumen-msg"></div></div>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
         <button class="btn" style="border-color:var(--amber);color:var(--amber2)" onclick="hanoiReset(3)">3 discos</button>
         <button class="btn" style="border-color:var(--amber);color:var(--amber2)" onclick="hanoiReset(4)">4 discos</button>
@@ -1898,6 +1971,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div style="text-align:center;font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">¿Con cuál grupo va?</div>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px" id="wcst-options"></div>
       <div id="wcst-fb" class="feedback-box" style="margin-bottom:8px"></div>
+      <div class="session-panel" id="wcst-ses-panel"><div class="session-timer">00:00</div><div class="session-info">Actividad en curso...</div><button class="session-fin-btn" onclick="wcstFinalizar()">Finalizar y guardar</button></div>
+      <div class="sesion-resumen" id="wcst-resumen"><div class="resumen-title">✓ Sesión completada</div><div class="resumen-grid"><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Aciertos</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Errores persev.</div></div><div class="resumen-item"><span class="resumen-val">—</span><div class="resumen-lbl">Categorías</div></div></div><div class="resumen-msg"></div></div>
       <div style="text-align:center">
         <button class="btn btn-lg" style="border-color:var(--amber);color:var(--amber2)" id="wcst-start-btn" onclick="wcstStart()">Iniciar WCST · 48 tarjetas</button>
       </div>
@@ -2758,8 +2833,10 @@ const LETTERS='BCDFGHJKLMNPQRST';
 let nb={running:false,level:1,seq:[],trial:0,score:0,errors:0,iv:null};
 function nbLevel(d){if(nb.running)return;nb.level=Math.max(1,Math.min(4,nb.level+d));document.getElementById('nb-level-txt').textContent=nb.level;document.getElementById('nb-level-m').textContent='N'+nb.level;}
 function nbStart(){
-  if(nb.running){clearInterval(nb.iv);nb.running=false;document.getElementById('nb-start-btn').textContent='Iniciar sesión (20 turnos)';document.getElementById('nb-phase').textContent='Detenido';document.getElementById('nb-pos-btn').disabled=true;document.getElementById('nb-let-btn').disabled=true;return;}
+  if(nb.running){clearInterval(nb.iv);nb.running=false;
+    nbFinalizar();document.getElementById('nb-start-btn').textContent='Iniciar sesión (20 turnos)';document.getElementById('nb-phase').textContent='Detenido';document.getElementById('nb-pos-btn').disabled=true;document.getElementById('nb-let-btn').disabled=true;return;}
   nb={...nb,running:true,seq:[],trial:0,score:0,errors:0};
+  sesStart('nb-ses-panel','Lab 1 — Memoria de Trabajo','Dual N-Back');
   document.getElementById('nb-score').textContent=0;document.getElementById('nb-errors').textContent=0;document.getElementById('nb-trial').textContent='0/20';
   document.getElementById('nb-start-btn').textContent='Detener sesión';
   document.getElementById('nb-pos-btn').disabled=false;document.getElementById('nb-let-btn').disabled=false;
@@ -2814,6 +2891,7 @@ function breathStart(){
 const SW=['ROJO','AZUL','VERDE','AMARILLO','MORADO'],SC={ROJO:'#f97066',AZUL:'#378ADD',VERDE:'#34d399',AMARILLO:'#fbbf24',MORADO:'#b3abff'};
 let st={running:false,round:0,correct:0,wrong:0,ink:''};
 function stroopStart(){
+  sesStart('stroop-ses-panel','Lab 2 — Control Inhibitorio','Stroop');
   st={running:true,round:0,correct:0,wrong:0};
   document.getElementById('stroop-start-btn').style.display='none';
   document.getElementById('st-correct').textContent=0;document.getElementById('st-wrong').textContent=0;
@@ -2984,6 +3062,7 @@ function strAns(c){
 /* ── GNG ── */
 let gng={running:false,trial:0,hits:0,fa:0,isGo:false,tapped:false,to:null};
 function gngStart(){
+  sesStart('gng-ses-panel','Lab 2 — Control Inhibitorio','Go/No-Go');
   gng={running:true,trial:0,hits:0,fa:0};
   document.getElementById('gng-start-btn').style.display='none';
   gngNext();
@@ -3084,6 +3163,7 @@ function renderDiary(){const a=S.get('diary')||[];const el=document.getElementBy
 let spanState={mode:'direct',seq:[],entry:[],level:3,score:0,best:0,showing:false,iv:null};
 function spanStart(mode){
   spanState.mode=mode;spanState.score=0;spanState.entry=[];
+  sesStart('span-ses-panel','Lab 1 — Memoria de Trabajo','Span de Dígitos');
   document.getElementById('span-input-area').style.display='none';
   document.getElementById('span-fb').style.display='none';
   document.getElementById('span-entry').textContent='_';
@@ -3138,6 +3218,7 @@ function spanCheck(){
 const CPT_LETTERS='ABCDEFGHIJKLMNOPQRSTUVWYZ'.split('');
 let cpt={running:false,hits:0,fa:0,miss:0,current:'',isX:false,waiting:false,stimIv:null,timerIv:null,t:180};
 function cptStart(){
+  sesStart('cpt-ses-panel','Lab 1 — Memoria de Trabajo','CPT Atención Sostenida');
   cpt={running:true,hits:0,fa:0,miss:0,current:'',isX:false,waiting:false,t:180};
   document.getElementById('cpt-start-btn').style.display='none';
   document.getElementById('cpt-tap-btn').disabled=false;
@@ -3233,6 +3314,7 @@ const WCST_COLORS=['#f97066','#378ADD','#34d399','#fbbf24'];
 const WCST_RULES=['color','shape','count'];
 let wcst={running:false,rule:'color',streak:0,trial:0,correct:0,errors:0,cats:0,stimulus:null,options:[],correctIdx:{}};
 function wcstStart(){
+  sesStart('wcst-ses-panel','Lab 3 — Flexibilidad Cognitiva','WCST');
   wcst={running:true,rule:WCST_RULES[Math.floor(Math.random()*3)],streak:0,trial:0,correct:0,errors:0,cats:0,stimulus:null,options:[],correctIdx:{}};
   document.getElementById('wcst-start-btn').style.display='none';
   document.getElementById('wcst-correct').textContent=0;document.getElementById('wcst-errors').textContent=0;
@@ -3422,6 +3504,7 @@ function mxReset(){for(var k=0;k<16;k++){var c=document.getElementById('mxc'+k);
 var mxState={level:3,score:0,best:0,pattern:[],selected:[],phase:'idle',fails:0,t:null};
 function mxInitGrid(){mxReset();}
 function mxStart(){
+  sesStart('mx-ses-panel','Lab 1 — Memoria de Trabajo','Matrices de Patrones');
   mxState.phase='show';mxState.selected=[];
   mxReset();
   document.getElementById('mx-start-btn').style.display='none';
@@ -3523,6 +3606,7 @@ function sdChangeDuration(d){
   document.getElementById('sd-time').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
 }
 function sdStart(){
+  sesStart('sd-ses-panel','Lab 1 — Memoria de Trabajo','Symbol-Digit');
   sd.syms=SD_SETS[sd.setIdx].syms;
   sd={running:true,correct:0,trial:0,wrong:0,t:sd.duration,symbol:'',iv:null,tiv:null,setIdx:sd.setIdx,syms:sd.syms,duration:sd.duration};
   document.getElementById('sd-start-btn').style.display='none';
@@ -3586,6 +3670,7 @@ function corsiFlash(idx,cb){
   setTimeout(function(){c.style.background='#1c1c28';c.style.borderColor='#2a2a3a';if(cb)cb();},700);
 }
 function corsiStart(){
+  sesStart('corsi-ses-panel','Lab 1 — Memoria de Trabajo','Corsi Block');
   corsi.phase='show';corsi.input=[];
   document.getElementById('corsi-start-btn').style.display='none';
   document.getElementById('corsi-fb').style.display='none';
@@ -3722,6 +3807,7 @@ var KT_DATA={
 var kt={cats:3,score:0,trial:0,phase:'idle',catNames:[],lastWords:{},seq:[],seqIdx:0,t:null};
 function ktSetCats(n){if(kt.phase==='idle')kt.cats=n;document.getElementById('kt-cats').textContent=n;}
 function ktStart(){
+  sesStart('kt-ses-panel','Lab 1 — Memoria de Trabajo','Keep Track');
   kt.phase='show';kt.seqIdx=0;kt.lastWords={};
   document.getElementById('kt-start-btn').style.display='none';
   document.getElementById('kt-recall-area').style.display='none';
@@ -3975,6 +4061,186 @@ function noiseVolume(v){
   if(noiseGain)noiseGain.gain.value=v/100;
 }
 function noisePanelToggle(){document.getElementById('noise-panel').classList.toggle('open');}
+
+/* ── SISTEMA DE SESIÓN ACTIVA ── */
+var activeSes={lab:'',actividad:'',startTime:0,iv:null,data:{}};
+function sesStart(panelId,lab,actividad,extraData){
+  activeSes={lab:lab,actividad:actividad,startTime:Date.now(),iv:null,data:extraData||{}};
+  var panel=document.getElementById(panelId);
+  if(!panel)return;
+  panel.classList.add('active');
+  panel.querySelector('.session-info').textContent=actividad+' · en curso...';
+  var timerEl=panel.querySelector('.session-timer');
+  var elapsed=0;
+  activeSes.iv=setInterval(function(){
+    elapsed++;
+    var m=Math.floor(elapsed/60),s=elapsed%60;
+    timerEl.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  },1000);
+}
+function sesEnd(panelId,resumenId,stats){
+  clearInterval(activeSes.iv);
+  var panel=document.getElementById(panelId);
+  if(panel)panel.classList.remove('active');
+  var elapsed=Math.max(1,Math.round((Date.now()-activeSes.startTime)/60000));
+  // Guardar en diary
+  var entry=Object.assign({
+    date:new Date().toLocaleDateString('es-CO'),
+    ts:Date.now(),
+    lab:activeSes.lab,
+    actividad:activeSes.actividad,
+    min:elapsed,
+    text:'Sesión completada.'
+  },stats||{});
+  S.push('diary',entry);
+  // Mostrar resumen
+  if(resumenId){
+    var el=document.getElementById(resumenId);
+    if(el){
+      el.classList.add('show');
+      var msg=generarMensajeSesion(stats);
+      var msgEl=el.querySelector('.resumen-msg');
+      if(msgEl)msgEl.textContent=msg;
+      // Rellenar métricas del resumen
+      if(stats){
+        var items=el.querySelectorAll('.resumen-item');
+        var vals=Object.values(stats).filter(function(v){return typeof v==='number';});
+        var keys=Object.keys(stats).filter(function(k){return typeof stats[k]==='number';});
+        items.forEach(function(item,i){
+          if(vals[i]!==undefined){
+            item.querySelector('.resumen-val').textContent=vals[i];
+            item.querySelector('.resumen-lbl').textContent=keys[i];
+          }
+        });
+      }
+      setTimeout(function(){el.classList.remove('show');},6000);
+    }
+  }
+  updateHome();
+  dashUpdate();
+}
+function generarMensajeSesion(stats){
+  if(!stats)return'Sesión registrada. ¡Buen trabajo!';
+  var msgs=[];
+  if(stats.aciertos!==undefined&&stats.aciertos>0)msgs.push(stats.aciertos+' aciertos');
+  if(stats.nivel!==undefined)msgs.push('Nivel '+stats.nivel+' alcanzado');
+  if(stats.span!==undefined)msgs.push('Span de '+stats.span+' dígitos');
+  if(stats.pct!==undefined)msgs.push(stats.pct+'% precisión');
+  if(msgs.length===0)return'Sesión completada y registrada correctamente.';
+  return'✓ '+msgs.join(' · ')+' — Sesión guardada en tu diario.';
+}
+
+/* ── FUNCIONES DE FINALIZACIÓN DE SESIÓN ── */
+function spanFinalizar(){
+  if(!spanState||spanState.score===0){showInfo('span-fb','Completa al menos un intento antes de finalizar.');return;}
+  document.getElementById('span-ses-panel').classList.remove('active');
+  S.set('span_best',Math.max(spanState.best,S.get('span_best')||0));
+  var stats={aciertos:spanState.score,span:spanState.best,nivel:spanState.level};
+  sesEnd('span-ses-panel','span-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',2,Object.assign({actividad:'Span de Dígitos'},stats));
+  clearInterval(spanState.iv);
+}
+function nbFinalizar(){
+  if(!nb||nb.score===0){showInfo('nb-feedback','Completa al menos un turno antes de finalizar.');return;}
+  clearInterval(nb.iv);nb.running=false;
+  document.getElementById('nb-start-btn').textContent='Iniciar sesión (20 turnos)';
+  document.getElementById('nb-pos-btn').disabled=true;
+  document.getElementById('nb-let-btn').disabled=true;
+  var pct=nb.score+nb.errors>0?Math.round(nb.score/(nb.score+nb.errors)*100):0;
+  var stats={aciertos:nb.score,errores:nb.errors,nivel:nb.level,pct:pct};
+  S.set('nback_best_level',Math.max(nb.level,S.get('nback_best_level')||1));
+  sesEnd('nb-ses-panel','nb-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',3,Object.assign({actividad:'Dual N-Back'},stats));
+}
+function mxFinalizar(){
+  if(!mxState||mxState.score===0){return;}
+  clearTimeout(mxState.t);mxState.phase='idle';
+  var stats={aciertos:mxState.score,nivel:mxState.level,mejor:mxState.best};
+  sesEnd('mx-ses-panel','mx-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',3,Object.assign({actividad:'Matrices de Patrones'},stats));
+}
+function cptFinalizar(){
+  if(!cpt||!cpt.running){return;}
+  clearInterval(cpt.stimIv);clearInterval(cpt.timerIv);cpt.running=false;
+  document.getElementById('cpt-start-btn').style.display='';
+  document.getElementById('cpt-tap-btn').disabled=true;
+  var stats={detecciones:cpt.hits,falsasAlarmas:cpt.fa,omisiones:cpt.miss};
+  sesEnd('cpt-ses-panel','cpt-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',3,Object.assign({actividad:'CPT Atención Sostenida'},stats));
+}
+function corsiFinalizar(){
+  if(!corsi||corsi.score===0){return;}
+  clearTimeout(corsi.t);
+  var stats={aciertos:corsi.score,span:corsi.best,nivel:corsi.level};
+  S.set('corsi_best',Math.max(corsi.best,S.get('corsi_best')||0));
+  sesEnd('corsi-ses-panel','corsi-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',3,Object.assign({actividad:'Corsi Block'},stats));
+}
+function rspanFinalizar(){
+  if(!rspan||rspan.score===0){return;}
+  var stats={palabras:rspan.score,nivel:rspan.level,mejor:rspan.best};
+  sesEnd('rspan-ses-panel','rspan-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',3,Object.assign({actividad:'Span de Lectura'},stats));
+}
+function ktFinalizar(){
+  if(!kt||kt.score===0){return;}
+  clearTimeout(kt.t);kt.phase='idle';
+  var stats={aciertos:kt.score,rondas:kt.trial,categorias:kt.cats};
+  sesEnd('kt-ses-panel','kt-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',2,Object.assign({actividad:'Keep Track'},stats));
+}
+function sdFinalizar(){
+  if(!sd||!sd.running){return;}
+  clearInterval(sd.tiv);sd.running=false;
+  var speed=Math.round(sd.correct/((sd.duration-sd.t)/60||1));
+  document.getElementById('sd-stimulus').textContent='—';
+  document.getElementById('sd-options').innerHTML='';
+  document.getElementById('sd-start-btn').style.display='';
+  var stats={correctas:sd.correct,errores:sd.wrong,respMin:speed};
+  sesEnd('sd-ses-panel','sd-resumen',stats);
+  logSes('Lab 1 — Memoria de Trabajo',Math.round((sd.duration-sd.t)/60)||1,Object.assign({actividad:'Symbol-Digit'},stats));
+}
+function stroopFinalizar(){
+  if(!st||st.round===0){return;}
+  document.getElementById('stroop-opts').innerHTML='';
+  document.getElementById('stroop-start-btn').style.display='';
+  var stats={correctas:st.correct,errores:st.wrong,rondas:st.round};
+  var perf=st.wrong===0&&st.round>=10;if(perf)S.set('stroop_perfect',true);
+  sesEnd('stroop-ses-panel','stroop-resumen',stats);
+  logSes('Lab 2 — Control Inhibitorio',2,Object.assign({actividad:'Stroop',perfecto:perf},stats));
+}
+function gngFinalizar(){
+  if(!gng||gng.trial===0){return;}
+  clearInterval(gng.iv);
+  document.getElementById('gng-circle').className='gng-circle gng-blank';
+  document.getElementById('gng-circle').textContent='Listo';
+  document.getElementById('gng-start-btn').style.display='';
+  var perf=gng.fa===0&&gng.trial>=15;if(perf)S.set('gng_perfect',true);
+  var stats={hits:gng.hits,falsasAlarmas:gng.fa,omisiones:gng.miss};
+  sesEnd('gng-ses-panel','gng-resumen',stats);
+  logSes('Lab 2 — Control Inhibitorio',2,Object.assign({actividad:'Go/No-Go',perfecto:perf},stats));
+}
+function hanoiFinalizar(){
+  var moves=parseInt(document.getElementById('hanoi-moves')?.textContent)||0;
+  if(moves===0){return;}
+  var discs=window.currentHanoiDiscs||3;
+  var min=Math.pow(2,discs)-1;
+  var stats={movimientos:moves,minimoPostible:min,discos:discs};
+  sesEnd('hanoi-ses-panel','hanoi-resumen',stats);
+  logSes('Lab 3 — Flexibilidad Cognitiva',3,Object.assign({actividad:'Torre de Hanói'},stats));
+}
+function wcstFinalizar(){
+  if(!wcst||wcst.trial===0){return;}
+  clearInterval(wcst.iv);
+  document.getElementById('wcst-start-btn').style.display='';
+  var stats={aciertos:wcst.correct,erroresPersev:wcst.persev,categorias:wcst.cats};
+  sesEnd('wcst-ses-panel','wcst-resumen',stats);
+  logSes('Lab 3 — Flexibilidad Cognitiva',4,Object.assign({actividad:'WCST'},stats));
+}
+
+/* ── ACTIVAR PANEL AL INICIAR ACTIVIDADES ── */
+var _nbStartOrig=window.nbStart;
+var _spanStartOrig=window.spanStart;
 
 /* ── PRE-TESTING ── */
 function ptSave(){
