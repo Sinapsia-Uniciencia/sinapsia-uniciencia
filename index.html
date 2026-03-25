@@ -729,8 +729,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="dash-title">🏛️ Ranking UNICIENCIA</div>
       <!-- Tabs del ranking -->
       <div style="display:flex;gap:4px;background:#0d0d15;border-radius:8px;padding:3px;margin-bottom:10px">
-        <button id="rtab-general" onclick="rankingTab('general')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:#2d2650;color:#b3abff;transition:all .2s">🏆 General</button>
-        <button id="rtab-est" onclick="rankingTab('estudiantes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a;transition:all .2s">🎓 Estudiantes</button>
+        <button id="rtab-est" onclick="rankingTab('estudiantes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:#2d2650;color:#b3abff;transition:all .2s">🎓 Estudiantes</button>
         <button id="rtab-doc" onclick="rankingTab('docentes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a;transition:all .2s">👨‍🏫 Docentes</button>
       </div>
       <div class="ranking-card" id="ranking-card"></div>
@@ -5336,18 +5335,15 @@ function showLogroToast(l){
 }
 
 // ── RANKING FACULTADES ──
-var currentRankingTab='general';
+var currentRankingTab='estudiantes';
 function rankingTab(tab){
   currentRankingTab=tab;
-  var tabs=['general','est','doc'];
-  var tabMap={'general':'general','estudiantes':'est','docentes':'doc'};
-  tabs.forEach(function(t){
+  ['est','doc'].forEach(function(t){
     var btn=document.getElementById('rtab-'+t);
-    if(btn){
-      var active=tabMap[tab]===t;
-      btn.style.background=active?'#2d2650':'none';
-      btn.style.color=active?'#b3abff':'#5c5a7a';
-    }
+    if(!btn)return;
+    var active=(tab==='estudiantes'&&t==='est')||(tab==='docentes'&&t==='doc');
+    btn.style.background=active?'#2d2650':'none';
+    btn.style.color=active?'#b3abff':'#5c5a7a';
   });
   var d=getDashData();
   updateRanking(d);
