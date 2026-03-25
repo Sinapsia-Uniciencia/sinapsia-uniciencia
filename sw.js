@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sinapsia-v8';
+const CACHE_NAME = 'sinapsia-v7';
 const STATIC_ASSETS = [
   '/sinapsia-uniciencia/',
   '/sinapsia-uniciencia/index.html',
@@ -7,7 +7,6 @@ const STATIC_ASSETS = [
   '/sinapsia-uniciencia/icons/icon-512x512.png'
 ];
 
-// Instalar y cachear assets estáticos
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -16,7 +15,6 @@ self.addEventListener('install', event => {
   );
 });
 
-// Limpiar caches antiguas
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -28,37 +26,18 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Estrategia: Network First con fallback a caché
 self.addEventListener('fetch', event => {
-  // Solo manejar peticiones GET
   if (event.request.method !== 'GET') return;
-
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Guardar copia en caché si es válida
         if (response && response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => cache.put(event.request, responseClone));
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
         return response;
       })
-      .catch(() => {
-        // Sin red: servir desde caché
-        return caches.match(event.request)
-          .then(cached => cached || caches.match('/sinapsia-uniciencia/index.html'));
-      })
+      .catch(() => caches.match(event.request)
+        .then(cached => cached || caches.match('/sinapsia-uniciencia/index.html')))
   );
-});
-
-// Notificación push (preparado para futuras notificaciones)
-self.addEventListener('push', event => {
-  if (!event.data) return;
-  const data = event.data.json();
-  self.registration.showNotification(data.title || 'SINAPSIA', {
-    body: data.body || 'Tienes actividades pendientes hoy',
-    icon: '/sinapsia-uniciencia/icons/icon-192x192.png',
-    badge: '/sinapsia-uniciencia/icons/icon-72x72.png'
-  });
 });
