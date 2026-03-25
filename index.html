@@ -456,10 +456,6 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <button class="nav-btn" onclick="showScreen('lab4')"><span class="nav-dot" style="background:var(--teal)"></span>Lab 4 · Planificación</button>
       <button class="nav-btn" onclick="showScreen('lab5')"><span class="nav-dot" style="background:var(--pink)"></span>Lab 5 · Metacognición</button>
       <button class="nav-btn" onclick="showScreen('lab6')"><span class="nav-dot" style="background:#e879f9"></span>Lab 6 · Mnemotécnicas</button>
-      <button class="nav-btn doc-nav-btn" id="nav-labd1-btn" onclick="showScreen('labd1')" style="display:none"><span class="nav-dot" style="background:#2dd4bf"></span>D1 · FE Aula</button>
-      <button class="nav-btn doc-nav-btn" id="nav-labd2-btn" onclick="showScreen('labd2')" style="display:none"><span class="nav-dot" style="background:#60a5fa"></span>D2 · Atención</button>
-      <button class="nav-btn doc-nav-btn" id="nav-labd3-btn" onclick="showScreen('labd3')" style="display:none"><span class="nav-dot" style="background:#fbbf24"></span>D3 · Memoria</button>
-      <button class="nav-btn doc-nav-btn" id="nav-labd4-btn" onclick="showScreen('labd4')" style="display:none"><span class="nav-dot" style="background:#e879f9"></span>D4 · Neuropsico</button>
       <button class="nav-btn" onclick="showScreen('diario')"><span class="nav-dot" style="background:var(--text3)"></span>Diario</button>
     </div>
   </div>
@@ -819,7 +815,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <!-- Labs exclusivos docentes -->
       <div class="lab-card" id="lc-d1" onclick="showScreen('labd1')" style="display:none;cursor:pointer;border-left:3px solid #2dd4bf">
         <div class="lab-num" style="color:#2dd4bf">LAB D1</div>
-        <div class="lab-title">FE en el Aula</div>
+        <div class="lab-title">Funciones Ejecutivas en el Aula</div>
         <div class="lab-desc">Calentamiento cognitivo · Andamiaje ejecutivo · Pre-activación prefrontal</div>
         <div class="lab-tags"><span class="tag" style="background:#0d3d38;color:#2dd4bf">Estrategias neuropsicopedagógicas</span></div>
         <span class="lab-arrow">→</span>
@@ -1042,7 +1038,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
             <div class="instr-title">Señales de alerta temprana (intervenir en 2 min)</div>
             <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">→</div><div><div class="paso-desc">Aumento de consultas al celular, miradas hacia la ventana o el pasillo, postura corporal que se recuesta, disminución en la velocidad de respuesta a preguntas, garabatos en los cuadernos, bostezos frecuentes.</div></div></div>
             <div class="instr-title" style="margin-top:1rem">Intervención inmediata</div>
-            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Cambio de modalidad sensorial</div><div class="paso-desc">Si llevas 15+ minutos en modo verbal-auditivo, cambia a visual (mostrar algo), kinestésico (hacer algo) o social (hablar entre pares). El cambio de modalidad resetea el sistema atencional sin perder continuidad de contenido.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Cambio de demanda cognitiva</div><div class="paso-desc">Si llevas 15+ minutos en exposición de contenido nuevo (alta carga en MdT), cambia a una actividad de procesamiento: que los estudiantes expliquen con sus palabras, generen un ejemplo propio o conecten el concepto con uno anterior. El cambio de tipo de procesamiento — de recepción pasiva a generación activa — resetea el sistema atencional y activa la consolidación hipocampal simultáneamente.</div></div></div>
             <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Micro-movimiento de 60 segundos</div><div class="paso-desc">Pide que se pongan de pie, estiren los brazos, caminen 3 pasos. El movimiento físico aumenta el flujo sanguíneo cerebral y libera BDNF (factor neurotrófico), restaurando la capacidad prefrontal en menos de 2 minutos.</div></div></div>
           </div>
         </div>
@@ -4664,8 +4660,6 @@ function applyRolUI(){
   ['d1','d2','d3','d4'].forEach(function(d){
     var lc=document.getElementById('lc-'+d);
     if(lc)lc.style.display=esDocente?'block':'none';
-    var nb=document.getElementById('nav-lab'+d+'-btn');
-    if(nb)nb.style.display=esDocente?'':'none';
   });
 
   // Etiquetas pedagógicas en labs compartidos
