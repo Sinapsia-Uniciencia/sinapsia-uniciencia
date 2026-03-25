@@ -506,16 +506,16 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
           <button class="programa-btn" onclick="obSelectProg(this,'Contaduría Pública')">🧾 Contaduría Pública</button>
           <button class="programa-btn" onclick="obSelectProg(this,'Publicidad')">📢 Publicidad</button>
         </div>
-        <!-- Materias docente -->
+        <!-- Docente: mismos programas -->
         <div class="programa-grid" id="ob-programas-doc" style="display:none">
-          <button class="programa-btn" onclick="obSelectProg(this,'Neuropsicología')">🧠 Neuropsicología</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Neuroeducación')">📚 Neuroeducación</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Psicología')">💭 Psicología</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Pedagogía')">✏️ Pedagogía</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Ciencias Básicas')">🔬 Ciencias Básicas</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Humanidades')">📖 Humanidades</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Ciencias Económicas')">💹 Ciencias Económicas</button>
-          <button class="programa-btn" onclick="obSelectProg(this,'Otra materia')">🎯 Otra materia</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Derecho')">⚖️ Derecho</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Economía')">📈 Economía</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Adm. de Empresas')">💼 Adm. de Empresas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Ing. de Sistemas')">💻 Ing. de Sistemas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Ing. Industrial')">⚙️ Ing. Industrial</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Diseño de Modas')">👗 Diseño de Modas</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Contaduría Pública')">🧾 Contaduría Pública</button>
+          <button class="programa-btn" onclick="obSelectProg(this,'Publicidad')">📢 Publicidad</button>
         </div>
         <button class="btn btn-v btn-full" id="ob-prog-btn" onclick="obNext(4)" style="opacity:.4;margin-top:10px" disabled>Continuar →</button>
       </div>
@@ -737,9 +737,23 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div style="font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:6px;text-align:center">Ranking simulado · Puntos de Plasticidad promedio por programa</div>
     </div>
 
+    <!-- PANEL EXCLUSIVO DOCENTES -->
+    <div id="panel-docente" class="dashboard-section" style="display:none">
+      <div class="dash-title">👨‍🏫 Panel de Monitoreo Docente</div>
+      <div style="background:linear-gradient(135deg,#0d3d38,#0d1117);border:1px solid rgba(45,212,191,.3);border-radius:14px;padding:1.25rem;margin-bottom:10px">
+        <div style="font-size:13px;font-weight:600;color:#2dd4bf;margin-bottom:12px">Estado del grupo — <span id="doc-programa-label" style="color:#99f6e4">Tu programa</span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+          <div style="background:#0a0a0f;border-radius:8px;padding:10px;text-align:center"><div style="font-size:1.4rem;font-weight:700;color:#2dd4bf" id="doc-active">—</div><div style="font-size:10px;color:#5c5a7a;font-family:monospace">Activos hoy</div></div>
+          <div style="background:#0a0a0f;border-radius:8px;padding:10px;text-align:center"><div style="font-size:1.4rem;font-weight:700;color:#fbbf24" id="doc-avg-px">—</div><div style="font-size:10px;color:#5c5a7a;font-family:monospace">PX promedio</div></div>
+          <div style="background:#0a0a0f;border-radius:8px;padding:10px;text-align:center"><div style="font-size:1.4rem;font-weight:700;color:#f0abfc" id="doc-top-lab">—</div><div style="font-size:10px;color:#5c5a7a;font-family:monospace">Lab más activo</div></div>
+        </div>
+        <div style="font-size:11px;color:#5c5a7a;font-family:monospace;text-align:center">Datos simulados · Se actualizarán con Supabase en la próxima versión</div>
+      </div>
+    </div>
+
     <!-- LABS GRID -->
-    <div class="dash-title" style="margin-top:1.5rem">🔬 Laboratorios</div>
-    <div class="labs-grid">
+    <div class="dash-title" style="margin-top:1.5rem" id="labs-grid-title">🔬 Laboratorios</div>
+    <div class="labs-grid" id="labs-grid-container">
       <div class="install-banner" onclick="openInstallModal()" style="grid-column:1/-1">
         <div class="install-banner-icon">📲</div>
         <div class="install-banner-text">
@@ -748,48 +762,87 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         </div>
         <div style="color:var(--violet2);font-size:18px;flex-shrink:0">›</div>
       </div>
-      <div class="lab-card c1" onclick="showScreen('lab1')">
+
+      <!-- Labs estudiante (siempre visibles) -->
+      <div class="lab-card c1" id="lc1" onclick="showScreen('lab1')">
         <div class="lab-num">LAB 01</div>
         <div class="lab-title">Memoria de Trabajo</div>
         <div class="lab-desc">Dual N-Back · Corsi Block · Span de Lectura · SM-2</div>
+        <div class="lab-pedagog" id="lp1" style="display:none;font-size:10px;color:#2dd4bf;font-family:monospace;margin-top:4px">🎓 Estrategia aula: Recuperación activa distribuida</div>
         <div class="lab-tags"><span class="tag tag-v">dlPFC · Parietal</span><span class="tag tag-t">Theta-Gamma</span></div>
         <span class="lab-arrow">→</span>
       </div>
-      <div class="lab-card c2" onclick="showScreen('lab2')">
+      <div class="lab-card c2" id="lc2" onclick="showScreen('lab2')">
         <div class="lab-num">LAB 02</div>
         <div class="lab-title">Control Inhibitorio</div>
         <div class="lab-desc">Stroop · Go/No-Go · Intención de Implementación</div>
+        <div class="lab-pedagog" id="lp2" style="display:none;font-size:10px;color:#2dd4bf;font-family:monospace;margin-top:4px">🎓 Estrategia aula: Pausas de inhibición entre temas</div>
         <div class="lab-tags"><span class="tag tag-c">Fronto-striatal</span><span class="tag tag-t">Theta frontal</span></div>
         <span class="lab-arrow">→</span>
       </div>
-      <div class="lab-card c3" onclick="showScreen('lab3')">
+      <div class="lab-card c3" id="lc3" onclick="showScreen('lab3')">
         <div class="lab-num">LAB 03</div>
         <div class="lab-title">Flexibilidad Cognitiva</div>
         <div class="lab-desc">Task Switching · Torre de Hanói · Flanker · WCST</div>
+        <div class="lab-pedagog" id="lp3" style="display:none;font-size:10px;color:#2dd4bf;font-family:monospace;margin-top:4px">🎓 Estrategia aula: Cambio de perspectiva guiado</div>
         <div class="lab-tags"><span class="tag tag-a">DMN · Ganglios Basales</span></div>
         <span class="lab-arrow">→</span>
       </div>
-      <div class="lab-card c4" onclick="showScreen('lab4')">
+      <div class="lab-card c4" id="lc4" onclick="showScreen('lab4')">
         <div class="lab-num">LAB 04</div>
         <div class="lab-title">Planificación</div>
         <div class="lab-desc">SQ4R · Pomodoro · Interleaving · Calendario espaciado</div>
+        <div class="lab-pedagog" id="lp4" style="display:none;font-size:10px;color:#2dd4bf;font-family:monospace;margin-top:4px">🎓 Estrategia aula: Diseño de clase con GMT</div>
         <div class="lab-tags"><span class="tag tag-t">aPFC · Frontoparietal</span></div>
         <span class="lab-arrow">→</span>
       </div>
-      <div class="lab-card c5" onclick="showScreen('lab5')">
+      <div class="lab-card c5" id="lc5" onclick="showScreen('lab5')">
         <div class="lab-num">LAB 05</div>
         <div class="lab-title">Metacognición</div>
         <div class="lab-desc">Diario · Auto-explicación · Samatha · Revaluación</div>
+        <div class="lab-pedagog" id="lp5" style="display:none;font-size:10px;color:#2dd4bf;font-family:monospace;margin-top:4px">🎓 Estrategia aula: Cierre metacognitivo de clase</div>
         <div class="lab-tags"><span class="tag tag-v">Triple Red DMN–SN–ECN</span></div>
         <span class="lab-arrow">→</span>
       </div>
-      <div class="lab-card" style="cursor:pointer;border-left:3px solid #e879f9" onclick="showScreen('lab6')">
+      <div class="lab-card" style="cursor:pointer;border-left:3px solid #e879f9" id="lc6" onclick="showScreen('lab6')">
         <div class="lab-num">LAB 06</div>
         <div class="lab-title">Estrategias Mnemotécnicas</div>
         <div class="lab-desc">Método de Loci · Feynman · Historia Encadenada · Acrónimos</div>
+        <div class="lab-pedagog" id="lp6" style="display:none;font-size:10px;color:#2dd4bf;font-family:monospace;margin-top:4px">🎓 Estrategia aula: Loci colectivo en clase</div>
         <div class="lab-tags"><span class="tag" style="background:#3d0d42;color:#f0abfc">Hipocampo · Temporal · aPFC</span></div>
         <span class="lab-arrow">→</span>
       </div>
+
+      <!-- Labs exclusivos docentes -->
+      <div class="lab-card" id="lc-d1" onclick="showScreen('labd1')" style="display:none;cursor:pointer;border-left:3px solid #2dd4bf">
+        <div class="lab-num" style="color:#2dd4bf">LAB D1</div>
+        <div class="lab-title">FE en el Aula</div>
+        <div class="lab-desc">Calentamiento cognitivo · Andamiaje ejecutivo · Pre-activación prefrontal</div>
+        <div class="lab-tags"><span class="tag" style="background:#0d3d38;color:#2dd4bf">Estrategias neuropsicopedagógicas</span></div>
+        <span class="lab-arrow">→</span>
+      </div>
+      <div class="lab-card" id="lc-d2" onclick="showScreen('labd2')" style="display:none;cursor:pointer;border-left:3px solid #60a5fa">
+        <div class="lab-num" style="color:#60a5fa">LAB D2</div>
+        <div class="lab-title">Atención en el Aula</div>
+        <div class="lab-desc">Gancho cognitivo · Arousal óptimo · Novedad controlada · Ritmo discursivo</div>
+        <div class="lab-tags"><span class="tag" style="background:#1e2d4a;color:#93c5fd">Atención sostenida y selectiva</span></div>
+        <span class="lab-arrow">→</span>
+      </div>
+      <div class="lab-card" id="lc-d3" onclick="showScreen('labd3')" style="display:none;cursor:pointer;border-left:3px solid #fbbf24">
+        <div class="lab-num" style="color:#fbbf24">LAB D3</div>
+        <div class="lab-title">Memoria en el Aula</div>
+        <div class="lab-desc">Diseño con curva del olvido · Emoción y narrativa · Evaluación que consolida</div>
+        <div class="lab-tags"><span class="tag" style="background:#3d2d08;color:#fbbf24">Neurociencia del aprendizaje</span></div>
+        <span class="lab-arrow">→</span>
+      </div>
+      <div class="lab-card" id="lc-d4" onclick="showScreen('labd4')" style="display:none;cursor:pointer;border-left:3px solid #e879f9">
+        <div class="lab-num" style="color:#e879f9">LAB D4</div>
+        <div class="lab-title">Neuropsicopedagogía</div>
+        <div class="lab-desc">Lectura del grupo · Fatiga mental colectiva · Ambientes de aprendizaje</div>
+        <div class="lab-tags"><span class="tag" style="background:#3d0d42;color:#f0abfc">Neuropsicopedagogía del aula</span></div>
+        <span class="lab-arrow">→</span>
+      </div>
+
       <div class="lab-card" style="border-style:dashed" onclick="showScreen('diario')">
         <div class="lab-num">DIARIO</div>
         <div class="lab-title">Registro de Práctica</div>
@@ -797,6 +850,230 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div class="lab-tags"><span class="tag" style="background:var(--surface2);color:var(--text3)">Metacognición activa</span></div>
         <span class="lab-arrow">→</span>
       </div>
+    </div>
+  </div>
+
+  <!-- LAB D1: FE EN EL AULA -->
+  <div id="screen-labd1" class="screen">
+    <div class="sec-header">
+      <button class="sec-back" onclick="showScreen('home')">← Volver</button>
+      <div class="sec-title">Funciones Ejecutivas en el Aula</div>
+      <div class="sec-sub">Estrategias neuropsicopedagógicas para potenciar las funciones ejecutivas de tus estudiantes. Protocolos listos para aplicar, con base en conectómica cerebral.</div>
+      <div class="neuro-badge" style="background:#0d3d38;border-color:rgba(45,212,191,.2);color:#2dd4bf">dlPFC · ACC · Ganglios Basales · Protocolo de Aula</div>
+    </div>
+    <div style="margin-bottom:1rem;border-radius:12px;overflow:hidden;border:1px solid #2a2a3a">
+      <svg width="100%" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="100" fill="#0d1117"/>
+        <ellipse cx="70" cy="50" rx="55" ry="30" fill="#2d2650" stroke="#8b7ff5" stroke-width="1.5" opacity=".9"/>
+        <text x="70" y="46" text-anchor="middle" font-size="9" fill="#b3abff" font-family="monospace">dlPFC Estudiante</text>
+        <text x="70" y="58" text-anchor="middle" font-size="8" fill="#8b7ff5" font-family="monospace">FE en desarrollo</text>
+        <ellipse cx="210" cy="50" rx="55" ry="30" fill="#0d3d38" stroke="#2dd4bf" stroke-width="1.5" opacity=".9"/>
+        <text x="210" y="46" text-anchor="middle" font-size="9" fill="#99f6e4" font-family="monospace">dlPFC Docente</text>
+        <text x="210" y="58" text-anchor="middle" font-size="8" fill="#2dd4bf" font-family="monospace">Andamiaje ejecutivo</text>
+        <path d="M125 50 L155 50" stroke="#fbbf24" stroke-width="2" marker-end="url(#arr-d)"/>
+        <defs><marker id="arr-d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#fbbf24" stroke-width="1.5"/></marker></defs>
+        <text x="140" y="42" text-anchor="middle" font-size="8" fill="#fbbf24" font-family="monospace">Andamiaje</text>
+      </svg>
+    </div>
+
+    <div class="card" style="border-left:3px solid #2dd4bf">
+      <div class="card-title">🧠 Calentamiento Cognitivo (5 minutos)</div>
+      <div class="card-sub">Activar el dlPFC antes de contenido complejo aumenta la retención hasta un 40%. Aplica al inicio de cada clase.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn open" onclick="toggleCollapse(this)"><span>Ver protocolo completo</span><span class="chev">▾</span></button>
+        <div class="collapse-body open">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num t">1</div><div><div class="paso-label">Pregunta activadora (1 min)</div><div class="paso-desc">Inicia con una pregunta que conecte el tema nuevo con algo que los estudiantes ya saben. "¿Alguien ha visto alguna vez...?" o "¿Qué pasaría si...?" Activa esquemas previos en la corteza temporal y genera dopamina anticipatoria.</div></div></div>
+            <div class="paso"><div class="paso-num t">2</div><div><div class="paso-label">Predicción grupal (2 min)</div><div class="paso-desc">Pide al grupo que prediga el resultado o la respuesta antes de que tú expliques. El error productivo colectivo activa la corteza cingulada anterior y abre una ventana de hiperplasticidad para la explicación que sigue.</div></div></div>
+            <div class="paso"><div class="paso-num t">3</div><div><div class="paso-label">Respiración de activación (1 min)</div><div class="paso-desc">Guía 3 respiraciones profundas: inhala 4s, retén 2s, exhala 6s. Reduce el cortisol basal del grupo y activa el sistema parasimpático, poniendo la corteza prefrontal en estado de alerta relajada óptima.</div></div></div>
+            <div class="paso"><div class="paso-num t">4</div><div><div class="paso-label">Declaración de intención (1 min)</div><div class="paso-desc">Cada estudiante escribe en 10 segundos qué espera aprender hoy. Esto activa la corteza prefrontal anterior (planificación prospectiva) y mejora la atención selectiva durante toda la clase.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-t btn-sm" style="margin-top:10px" onclick="logSes('Lab D1 — FE en el Aula',5,{actividad:'Calentamiento Cognitivo'});showSaved('ld1-msg1');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld1-msg1">Registrado.</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #2dd4bf">
+      <div class="card-title">⚡ Pre-activación Prefrontal antes de Contenido Complejo</div>
+      <div class="card-sub">Antes de explicar un tema de alta demanda cognitiva, este protocolo de 3 minutos prepara el dlPFC para procesar con mayor eficiencia.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn" onclick="toggleCollapse(this)"><span>Ver protocolo</span><span class="chev">▾</span></button>
+        <div class="collapse-body">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num t">1</div><div><div class="paso-label">Reducción de carga extrínseca</div><div class="paso-desc">Antes de explicar, elimina distractores: pide que cierren aplicaciones, que pongan el celular boca abajo, que despejen el escritorio. La carga cognitiva extrínseca compite directamente con los recursos prefrontales disponibles para el aprendizaje.</div></div></div>
+            <div class="paso"><div class="paso-num t">2</div><div><div class="paso-label">Mapa anticipatorio</div><div class="paso-desc">Muestra en 30 segundos la estructura completa de lo que vas a explicar — un esquema visual, no el contenido. Esto activa la corteza prefrontal anterior para planificación prospectiva, reduciendo la carga cognitiva durante la explicación.</div></div></div>
+            <div class="paso"><div class="paso-num t">3</div><div><div class="paso-label">Anclaje emocional</div><div class="paso-desc">Cuenta una historia breve (real o inventada) que conecte el tema con una emoción o situación cotidiana. La activación de la amígdala junto al hipocampo crea una huella mnémica dual que hace el contenido más memorable.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-t btn-sm" style="margin-top:10px" onclick="logSes('Lab D1 — FE en el Aula',3,{actividad:'Pre-activación Prefrontal'});showSaved('ld1-msg2');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld1-msg2">Registrado.</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #2dd4bf">
+      <div class="card-title">🔄 Andamiaje Ejecutivo para Estudiantes con Déficit en FE</div>
+      <div class="card-sub">Estrategias específicas para estudiantes que muestran dificultades en planificación, inhibición o flexibilidad cognitiva — identificables por los resultados del BANFE-3.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn" onclick="toggleCollapse(this)"><span>Ver estrategias</span><span class="chev">▾</span></button>
+        <div class="collapse-body">
+          <div class="instrucciones">
+            <div class="instr-title">Para déficit en Memoria de Trabajo</div>
+            <div class="paso"><div class="paso-num v">→</div><div><div class="paso-desc">Reduce la cantidad de información simultánea. Presenta un concepto a la vez. Usa representaciones externas (pizarra, esquemas) como extensión de la MdT. Da instrucciones en secuencias de máximo 3 pasos.</div></div></div>
+            <div class="instr-title" style="margin-top:1rem">Para déficit en Control Inhibitorio</div>
+            <div class="paso"><div class="paso-num v">→</div><div><div class="paso-desc">Estructura clara con señales explícitas de cuándo hablar y cuándo escuchar. Usa técnicas de "think-pair-share" con tiempo controlado. Reduce la ambigüedad en las instrucciones — la ambigüedad agota los recursos inhibitorios.</div></div></div>
+            <div class="instr-title" style="margin-top:1rem">Para déficit en Planificación</div>
+            <div class="paso"><div class="paso-num v">→</div><div><div class="paso-desc">Proporciona plantillas y estructuras previas para las tareas. Descompón proyectos en micro-objetivos con fechas. Enseña explícitamente la técnica GMT (Goal Management Training) aplicada al estudio.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-t btn-sm" style="margin-top:10px" onclick="logSes('Lab D1 — FE en el Aula',5,{actividad:'Andamiaje Ejecutivo'});showSaved('ld1-msg3');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld1-msg3">Registrado.</div>
+    </div>
+  </div>
+
+  <!-- LAB D2: ATENCIÓN EN EL AULA -->
+  <div id="screen-labd2" class="screen">
+    <div class="sec-header">
+      <button class="sec-back" onclick="showScreen('home')">← Volver</button>
+      <div class="sec-title">Atención en el Aula</div>
+      <div class="sec-sub">Estrategias para capturar, sostener y recuperar la atención del grupo. Basadas en la neurociencia del sistema atencional y el locus coeruleus.</div>
+      <div class="neuro-badge" style="background:#1e2d4a;border-color:rgba(96,165,250,.2);color:#93c5fd">Locus Coeruleus · Red Atencional Dorsal · ACC · Norepinefrina</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #60a5fa">
+      <div class="card-title">🎣 El Gancho Cognitivo — Primeros 3 minutos</div>
+      <div class="card-sub">La atención es máxima en los primeros 3 minutos y cae dramáticamente después de 10-12 minutos. El gancho cognitivo aprovecha la ventana de máxima receptividad.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn open" onclick="toggleCollapse(this)"><span>Ver protocolo</span><span class="chev">▾</span></button>
+        <div class="collapse-body open">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num v" style="background:#1e2d4a;color:#93c5fd;border-color:rgba(96,165,250,.3)">1</div><div><div class="paso-label">Abre con una pregunta imposible o paradoja</div><div class="paso-desc">Una afirmación contraintuitiva activa el locus coeruleus vía norepinefrina, generando un estado de alerta elevada. Ejemplo: "El olvido es la función más importante de tu cerebro." Espera la reacción antes de continuar.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#1e2d4a;color:#93c5fd;border-color:rgba(96,165,250,.3)">2</div><div><div class="paso-label">Presenta el problema antes de la solución</div><div class="paso-desc">Nunca des la respuesta primero. El cerebro presta más atención cuando hay una pregunta abierta que cuando hay una afirmación cerrada. El sistema de búsqueda del hipocampo permanece activo mientras no hay respuesta.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#1e2d4a;color:#93c5fd;border-color:rgba(96,165,250,.3)">3</div><div><div class="paso-label">Conecta con relevancia personal en 30 segundos</div><div class="paso-desc">"¿Para qué te sirve esto a ti específicamente?" La corteza prefrontal ventromedial evalúa la relevancia personal en milisegundos. Si el estudiante no puede responder esta pregunta, la atención decae inevitablemente.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#60a5fa;color:#93c5fd;margin-top:10px" onclick="logSes('Lab D2 — Atención en el Aula',3,{actividad:'Gancho Cognitivo'});showSaved('ld2-msg1');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld2-msg1">Registrado.</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #60a5fa">
+      <div class="card-title">⏱️ Gestión del Arousal y Pausas Activas</div>
+      <div class="card-sub">El arousal óptimo para el aprendizaje sigue la curva de Yerkes-Dodson — ni muy bajo (aburrimiento) ni muy alto (ansiedad). Tú como docente eres el principal modulador del arousal del grupo.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn" onclick="toggleCollapse(this)"><span>Ver estrategias</span><span class="chev">▾</span></button>
+        <div class="collapse-body">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num v" style="background:#1e2d4a;color:#93c5fd;border-color:rgba(96,165,250,.3)">1</div><div><div class="paso-label">Pausa activa cada 10-12 minutos</div><div class="paso-desc">Después de 10-12 minutos de exposición, inserta una actividad de 2-3 minutos: debate en pares, escritura libre, movimiento físico breve. Esto resetea el sistema atencional y permite la consolidación del material previo.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#1e2d4a;color:#93c5fd;border-color:rgba(96,165,250,.3)">2</div><div><div class="paso-label">Variación tonal y ritmo del discurso</div><div class="paso-desc">El sistema auditivo del cerebro detecta automáticamente cambios en el tono y la velocidad. Una pausa de 2 segundos antes de un concepto importante activa la atención involuntaria más que cualquier énfasis verbal.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#1e2d4a;color:#93c5fd;border-color:rgba(96,165,250,.3)">3</div><div><div class="paso-label">Novedad controlada</div><div class="paso-desc">Introduce un elemento inesperado cada 15-20 minutos — un dato sorprendente, un cambio en la dinámica, una pregunta inusual. La novedad activa el locus coeruleus y produce un pico de norepinefrina que sostiene la atención.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#60a5fa;color:#93c5fd;margin-top:10px" onclick="logSes('Lab D2 — Atención en el Aula',5,{actividad:'Gestión del Arousal'});showSaved('ld2-msg2');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld2-msg2">Registrado.</div>
+    </div>
+  </div>
+
+  <!-- LAB D3: MEMORIA EN EL AULA -->
+  <div id="screen-labd3" class="screen">
+    <div class="sec-header">
+      <button class="sec-back" onclick="showScreen('home')">← Volver</button>
+      <div class="sec-title">Memoria en el Aula</div>
+      <div class="sec-sub">Cómo diseñar clases que respetan la neurociencia del aprendizaje y producen retención duradera en los estudiantes.</div>
+      <div class="neuro-badge" style="background:#3d2d08;border-color:rgba(251,191,36,.2);color:#fbbf24">Hipocampo · Amígdala · Curva del Olvido · LTP</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #fbbf24">
+      <div class="card-title">📅 Diseño de Clase con Espaciado y Recuperación</div>
+      <div class="card-sub">La curva del olvido de Ebbinghaus muestra que sin repaso, los estudiantes olvidan el 70% en 24 horas. El diseño espaciado revierte esto con mínimo esfuerzo adicional.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn open" onclick="toggleCollapse(this)"><span>Ver protocolo</span><span class="chev">▾</span></button>
+        <div class="collapse-body open">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num a">1</div><div><div class="paso-label">Inicio de clase: recuperación de la sesión anterior (5 min)</div><div class="paso-desc">Antes de introducir contenido nuevo, pide que recuerden 3 conceptos de la clase anterior SIN mirar apuntes. Este acto de recuperación activa el hipocampo y fortalece las sinapsis de lo aprendido más que cualquier repaso pasivo.</div></div></div>
+            <div class="paso"><div class="paso-num a">2</div><div><div class="paso-label">Cierre con recuperación activa (5 min)</div><div class="paso-desc">Al final de la clase, pide que escriban los 3 conceptos más importantes de hoy sin consultar apuntes. Compara con un compañero. Este "ticket de salida" consolida la memoria episódica del día y revela lagunas antes de que el olvido actúe.</div></div></div>
+            <div class="paso"><div class="paso-num a">3</div><div><div class="paso-label">Retorno espaciado en semanas 1, 3 y 7</div><div class="paso-desc">Planifica retocar brevemente (5-10 min) los temas importantes en las semanas 1, 3 y 7 después de enseñarlos. Este espaciado coincide con los puntos de máxima consolidación en la curva de olvido y produce retención a largo plazo.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#fbbf24;color:#fde68a;margin-top:10px" onclick="logSes('Lab D3 — Memoria en el Aula',5,{actividad:'Diseño Espaciado'});showSaved('ld3-msg1');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld3-msg1">Registrado.</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #fbbf24">
+      <div class="card-title">❤️ Emoción y Narrativa como Anclas de Memoria</div>
+      <div class="card-sub">La amígdala etiqueta los eventos emocionales como "importantes" y ordena al hipocampo consolidarlos con prioridad. Un concepto anclado emocionalmente se recuerda hasta 5 veces más.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn" onclick="toggleCollapse(this)"><span>Ver estrategias</span><span class="chev">▾</span></button>
+        <div class="collapse-body">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num a">1</div><div><div class="paso-label">Historia de caso real antes del concepto</div><div class="paso-desc">Presenta un caso real, un dilema ético o una situación cotidiana antes de introducir el concepto teórico. La activación emocional previa prepara la amígdala para etiquetar como importante el concepto que sigue.</div></div></div>
+            <div class="paso"><div class="paso-num a">2</div><div><div class="paso-label">Narrativa con estructura de conflicto</div><div class="paso-desc">Estructura tus explicaciones como historias con tensión: problema → complicación → resolución. El cerebro procesa narrativas con mayor profundidad que proposiciones abstractas porque activa múltiples regiones simultáneamente.</div></div></div>
+            <div class="paso"><div class="paso-num a">3</div><div><div class="paso-label">Evaluaciones que consolidan, no solo miden</div><div class="paso-desc">Diseña evaluaciones donde el proceso de responder fortalezca el aprendizaje: preguntas de aplicación a contextos nuevos, comparaciones entre conceptos, generación de ejemplos propios. Evita preguntas de reconocimiento pasivo — activan rutas superficiales.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#fbbf24;color:#fde68a;margin-top:10px" onclick="logSes('Lab D3 — Memoria en el Aula',5,{actividad:'Emoción y Narrativa'});showSaved('ld3-msg2');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld3-msg2">Registrado.</div>
+    </div>
+  </div>
+
+  <!-- LAB D4: NEUROPSICOPEDAGOGÍA -->
+  <div id="screen-labd4" class="screen">
+    <div class="sec-header">
+      <button class="sec-back" onclick="showScreen('home')">← Volver</button>
+      <div class="sec-title">Neuropsicopedagogía del Aula</div>
+      <div class="sec-sub">Leer el estado cognitivo del grupo, detectar fatiga mental colectiva y adaptar dinámicamente el ritmo de clase con base en señales neuroconductuales.</div>
+      <div class="neuro-badge" style="background:#3d0d42;border-color:rgba(232,121,249,.2);color:#f0abfc">Cortisol · Fatiga Prefrontal · Neuroplasticidad Colectiva</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #e879f9">
+      <div class="card-title">👁️ Lectura de Señales de Fatiga Mental Colectiva</div>
+      <div class="card-sub">El cerebro tiene señales conductuales observables cuando el dlPFC está agotando sus recursos. Reconocerlas te permite intervenir antes de perder el grupo.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn open" onclick="toggleCollapse(this)"><span>Ver indicadores</span><span class="chev">▾</span></button>
+        <div class="collapse-body open">
+          <div class="instrucciones">
+            <div class="instr-title">Señales de alerta temprana (intervenir en 2 min)</div>
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">→</div><div><div class="paso-desc">Aumento de consultas al celular, miradas hacia la ventana o el pasillo, postura corporal que se recuesta, disminución en la velocidad de respuesta a preguntas, garabatos en los cuadernos, bostezos frecuentes.</div></div></div>
+            <div class="instr-title" style="margin-top:1rem">Intervención inmediata</div>
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Cambio de modalidad sensorial</div><div class="paso-desc">Si llevas 15+ minutos en modo verbal-auditivo, cambia a visual (mostrar algo), kinestésico (hacer algo) o social (hablar entre pares). El cambio de modalidad resetea el sistema atencional sin perder continuidad de contenido.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Micro-movimiento de 60 segundos</div><div class="paso-desc">Pide que se pongan de pie, estiren los brazos, caminen 3 pasos. El movimiento físico aumenta el flujo sanguíneo cerebral y libera BDNF (factor neurotrófico), restaurando la capacidad prefrontal en menos de 2 minutos.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#e879f9;color:#f0abfc;margin-top:10px" onclick="logSes('Lab D4 — Neuropsicopedagogía',5,{actividad:'Lectura de Fatiga'});showSaved('ld4-msg1');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld4-msg1">Registrado.</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #e879f9">
+      <div class="card-title">🌱 Diseño de Ambientes que Potencian Neuroplasticidad</div>
+      <div class="card-sub">El ambiente físico y emocional del aula modula directamente la plasticidad sináptica. Pequeños cambios producen grandes diferencias en la consolidación del aprendizaje.</div>
+      <div class="collapse-wrap">
+        <button class="collapse-btn" onclick="toggleCollapse(this)"><span>Ver estrategias</span><span class="chev">▾</span></button>
+        <div class="collapse-body">
+          <div class="instrucciones">
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">1</div><div><div class="paso-label">Seguridad psicológica como base</div><div class="paso-desc">El cortisol elevado por amenaza social bloquea el hipocampo. Un estudiante que teme ser juzgado o ridiculizado no puede aprender con eficiencia. La seguridad psicológica no es blandura pedagógica — es condición neurocientífica para el aprendizaje.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">2</div><div><div class="paso-label">Error como evento de aprendizaje</div><div class="paso-desc">Cuando un estudiante comete un error y lo corrige, se produce LTP (potenciación a largo plazo) en el hipocampo — el mecanismo molecular del aprendizaje. Celebrar el error corregido activa dopamina y BDNF simultáneamente.</div></div></div>
+            <div class="paso"><div class="paso-num v" style="background:#3d0d42;color:#f0abfc;border-color:rgba(232,121,249,.3)">3</div><div><div class="paso-label">Dificultad deseable calibrada</div><div class="paso-desc">El aprendizaje óptimo ocurre cuando la tarea está al 15-20% por encima del nivel actual del estudiante. Demasiado fácil no genera plasticidad. Demasiado difícil genera cortisol. La zona de desarrollo próximo de Vygotsky es neurobiológicamente precisa.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm" style="border-color:#e879f9;color:#f0abfc;margin-top:10px" onclick="logSes('Lab D4 — Neuropsicopedagogía',5,{actividad:'Ambiente Neuroplástico'});showSaved('ld4-msg2');updateHome();">✓ Aplicado en clase hoy</button>
+      <div class="saved-msg" id="ld4-msg2">Registrado.</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid #e879f9">
+      <div class="card-title">📝 Diario Neuropsicopedagógico</div>
+      <div class="card-sub">Registro reflexivo de tu práctica docente desde la perspectiva neuroeducativa. La reflexión escrita activa el mismo circuito metacognitivo que fortalece la práctica.</div>
+      <div style="margin-bottom:10px"><label class="lbl">Fecha y grupo</label><input type="text" id="dpd-grupo" placeholder="ej: Martes 9am · Grupo 3B · Neuropsicología"></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:#f0abfc">¿Qué estrategia neuropsicopedagógica aplicaste hoy?</label><textarea id="dpd-estrategia" rows="2" placeholder="Describe brevemente qué hiciste diferente hoy con base en neurociencia..."></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:#2dd4bf">¿Qué respuesta observaste en el grupo?</label><textarea id="dpd-respuesta" rows="2" placeholder="¿Cómo respondió el grupo? ¿Notaste más atención, participación, comprensión?"></textarea></div>
+      <div style="margin-bottom:10px"><label class="lbl" style="color:#fbbf24">¿Qué ajustarías la próxima vez?</label><textarea id="dpd-ajuste" rows="2" placeholder="Reflexión para mejorar la estrategia en la siguiente clase..."></textarea></div>
+      <button class="btn btn-full" style="border-color:#e879f9;color:#f0abfc" onclick="dpdSave()">Guardar entrada del diario docente</button>
+      <div class="saved-msg" id="dpd-saved-msg">Entrada guardada.</div>
     </div>
   </div>
 
@@ -4278,6 +4555,117 @@ function wcstFinalizar(){
 var _nbStartOrig=window.nbStart;
 var _spanStartOrig=window.spanStart;
 
+/* ── DIFERENCIACIÓN VISUAL DOCENTE/ESTUDIANTE ── */
+function applyRolUI(){
+  var profile=S.get('userProfile');
+  if(!profile)return;
+  var esDocente=profile.rol==='docente';
+
+  // Panel exclusivo docentes
+  var pd=document.getElementById('panel-docente');
+  if(pd)pd.style.display=esDocente?'block':'none';
+
+  // Labs docentes
+  ['d1','d2','d3','d4'].forEach(function(d){
+    var lc=document.getElementById('lc-'+d);
+    if(lc)lc.style.display=esDocente?'block':'none';
+  });
+
+  // Etiquetas pedagógicas en labs compartidos
+  for(var i=1;i<=6;i++){
+    var lp=document.getElementById('lp'+i);
+    if(lp)lp.style.display=esDocente?'block':'none';
+  }
+
+  // Color del mapa cerebral según rol
+  var brainEl=document.getElementById('brain-svg');
+  if(brainEl){
+    if(esDocente){
+      // Cambiar conexiones a teal para docentes
+      var lines=brainEl.querySelectorAll('g#brain-connections line');
+      lines.forEach(function(l){l.setAttribute('stroke','#2dd4bf');});
+    }
+  }
+
+  // Título de labs
+  var lt=document.getElementById('labs-grid-title');
+  if(lt)lt.textContent=esDocente?'🔬 Laboratorios — Estudiante + Docente':'🔬 Laboratorios';
+
+  // Panel docente con datos simulados
+  if(esDocente){
+    var prog=profile.programa||'tu programa';
+    var dlabel=document.getElementById('doc-programa-label');
+    if(dlabel)dlabel.textContent=prog;
+    var d=getDashData();
+    var seed=d.px||10;
+    var active=Math.max(1,Math.floor(seed*0.3+3));
+    var avgPx=Math.max(10,Math.floor(seed*0.8+15));
+    var labs=['Lab 1','Lab 2','Lab 3','Lab 4','Lab 5','Lab 6'];
+    var topLab=labs[Math.floor(seed*7)%6];
+    var da=document.getElementById('doc-active');
+    var dp=document.getElementById('doc-avg-px');
+    var dl=document.getElementById('doc-top-lab');
+    if(da)da.textContent=active;
+    if(dp)dp.textContent=avgPx;
+    if(dl)dl.textContent=topLab;
+  }
+
+  // Nav: agregar labs docentes si no existen
+  var nav=document.querySelector('.nav-row:last-of-type');
+  if(nav&&esDocente&&!document.getElementById('nav-labd1')){
+    var btn=document.createElement('button');
+    btn.id='nav-labd1';
+    btn.className='nav-btn';
+    btn.innerHTML='<span class="nav-dot" style="background:#2dd4bf"></span>Labs Docente';
+    btn.onclick=function(){showDocenteMenu();};
+    nav.appendChild(btn);
+  }
+}
+
+function showDocenteMenu(){
+  // Mostrar mini-menú de labs docentes
+  var existing=document.getElementById('docente-menu');
+  if(existing){existing.remove();return;}
+  var menu=document.createElement('div');
+  menu.id='docente-menu';
+  menu.style.cssText='position:fixed;bottom:80px;right:16px;background:#0d3d38;border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:10px;z-index:200;display:flex;flex-direction:column;gap:6px';
+  var labs=[
+    {id:'labd1',label:'D1 · FE en el Aula',color:'#2dd4bf'},
+    {id:'labd2',label:'D2 · Atención',color:'#60a5fa'},
+    {id:'labd3',label:'D3 · Memoria',color:'#fbbf24'},
+    {id:'labd4',label:'D4 · Neuropsicopedagogía',color:'#e879f9'},
+  ];
+  labs.forEach(function(l){
+    var btn=document.createElement('button');
+    btn.style.cssText='padding:8px 14px;border:1px solid '+l.color+'33;background:none;border-radius:8px;font-size:12px;cursor:pointer;color:'+l.color+';font-family:monospace;text-align:left';
+    btn.textContent=l.label;
+    btn.onclick=function(){showScreen(l.id);menu.remove();};
+    menu.appendChild(btn);
+  });
+  document.body.appendChild(menu);
+  setTimeout(function(){
+    document.addEventListener('click',function handler(e){
+      if(!menu.contains(e.target)&&e.target.id!=='nav-labd1'){menu.remove();document.removeEventListener('click',handler);}
+    });
+  },100);
+}
+
+/* ── DIARIO DOCENTE ── */
+function dpdSave(){
+  var grupo=document.getElementById('dpd-grupo').value.trim();
+  if(!grupo)return;
+  S.push('diario_docente',{
+    date:new Date().toLocaleDateString('es-CO'),
+    grupo:grupo,
+    estrategia:document.getElementById('dpd-estrategia').value,
+    respuesta:document.getElementById('dpd-respuesta').value,
+    ajuste:document.getElementById('dpd-ajuste').value
+  });
+  showSaved('dpd-saved-msg');
+  logSes('Lab D4 — Neuropsicopedagogía',5,{actividad:'Diario Docente'});
+  updateHome();
+}
+
 /* ── PRE-TESTING ── */
 function ptSave(){
   var topic=document.getElementById('pt-topic').value.trim();
@@ -4773,6 +5161,7 @@ function obFinish(){
 }
 function applyUserProfile(){
   if(!obData.nombre)return;
+  applyRolUI();
   var esDocente=obData.rol==='docente';
   var greeting=esDocente?
     'Bienvenido, Prof. '+obData.nombre+'. Tu mente enseña mejor cuando está entrenada.' :
