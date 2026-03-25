@@ -492,9 +492,9 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   </div>
 
   <!-- TOAST DE LOGRO -->
-  <div class="logro-toast" id="logro-toast">
+  <div class="logro-toast" id="logro-toast" style="display:none">
     <span id="logro-toast-icon" style="font-size:1.5rem">🏅</span>
-    <div><div style="font-weight:600;font-size:12px" id="logro-toast-name">Logro desbloqueado</div><div style="font-size:11px;color:#9996b8" id="logro-toast-desc">Descripción</div></div>
+    <div><div style="font-weight:600;font-size:12px" id="logro-toast-name"></div><div style="font-size:11px;color:#9996b8" id="logro-toast-desc"></div></div>
   </div>
 
   <!-- HOME -->
@@ -2732,7 +2732,26 @@ function updateHome(){
 function showFB(id,msg,type){const el=document.getElementById(id);el.textContent=msg;el.className='feedback-box '+(type==='ok'?'fb-ok':'fb-err');el.style.display='block';setTimeout(()=>el.style.display='none',1400);}
 function showInfo(id,msg){const el=document.getElementById(id);el.textContent=msg;el.className='feedback-box fb-info';el.style.display='block';setTimeout(()=>el.style.display='none',3000);}
 function showSaved(id){const el=document.getElementById(id);el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2500);}
-function logSes(lab,min){S.push('diary',{date:new Date().toLocaleDateString('es-CO'),lab,min,text:'Sesión completada.'});}
+function logSes(lab,min,extra){
+  var entry={
+    date:new Date().toLocaleDateString('es-CO'),
+    ts:Date.now(),
+    lab:lab,
+    min:min||1,
+    text:'Sesión completada.'
+  };
+  if(extra)Object.assign(entry,extra);
+  S.push('diary',entry);
+  // Actualizar dashboard si estamos en home
+  var home=document.getElementById('screen-home');
+  if(home&&home.classList.contains('active'))dashUpdate();
+  // Actualizar contador del header
+  var allSes=(S.get('diary')||[]).length+(S.get('meta')||[]).length;
+  var headerEl=document.getElementById('header-sesiones');
+  if(headerEl)headerEl.textContent=allSes+' sesiones';
+  var hSes=document.getElementById('h-ses');
+  if(hSes)hSes.textContent=allSes;
+}
 
 /* ── N-BACK ── */
 const LETTERS='BCDFGHJKLMNPQRST';
@@ -3023,7 +3042,7 @@ function pomToggle(){
   if(pom.running){clearInterval(pom.iv);pom.running=false;document.getElementById('pom-btn').textContent='Continuar';return;}
   pom.running=true;document.getElementById('pom-btn').textContent='Pausar';
   pom.iv=setInterval(()=>{pom.t--;const m=Math.floor(pom.t/60),s=pom.t%60;document.getElementById('pom-timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');const tot=pom.phase==='focus'?25*60:5*60;document.getElementById('pom-bar').style.width=Math.round(pom.t/tot*100)+'%';
-    if(pom.t<=0){if(pom.phase==='focus'){pom.count++;document.getElementById('pom-count').textContent=pom.count;pom.phase='break';pom.t=5*60;document.getElementById('pom-phase').textContent='Descanso activo';logSes('Lab 4 — Planificación',25);updateHome();}else{pom.phase='focus';pom.t=25*60;document.getElementById('pom-phase').textContent='Foco profundo';}}
+    if(pom.t<=0){if(pom.phase==='focus'){pom.count++;document.getElementById('pom-count').textContent=pom.count;pom.phase='break';pom.t=5*60;document.getElementById('pom-phase').textContent='Descanso activo';var pt=S.get('pom_total')||0;S.set('pom_total',pt+1);logSes('Lab 4 — Planificación',25,{actividad:'Pomodoro',totalPomodoros:pt+1});updateHome();}else{pom.phase='focus';pom.t=25*60;document.getElementById('pom-phase').textContent='Foco profundo';}}
   },1000);
 }
 function pomReset(){clearInterval(pom.iv);pom={running:false,phase:'focus',t:25*60,count:pom.count,iv:null};document.getElementById('pom-timer').textContent='25:00';document.getElementById('pom-btn').textContent='Iniciar';document.getElementById('pom-bar').style.width='100%';document.getElementById('pom-phase').textContent='Foco profundo';}
@@ -3040,7 +3059,7 @@ function medToggle(){
   if(med.running){clearInterval(med.iv);med.running=false;document.getElementById('med-btn').textContent='Continuar';return;}
   med.running=true;document.getElementById('med-btn').textContent='Pausar';
   med.iv=setInterval(()=>{med.t--;const m=Math.floor(med.t/60),s=med.t%60;document.getElementById('med-timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-    if(med.t<=0){clearInterval(med.iv);med.running=false;document.getElementById('med-btn').textContent='Iniciar';document.getElementById('med-phase').textContent='Sesión completada ✓';logSes('Lab 5 — Metacognición',parseInt(document.getElementById('med-dur').value));updateHome();}
+    if(med.t<=0){clearInterval(med.iv);med.running=false;document.getElementById('med-btn').textContent='Iniciar';document.getElementById('med-phase').textContent='Sesión completada ✓';var med_mins=parseInt(document.getElementById('med-dur').value);logSes('Lab 5 — Metacognición',med_mins,{actividad:'Samatha',duracion:med_mins,divagaciones:med.w});updateHome();}
   },1000);
 }
 function medWander(){med.w++;document.getElementById('med-wanders').textContent=med.w;}
@@ -4580,8 +4599,12 @@ function showLogroToast(l){
   document.getElementById('logro-toast-icon').textContent=l.icon;
   document.getElementById('logro-toast-name').textContent='🏅 '+l.name;
   document.getElementById('logro-toast-desc').textContent=l.desc;
-  toast.classList.add('show');
-  setTimeout(function(){toast.classList.remove('show');},4000);
+  toast.style.display='flex';
+  setTimeout(function(){toast.classList.add('show');},10);
+  setTimeout(function(){
+    toast.classList.remove('show');
+    setTimeout(function(){toast.style.display='none';},400);
+  },4000);
 }
 
 // ── RANKING FACULTADES ──
