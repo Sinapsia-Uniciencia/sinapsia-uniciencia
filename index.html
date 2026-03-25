@@ -316,8 +316,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .brain-container{position:relative;width:100%;max-width:320px;margin:0 auto 1rem}
 .brain-zone{transition:opacity .8s,filter .8s}
 .brain-zone.warm{opacity:1}
-.brain-zone.cool{opacity:.25;filter:grayscale(1)}
-.brain-zone.cold{opacity:.12;filter:grayscale(1) blur(1px)}
+.brain-zone.cool{opacity:.45;filter:grayscale(.6)}
+.brain-zone.cold{opacity:.28;filter:grayscale(1)}
 .brain-pulse{animation:brain-pulse-anim 2s infinite}
 @keyframes brain-pulse-anim{0%,100%{opacity:1}50%{opacity:.7}}
 
@@ -363,8 +363,8 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .ranking-px{font-size:11px;font-family:monospace;color:#b3abff;flex-shrink:0}
 
 /* Notificación de logro desbloqueado */
-.logro-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:#2d2650;border:1px solid #8b7ff5;border-radius:12px;padding:12px 16px;font-size:13px;color:#f0eff8;z-index:300;transition:transform .4s ease;display:flex;align-items:center;gap:10px;max-width:300px;white-space:nowrap}
-.logro-toast.show{transform:translateX(-50%) translateY(0)}
+.logro-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(200px);background:#2d2650;border:1px solid #8b7ff5;border-radius:12px;padding:12px 16px;font-size:13px;color:#f0eff8;z-index:300;transition:transform .4s ease,opacity .4s ease;display:flex;align-items:center;gap:10px;max-width:300px;white-space:nowrap;opacity:0;pointer-events:none}
+.logro-toast.show{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto}
 
 /* ── RUIDO ROSA FLOTANTE ── */
 .noise-fab{position:fixed;bottom:24px;right:24px;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
@@ -492,7 +492,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   </div>
 
   <!-- TOAST DE LOGRO -->
-  <div class="logro-toast" id="logro-toast" style="display:none">
+  <div class="logro-toast" id="logro-toast">
     <span id="logro-toast-icon" style="font-size:1.5rem">🏅</span>
     <div><div style="font-weight:600;font-size:12px" id="logro-toast-name"></div><div style="font-size:11px;color:#9996b8" id="logro-toast-desc"></div></div>
   </div>
