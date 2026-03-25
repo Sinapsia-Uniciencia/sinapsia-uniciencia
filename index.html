@@ -5161,6 +5161,7 @@ function obCheck(){
   } else {
     obData=profile;
     applyUserProfile();
+    setTimeout(function(){applyRolUI();applyRolTextos();},200);
   }
 }
 function obNext(step){
@@ -5451,6 +5452,7 @@ function dashUpdate(){
   updateLogros(d);
   updateRanking(d);
   applyUserProfile();
+  applyRolUI();
 }
 
 /* ── PWA ── */
