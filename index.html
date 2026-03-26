@@ -766,44 +766,6 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div style="color:var(--violet2);font-size:18px;flex-shrink:0">›</div>
       </div>
 
-      <!-- Divisor y labs exclusivos docentes — arriba -->
-      <div id="doc-labs-header" style="display:none;grid-column:1/-1;border-top:1px solid rgba(45,212,191,.2);padding-top:12px;margin-top:4px">
-        <div style="font-size:11px;color:#2dd4bf;font-family:monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">👨‍🏫 Laboratorios exclusivos — Docentes</div>
-      </div>
-      <div class="lab-card" id="lc-d1" onclick="showScreen('labd1')" style="display:none;cursor:pointer;border-left:3px solid #2dd4bf">
-        <div class="lab-num" style="color:#2dd4bf">LAB D1</div>
-        <div class="lab-title">Funciones Ejecutivas en el Aula</div>
-        <div class="lab-desc">Calentamiento cognitivo · Andamiaje ejecutivo · Pre-activación prefrontal</div>
-        <div class="lab-tags"><span class="tag" style="background:#0d3d38;color:#2dd4bf">Estrategias neuropsicopedagógicas</span></div>
-        <span class="lab-arrow">→</span>
-      </div>
-      <div class="lab-card" id="lc-d2" onclick="showScreen('labd2')" style="display:none;cursor:pointer;border-left:3px solid #60a5fa">
-        <div class="lab-num" style="color:#60a5fa">LAB D2</div>
-        <div class="lab-title">Atención en el Aula</div>
-        <div class="lab-desc">Gancho cognitivo · Arousal óptimo · Novedad controlada · Ritmo discursivo</div>
-        <div class="lab-tags"><span class="tag" style="background:#1e2d4a;color:#93c5fd">Atención sostenida y selectiva</span></div>
-        <span class="lab-arrow">→</span>
-      </div>
-      <div class="lab-card" id="lc-d3" onclick="showScreen('labd3')" style="display:none;cursor:pointer;border-left:3px solid #fbbf24">
-        <div class="lab-num" style="color:#fbbf24">LAB D3</div>
-        <div class="lab-title">Memoria en el Aula</div>
-        <div class="lab-desc">Diseño con curva del olvido · Emoción y narrativa · Evaluación que consolida</div>
-        <div class="lab-tags"><span class="tag" style="background:#3d2d08;color:#fbbf24">Neurociencia del aprendizaje</span></div>
-        <span class="lab-arrow">→</span>
-      </div>
-      <div class="lab-card" id="lc-d4" onclick="showScreen('labd4')" style="display:none;cursor:pointer;border-left:3px solid #e879f9">
-        <div class="lab-num" style="color:#e879f9">LAB D4</div>
-        <div class="lab-title">Neuropsicopedagogía en el Aula</div>
-        <div class="lab-desc">Lectura del grupo · Fatiga mental colectiva · Ambientes de aprendizaje</div>
-        <div class="lab-tags"><span class="tag" style="background:#3d0d42;color:#f0abfc">Neuropsicopedagogía del aula</span></div>
-        <span class="lab-arrow">→</span>
-      </div>
-
-      <!-- Divisor labs FE -->
-      <div id="fe-labs-header" style="grid-column:1/-1;border-top:1px solid #2a2a3a;padding-top:12px;margin-top:4px">
-        <div style="font-size:11px;color:#5c5a7a;font-family:monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px" id="fe-labs-label">🔬 Laboratorios de Funciones Ejecutivas</div>
-      </div>
-
       <!-- Labs FE (siempre visibles) -->
       <div class="lab-card c1" id="lc1" onclick="showScreen('lab1')">
         <div class="lab-num">LAB 01</div>
@@ -4668,15 +4630,7 @@ function applyRolUI(){
   var pd=document.getElementById('panel-docente');
   if(pd)pd.style.display=esDocente?'block':'none';
 
-  // Labs docentes visibles solo para docentes
-  ['d1','d2','d3','d4'].forEach(function(d){
-    var lc=document.getElementById('lc-'+d);
-    if(lc)lc.style.display=esDocente?'block':'none';
-  });
-  var dh=document.getElementById('doc-labs-header');
-  if(dh)dh.style.display=esDocente?'block':'none';
-  var fl=document.getElementById('fe-labs-label');
-  if(fl)fl.textContent=esDocente?'🔬 Laboratorios de Funciones Ejecutivas — Entrenamiento personal':'🔬 Laboratorios de Funciones Ejecutivas';
+  // Botones nav D visibles solo para docentes
   ['nav-d1','nav-d2','nav-d3','nav-d4'].forEach(function(id){
     var btn=document.getElementById(id);
     if(btn)btn.style.display=esDocente?'':'none';
