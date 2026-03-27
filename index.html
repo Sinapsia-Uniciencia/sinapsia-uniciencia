@@ -380,7 +380,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .noise-type-btn.active{background:var(--teal3);border-color:var(--teal);color:var(--teal2)}
 .noise-vol{width:100%;margin-bottom:8px}
 /* ── TEXTOS POR ROL ── */
-.txt-doc,.txt-adm{display:none}
+.txt-est,.txt-doc,.txt-adm{display:none}
 /* ── PANEL DE SESIÓN ACTIVA ── */
 .session-panel{background:#0d3d38;border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:12px 16px;margin-bottom:10px;display:none}
 .session-panel.active{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -4693,9 +4693,18 @@ function applyRolUI(){
   // Textos por rol (clases CSS)
   var esEst=rol==='estudiante';
   var esAdm=rol==='administrativo';
-  document.querySelectorAll('.txt-est').forEach(function(e){e.style.display=esEst?'':'none';});
-  document.querySelectorAll('.txt-doc').forEach(function(e){e.style.display=esDocente?'':'none';});
-  document.querySelectorAll('.txt-adm').forEach(function(e){e.style.display=esAdm?'':'none';});
+  document.querySelectorAll('.txt-est').forEach(function(e){
+    var show=esEst;
+    e.style.display=show?(e.tagName==='SPAN'?'inline':'block'):'none';
+  });
+  document.querySelectorAll('.txt-doc').forEach(function(e){
+    var show=esDocente;
+    e.style.display=show?(e.tagName==='SPAN'?'inline':'block'):'none';
+  });
+  document.querySelectorAll('.txt-adm').forEach(function(e){
+    var show=esAdm;
+    e.style.display=show?(e.tagName==='SPAN'?'inline':'block'):'none';
+  });
 
   // Botones nav D visibles solo para docentes
   ['nav-d1','nav-d2','nav-d3','nav-d4'].forEach(function(id){
