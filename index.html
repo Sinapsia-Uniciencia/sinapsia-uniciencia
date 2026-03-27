@@ -2414,7 +2414,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="card-sub">6 minutos que optimizan toda tu sesión. Activa el circuito aPFC–dlPFC de planificación proactiva.</div>
       <div style="border-left:2px solid var(--violet);padding-left:14px;margin-bottom:14px">
         <label class="lbl" style="color:var(--violet2)">3 min · Objetivo de la sesión</label>
-        <textarea id="p321-obj" rows="2" placeholder="No 'estudiar Biología' sino: 'Comprender la diferencia entre mitosis y meiosis y explicarla con mis propias palabras'"></textarea>
+        <textarea id="p321-obj" rows="2" id="p321-obj-ph" placeholder="No 'estudiar Biología' sino: 'Comprender la diferencia entre mitosis y meiosis y explicarla con mis propias palabras'"></textarea>
       </div>
       <div style="border-left:2px solid var(--teal);padding-left:14px;margin-bottom:14px">
         <label class="lbl" style="color:var(--teal2)">2 min · Pasos para lograrlo</label>
@@ -2430,7 +2430,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
     <div class="card card-accent-t">
       <div class="card-title">Temporizador Pomodoro Neuroeducativo</div>
-      <div class="card-sub">25 min de foco profundo + 5 min de descanso activo. Fortalece la anticorrelación DMN–ECN (menos divagación durante el estudio).</div>
+      <div class="card-sub" id="pom-sub">25 min de foco profundo + 5 min de descanso activo. Fortalece la anticorrelación DMN–ECN (menos divagación durante el estudio).</div>
       <div class="timer-phase" id="pom-phase">Foco profundo</div>
       <div class="timer-big" id="pom-timer">25:00</div>
       <div class="progress-track"><div class="progress-fill c-t" id="pom-bar" style="width:100%"></div></div>
@@ -2476,9 +2476,9 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div class="card-title">SQ4R Neuroeducativo</div>
         <span id="sq4r-phase" class="pill">Survey</span>
       </div>
-      <div class="card-sub">Protocolo de lectura activa en 6 fases. Cada fase activa una región diferente del circuito de aprendizaje. Transforma la lectura pasiva en procesamiento distribuido en múltiples redes.</div>
+      <div class="card-sub" id="sqr-sub">Protocolo de lectura activa en 6 fases. Cada fase activa una región diferente del circuito de aprendizaje. Transforma la lectura pasiva en procesamiento distribuido en múltiples redes.</div>
       <div style="margin-bottom:10px">
-        <label class="lbl">Texto o capítulo a leer</label>
+        <label class="lbl" id="sq-lbl">Texto o capítulo a leer</label>
         <input type="text" id="sq-text" placeholder="ej: Capítulo 3 de Microeconomía — La curva de demanda">
       </div>
       <div id="sq4r-steps">
@@ -2530,7 +2530,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       </div>
       <div class="card-sub">Ingresa tus materias y el sistema genera el orden intercalado óptimo. <strong style="color:var(--teal2)">+43% retención</strong> vs estudio en bloque (Rohrer & Taylor, 2007).</div>
       <div style="display:flex;gap:8px;margin-bottom:10px">
-        <input type="text" id="il-input" placeholder="Nombre de materia (ej: Cálculo)" style="flex:1">
+        <input type="text" id="il-input" id="il-input-ph" placeholder="Nombre de materia (ej: Cálculo)" style="flex:1">
         <button class="btn btn-t btn-sm" onclick="ilAdd()">+ Agregar</button>
       </div>
       <div id="il-list" style="margin-bottom:12px"></div>
@@ -2565,7 +2565,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       </div>
       <div class="card-sub">Ingresa tus exámenes y el sistema genera automáticamente los intervalos de repaso óptimos basados en la curva del olvido de Ebbinghaus.</div>
       <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <input type="text" id="cal-materia" placeholder="Materia o tema" style="flex:2;min-width:120px">
+        <input type="text" id="cal-materia" id="cal-materia-ph" placeholder="Materia o tema" style="flex:2;min-width:120px">
         <input type="date" id="cal-fecha" style="flex:1;min-width:120px">
         <button class="btn btn-t btn-sm" onclick="calAdd()">+ Agregar</button>
       </div>
@@ -2667,7 +2667,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
     <div class="card" style="border-left:2px solid var(--pink)">
       <div class="card-title">Diario de Aprendizaje Estructurado</div>
-      <div class="card-sub">5 minutos al finalizar cada sesión. Activa la corteza prefrontal anterior y consolida el aprendizaje metacognitivo.</div>
+      <div class="card-sub" id="meta-sub">5 minutos al finalizar cada sesión. Activa la corteza prefrontal anterior y consolida el aprendizaje metacognitivo.</div>
       <div style="margin-bottom:12px"><label class="lbl">¿Qué aprendí hoy? (en mis propias palabras)</label><textarea id="meta-learned" rows="3" placeholder="Si no puedes explicarlo en tus palabras, aún no lo comprendiste completamente..."></textarea></div>
       <div style="margin-bottom:12px"><label class="lbl">¿Qué NO entendí? (específico)</label><textarea id="meta-doubt" rows="2" placeholder="No 'no entendí nada' sino 'no entendí por qué...'"></textarea></div>
       <div style="margin-bottom:12px"><label class="lbl">¿Qué haré diferente la próxima sesión?</label><textarea id="meta-next" rows="2" placeholder="Una acción concreta y accionable..."></textarea></div>
@@ -2725,12 +2725,12 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
     <!-- ESCRITURA EXPRESIVA -->
     <div class="card" style="border-left:2px solid var(--pink)">
       <div class="card-title">Escritura Expresiva Pre-examen</div>
-      <div class="card-sub">15 minutos de escritura libre sobre lo que te preocupa del examen libera recursos cognitivos bloqueados por la rumiación y reduce el cortisol. Pennebaker & Smyth demostraron mejoras de hasta 30% en rendimiento posterior.</div>
+      <div class="card-sub" id="ew-sub">15 minutos de escritura libre sobre lo que te preocupa del examen libera recursos cognitivos bloqueados por la rumiación y reduce el cortisol. Pennebaker & Smyth demostraron mejoras de hasta 30% en rendimiento posterior.</div>
       <div class="info-box" style="background:var(--pink3);border-color:rgba(232,121,249,.2);color:#f0abfc;margin-bottom:1rem">
         <strong>Mecanismo neural:</strong> La escritura activa la regulación descendente vlPFC → amígdala, liberando recursos prefrontales que estaban consumidos por la ansiedad anticipatoria.
       </div>
       <div style="margin-bottom:10px">
-        <label class="lbl">¿Qué examen o evaluación te preocupa próximamente?</label>
+        <label class="lbl" id="ew-lbl">¿Qué examen o evaluación te preocupa próximamente?</label>
         <input type="text" id="ew-exam" placeholder="ej: Parcial de Cálculo — jueves próximo">
       </div>
       <div style="margin-bottom:10px">
@@ -2775,7 +2775,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div class="card-title">Auto-explicación Guiada</div>
         <span id="ae-phase" class="pill">Listo</span>
       </div>
-      <div class="card-sub">Lee una sección, luego explícala con tus propias palabras durante 3 minutos. Identifica tus lagunas. Chi et al.: <strong style="color:#f0abfc">3x más aprendizaje</strong> que la relectura pasiva.</div>
+      <div class="card-sub" id="ae-sub">Lee una sección, luego explícala con tus propias palabras durante 3 minutos. Identifica tus lagunas. Chi et al.: <strong style="color:#f0abfc">3x más aprendizaje</strong> que la relectura pasiva.</div>
       <div style="margin-bottom:10px">
         <label class="lbl">Tema / sección que acabas de leer</label>
         <input type="text" id="ae-topic" placeholder="ej: Página 45-47 de Fisiología — Potencial de reposo">
@@ -2820,7 +2820,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div class="card-title">Revaluación Cognitiva</div>
         <span class="pill">Metacognición</span>
       </div>
-      <div class="card-sub">Reformula situaciones académicas estresantes antes de estudiar. Gross (2001): reduce cortisol y activa regulación descendente vlPFC → amígdala, liberando recursos cognitivos para el aprendizaje.</div>
+      <div class="card-sub" id="rv-sub">Reformula situaciones académicas estresantes antes de estudiar. Gross (2001): reduce cortisol y activa regulación descendente vlPFC → amígdala, liberando recursos cognitivos para el aprendizaje.</div>
       <div style="margin-bottom:10px"><label class="lbl">Situación académica estresante</label><input type="text" id="rv-situation" placeholder="ej: Parcial de Cálculo el viernes, no entiendo integrales"></div>
       <div style="margin-bottom:10px"><label class="lbl" style="color:var(--coral2)">Interpretación inicial (pensamiento automático)</label><textarea id="rv-initial" rows="2" placeholder="ej: Voy a reprobar, no soy capaz, siempre me va mal en matemáticas..."></textarea></div>
       <div style="margin-bottom:10px"><label class="lbl" style="color:var(--teal2)">Revaluación 1 — Perspectiva de crecimiento</label><textarea id="rv-r1" rows="2" placeholder="ej: Esta dificultad significa que estoy en el límite de mi zona de desarrollo próximo..."></textarea></div>
@@ -4548,7 +4548,15 @@ var TEXTOS_ADM={
   'lab5-title':'Metacognición — Gestión Administrativa',
   'lab5-sub':'Reflexiona sobre tus propios procesos de toma de decisiones. ¿Qué estrategias funcionan mejor bajo presión? ¿Cómo gestionas la incertidumbre? La función ejecutiva del gestor reflexivo.',
   'lab6-title':'Estrategias Mnemotécnicas — Gestión Administrativa',
-  'lab6-sub':'Técnicas para retener información institucional compleja, recordar procedimientos y construir estructuras de conocimiento organizacional duraderas.'
+  'lab6-sub':'Técnicas para retener información institucional compleja, recordar procedimientos y construir estructuras de conocimiento organizacional duraderas.',
+  'pom-sub':'25 min de foco profundo + 5 min de descanso activo. Estructura tus bloques de trabajo institucional y reduce la fatiga por multitarea.',
+  'sqr-sub':'Protocolo de lectura activa en 6 fases para documentos institucionales, circulares y manuales. Transforma la lectura pasiva en comprensión profunda y retención duradera.',
+  'sq-lbl':'Documento, circular o informe a procesar',
+  'meta-sub':'5 minutos al finalizar cada jornada. Activa la corteza prefrontal anterior y consolida los aprendizajes de gestión del día.',
+  'ew-sub':'15 minutos de escritura libre sobre una situación laboral que te preocupa libera recursos cognitivos bloqueados por la rumiación y reduce el cortisol. Pennebaker & Smyth demostraron mejoras de hasta 30% en rendimiento posterior.',
+  'ew-lbl':'¿Qué situación o proceso institucional te genera mayor preocupación ahora?',
+  'rv-sub':'Reformula situaciones laborales estresantes. Gross (2001): reduce cortisol y activa regulación descendente vlPFC → amígdala, liberando recursos cognitivos para la toma de decisiones.',
+  'ae-sub':'Lee un documento, luego explícalo con tus propias palabras durante 3 minutos. Identifica tus lagunas de comprensión. Chi et al.: <strong style="color:#f0abfc">3x más retención</strong> que la relectura pasiva.'
 };
 var PLACEHOLDERS_ADM={
   'pt-topic':'ej: Proceso de matrícula, Protocolo de atención, Informe de gestión...',
@@ -4557,7 +4565,10 @@ var PLACEHOLDERS_ADM={
   'fey-concept':'ej: Proceso de liquidación de nómina, Flujo de aprobación de solicitudes',
   'ae-topic':'ej: Reunión de coordinación — puntos clave a recordar',
   'rv-situation':'ej: Solicitud urgente sin recursos, Conflicto entre dependencias',
-  'ew-exam':'ej: Auditoría institucional la próxima semana, Entrega de informe de gestión'
+  'ew-exam':'ej: Auditoría institucional la próxima semana, Entrega de informe de gestión',
+  'p321-obj':'ej: No "revisar expedientes" sino "Resolver los 5 casos pendientes de admisión con criterio claro"',
+  'il-input':'ej: Nómina, Matrículas, Informes, Atención al público',
+  'cal-materia':'ej: Proceso de admisión, Liquidación de nómina, Informe semestral'
 };
 var TEXTOS_DOC={
   'lab1-title':'Memoria de Trabajo — Entrenamiento Docente',
@@ -4571,7 +4582,15 @@ var TEXTOS_DOC={
   'lab5-title':'Metacognición Docente',
   'lab5-sub':'Observa y regula tu propia práctica pedagógica. ¿Qué estrategias funcionan? ¿Cuándo pierdes el hilo? ¿Cómo gestionas la carga cognitiva del aula? La función ejecutiva del docente reflexivo.',
   'lab6-title':'Estrategias Mnemotécnicas — Aplicación Pedagógica',
-  'lab6-sub':'Domina estas técnicas para enseñarlas a tus estudiantes con propiedad y para diseñar clases que las integren. Un docente que usa el Método de Loci enseña el Método de Loci de manera incomparablemente más efectiva.'
+  'lab6-sub':'Domina estas técnicas para enseñarlas a tus estudiantes con propiedad y para diseñar clases que las integren. Un docente que usa el Método de Loci enseña el Método de Loci de manera incomparablemente más efectiva.',
+  'pom-sub':'25 min de foco profundo + 5 min de descanso activo. Usa esta técnica para la preparación de clases, revisión de trabajos y cualquier tarea que requiera concentración sostenida.',
+  'sqr-sub':'Protocolo de lectura activa en 6 fases para artículos académicos, capítulos de libros y materiales de preparación de clase. Transforma la lectura pasiva en procesamiento profundo.',
+  'sq-lbl':'Artículo, capítulo o material de clase a procesar',
+  'meta-sub':'5 minutos al finalizar cada jornada de enseñanza. Activa la corteza prefrontal anterior y consolida los aprendizajes sobre tu propia práctica pedagógica.',
+  'ew-sub':'15 minutos de escritura libre sobre una situación pedagógica que te preocupa libera recursos cognitivos bloqueados por la rumiación y reduce el cortisol. Pennebaker & Smyth demostraron mejoras de hasta 30% en rendimiento posterior.',
+  'ew-lbl':'¿Qué clase, grupo o situación pedagógica te genera mayor preocupación ahora?',
+  'rv-sub':'Reformula situaciones pedagógicas estresantes antes de clase. Gross (2001): reduce cortisol y activa regulación descendente vlPFC → amígdala, liberando recursos cognitivos para enseñar.',
+  'ae-sub':'Lee un texto o documento, luego explícalo con tus propias palabras durante 3 minutos como si se lo explicaras a tus estudiantes. Chi et al.: <strong style="color:#f0abfc">3x más retención</strong> que la relectura pasiva.'
 };
 
 var TEXTOS_EST={
@@ -4617,16 +4636,27 @@ function applyRolTextos(){
   var textos=rol==='docente'?TEXTOS_DOC:rol==='administrativo'?TEXTOS_ADM:TEXTOS_EST;
   var placeholders=rol==='docente'?PLACEHOLDERS_DOC:rol==='administrativo'?PLACEHOLDERS_ADM:PLACEHOLDERS_EST;
 
-  // Actualizar títulos y subtítulos
+  // Actualizar textos (títulos, subtítulos, labels, card-subs)
   Object.keys(textos).forEach(function(id){
     var el=document.getElementById(id);
-    if(el){el.textContent=textos[id];el.style.opacity='0';setTimeout(function(){el.style.opacity='1';el.style.transition='opacity .3s';},10);}
+    if(el){
+      if(el.tagName==='LABEL'||el.classList.contains('card-sub')||el.classList.contains('lbl')){
+        el.innerHTML=textos[id];
+      } else {
+        el.textContent=textos[id];
+      }
+      el.style.opacity='0';
+      setTimeout(function(){el.style.opacity='1';el.style.transition='opacity .3s';},10);
+    }
   });
 
   // Actualizar placeholders de formularios
   Object.keys(placeholders).forEach(function(id){
     var el=document.getElementById(id);
     if(el)el.placeholder=placeholders[id];
+    // También actualizar el input vinculado si tiene sufijo -ph
+    var inp=document.getElementById(id.replace('-ph',''));
+    if(inp&&inp!==el)inp.placeholder=placeholders[id];
   });
 
   // Badge docente en cada lab header
