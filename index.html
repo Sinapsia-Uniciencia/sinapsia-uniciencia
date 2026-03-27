@@ -484,11 +484,14 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div class="onboarding-title">¿Cuál es tu rol?</div>
         <div class="onboarding-sub">Esto personaliza tu experiencia y el ranking de UNICIENCIA.</div>
         <div style="display:flex;gap:10px;margin-bottom:1.5rem">
-          <button class="programa-btn" id="rol-est" onclick="obSelectRol(this,'estudiante')" style="flex:1;padding:20px 8px;font-size:14px">
-            🎓<br><strong>Estudiante</strong><br><span style="font-size:11px;color:#5c5a7a">Accede a los 6 laboratorios de funciones ejecutivas</span>
+          <button class="programa-btn" id="rol-est" onclick="obSelectRol(this,'estudiante')" style="flex:1;padding:14px 6px;font-size:13px">
+            🎓<br><strong>Estudiante</strong><br><span style="font-size:10px;color:#5c5a7a">6 laboratorios de FE</span>
           </button>
-          <button class="programa-btn" id="rol-doc" onclick="obSelectRol(this,'docente')" style="flex:1;padding:20px 8px;font-size:14px">
-            👨‍🏫<br><strong>Docente</strong><br><span style="font-size:11px;color:#5c5a7a">Entrena tu mente y monitorea el progreso del grupo</span>
+          <button class="programa-btn" id="rol-doc" onclick="obSelectRol(this,'docente')" style="flex:1;padding:14px 6px;font-size:13px">
+            👨‍🏫<br><strong>Docente</strong><br><span style="font-size:10px;color:#5c5a7a">FE + 4 labs pedagógicos</span>
+          </button>
+          <button class="programa-btn" id="rol-adm" onclick="obSelectRol(this,'administrativo')" style="flex:1;padding:14px 6px;font-size:13px">
+            🏛️<br><strong>Administrativo</strong><br><span style="font-size:10px;color:#5c5a7a">6 laboratorios de FE</span>
           </button>
         </div>
         <button class="btn btn-v btn-full" id="ob-rol-btn" onclick="obNext(3)" style="opacity:.4" disabled>Continuar →</button>
@@ -735,6 +738,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div style="display:flex;gap:4px;background:#0d0d15;border-radius:8px;padding:3px;margin-bottom:10px">
         <button id="rtab-est" onclick="rankingTab('estudiantes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:#2d2650;color:#b3abff;transition:all .2s">🎓 Estudiantes</button>
         <button id="rtab-doc" onclick="rankingTab('docentes')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a;transition:all .2s">👨‍🏫 Docentes</button>
+        <button id="rtab-adm" onclick="rankingTab('administrativos')" style="flex:1;padding:7px 4px;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-family:monospace;background:none;color:#5c5a7a;transition:all .2s">🏛️ Administ.</button>
       </div>
       <div class="ranking-card" id="ranking-card"></div>
       <div style="font-size:10px;color:#5c5a7a;font-family:monospace;margin-top:6px;text-align:center">Ranking simulado · Puntos de Plasticidad promedio por programa</div>
@@ -4532,6 +4536,29 @@ var _nbStartOrig=window.nbStart;
 var _spanStartOrig=window.spanStart;
 
 /* ── ADAPTACIÓN DE LENGUAJE POR ROL ── */
+var TEXTOS_ADM={
+  'lab1-title':'Memoria de Trabajo — Gestión Administrativa',
+  'lab1-sub':'Entrena tu capacidad para gestionar múltiples procesos simultáneos, recordar compromisos institucionales y mantener el hilo de varias tareas sin perder información crítica.',
+  'lab2-title':'Control Inhibitorio — Gestión Administrativa',
+  'lab2-sub':'Desarrolla la capacidad de responder con calma ante solicitudes urgentes, evitar decisiones impulsivas bajo presión y mantener protocolos ante situaciones de alta demanda.',
+  'lab3-title':'Flexibilidad Cognitiva — Gestión Administrativa',
+  'lab3-sub':'Entrena tu capacidad de adaptarte a cambios de prioridad, reorganizar procesos cuando cambian las condiciones y encontrar soluciones alternativas ante obstáculos institucionales.',
+  'lab4-title':'Planificación — Gestión Administrativa',
+  'lab4-sub':'Optimiza la organización de tus procesos, cronogramas institucionales y gestión de recursos. Las mismas técnicas neurociéntificas aplicadas al contexto de la gestión organizacional.',
+  'lab5-title':'Metacognición — Gestión Administrativa',
+  'lab5-sub':'Reflexiona sobre tus propios procesos de toma de decisiones. ¿Qué estrategias funcionan mejor bajo presión? ¿Cómo gestionas la incertidumbre? La función ejecutiva del gestor reflexivo.',
+  'lab6-title':'Estrategias Mnemotécnicas — Gestión Administrativa',
+  'lab6-sub':'Técnicas para retener información institucional compleja, recordar procedimientos y construir estructuras de conocimiento organizacional duraderas.'
+};
+var PLACEHOLDERS_ADM={
+  'pt-topic':'ej: Proceso de matrícula, Protocolo de atención, Informe de gestión...',
+  'sq-text':'ej: Circular institucional, Manual de procedimientos, Informe de rectoría',
+  'loci-tema':'ej: Pasos del proceso de admisión, Protocolo de atención al estudiante',
+  'fey-concept':'ej: Proceso de liquidación de nómina, Flujo de aprobación de solicitudes',
+  'ae-topic':'ej: Reunión de coordinación — puntos clave a recordar',
+  'rv-situation':'ej: Solicitud urgente sin recursos, Conflicto entre dependencias',
+  'ew-exam':'ej: Auditoría institucional la próxima semana, Entrega de informe de gestión'
+};
 var TEXTOS_DOC={
   'lab1-title':'Memoria de Trabajo — Entrenamiento Docente',
   'lab1-sub':'Fortalece tu MdT para gestionar múltiples demandas simultáneas del aula: recordar nombres, monitorear la comprensión del grupo y seguir tu hilo explicativo al mismo tiempo.',
@@ -4585,10 +4612,10 @@ var PLACEHOLDERS_EST={
 
 function applyRolTextos(){
   var profile=S.get('userProfile')||obData;
-  var esDocente=profile&&profile.rol==='docente';
   if(!profile||!profile.rol)return;
-  var textos=esDocente?TEXTOS_DOC:TEXTOS_EST;
-  var placeholders=esDocente?PLACEHOLDERS_DOC:PLACEHOLDERS_EST;
+  var rol=profile.rol;
+  var textos=rol==='docente'?TEXTOS_DOC:rol==='administrativo'?TEXTOS_ADM:TEXTOS_EST;
+  var placeholders=rol==='docente'?PLACEHOLDERS_DOC:rol==='administrativo'?PLACEHOLDERS_ADM:PLACEHOLDERS_EST;
 
   // Actualizar títulos y subtítulos
   Object.keys(textos).forEach(function(id){
@@ -4624,7 +4651,8 @@ function applyRolTextos(){
 function applyRolUI(){
   var profile=S.get('userProfile');
   if(!profile)return;
-  var esDocente=profile.rol==='docente';
+  var rol=profile.rol||'estudiante';
+  var esDocente=rol==='docente';
 
   // Panel exclusivo docentes
   var pd=document.getElementById('panel-docente');
@@ -5151,21 +5179,29 @@ function obSelectRol(btn,rol){
   obData.rol=rol;
   document.querySelectorAll('#ob-step2 .programa-btn').forEach(function(b){b.classList.remove('selected');});
   btn.classList.add('selected');
-  document.getElementById('ob-rol-btn').disabled=false;
-  document.getElementById('ob-rol-btn').style.opacity='1';
-  // Preparar paso 3 según rol
-  if(rol==='docente'){
-    document.getElementById('ob-step3-icon').textContent='👨‍🏫';
-    document.getElementById('ob-step3-title').textContent='¿Qué materia enseñas?';
-    document.getElementById('ob-step3-sub').textContent='Esto personaliza el ranking docente y las recomendaciones pedagógicas.';
-    document.getElementById('ob-programas-est').style.display='none';
-    document.getElementById('ob-programas-doc').style.display='grid';
+  var rolBtn=document.getElementById('ob-rol-btn');
+  rolBtn.disabled=false;rolBtn.style.opacity='1';
+  // Administrativo: saltar selección de programa
+  if(rol==='administrativo'){
+    obData.programa='Administrativos';
+    rolBtn.textContent='Continuar →';
+    rolBtn.onclick=function(){obNext(4);};
   } else {
-    document.getElementById('ob-step3-icon').textContent='🎓';
-    document.getElementById('ob-step3-title').textContent='¿Cuál es tu programa?';
-    document.getElementById('ob-step3-sub').textContent='Esto nos permite personalizar el ranking por facultad.';
-    document.getElementById('ob-programas-est').style.display='grid';
-    document.getElementById('ob-programas-doc').style.display='none';
+    rolBtn.textContent='Continuar →';
+    rolBtn.onclick=function(){obNext(3);};
+    if(rol==='docente'){
+      document.getElementById('ob-step3-icon').textContent='👨‍🏫';
+      document.getElementById('ob-step3-title').textContent='¿Cuál es tu programa?';
+      document.getElementById('ob-step3-sub').textContent='Esto personaliza el ranking docente.';
+      document.getElementById('ob-programas-est').style.display='none';
+      document.getElementById('ob-programas-doc').style.display='grid';
+    } else {
+      document.getElementById('ob-step3-icon').textContent='🎓';
+      document.getElementById('ob-step3-title').textContent='¿Cuál es tu programa?';
+      document.getElementById('ob-step3-sub').textContent='Esto nos permite personalizar el ranking por facultad.';
+      document.getElementById('ob-programas-est').style.display='grid';
+      document.getElementById('ob-programas-doc').style.display='none';
+    }
   }
 }
 function obSelectProg(btn,prog){
@@ -5190,12 +5226,13 @@ function applyUserProfile(){
   if(!obData.nombre)return;
   applyRolUI();
   applyRolTextos();
-  var esDocente=obData.rol==='docente';
-  var greeting=esDocente?
+  var rol=obData.rol||'estudiante';
+  var greeting=rol==='docente'?
     'Bienvenido, Prof. '+obData.nombre+'. Tu mente enseña mejor cuando está entrenada.' :
+    rol==='administrativo'?
+    'Bienvenido, '+obData.nombre+'. Una mente ágil es la base de una gestión eficiente.' :
     'Bienvenido de nuevo, '+obData.nombre+'. Tu conectoma te espera.';
   document.getElementById('hero-greeting').textContent=greeting;
-  // Mostrar badge de rol en el header
   var badge=document.getElementById('rol-badge');
   if(!badge){
     badge=document.createElement('div');
@@ -5204,9 +5241,13 @@ function applyUserProfile(){
     var sub=document.querySelector('.header-sub');
     if(sub)sub.appendChild(badge);
   }
-  badge.textContent=esDocente?'👨‍🏫 Docente':'🎓 Estudiante';
-  badge.style.background=esDocente?'#0d3d38':'#2d2650';
-  badge.style.color=esDocente?'#2dd4bf':'#b3abff';
+  var badgeMap={
+    'docente':['👨‍🏫 Docente','#0d3d38','#2dd4bf'],
+    'administrativo':['🏛️ Administrativo','#2d1a08','#fbbf24'],
+    'estudiante':['🎓 Estudiante','#2d2650','#b3abff']
+  };
+  var bm=badgeMap[rol]||badgeMap['estudiante'];
+  badge.textContent=bm[0];badge.style.background=bm[1];badge.style.color=bm[2];
 }
 
 // ── DATOS DEL DASHBOARD ──
@@ -5367,10 +5408,11 @@ function showLogroToast(l){
 var currentRankingTab='estudiantes';
 function rankingTab(tab){
   currentRankingTab=tab;
-  ['est','doc'].forEach(function(t){
+  var tabMap={'estudiantes':'est','docentes':'doc','administrativos':'adm'};
+  ['est','doc','adm'].forEach(function(t){
     var btn=document.getElementById('rtab-'+t);
     if(!btn)return;
-    var active=(tab==='estudiantes'&&t==='est')||(tab==='docentes'&&t==='doc');
+    var active=tabMap[tab]===t;
     btn.style.background=active?'#2d2650':'none';
     btn.style.color=active?'#b3abff':'#5c5a7a';
   });
@@ -5387,6 +5429,27 @@ function updateRanking(d){
   var seed=myPx||10;
   var medals=['🥇','🥈','🥉'];
   var tab=currentRankingTab;
+
+  // Pestaña administrativos — categoría única
+  if(tab==='administrativos'){
+    var isMe=myRol==='administrativo';
+    var admPx=isMe?myPx:Math.max(8,Math.floor(seed*0.7+25));
+    var header='<div style="font-size:11px;color:#fbbf24;font-family:monospace;margin-bottom:8px;padding:6px 8px;background:#2d1a08;border-radius:6px">🏛️ Ranking administrativos · Puntos de Plasticidad</div>';
+    var barW=100;
+    var bg=isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
+    var nc=isMe?'color:#fde68a;font-weight:600;':'';
+    el.innerHTML=header+
+      '<div class="ranking-row" style="'+bg+'">'+
+      '<div class="ranking-pos gold">🥇</div>'+
+      '<div style="font-size:11px;margin-right:4px">🏛️</div>'+
+      '<div class="ranking-prog" style="'+nc+'">Administrativos UNICIENCIA'+(isMe?' ← tú':'')+'</div>'+
+      '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+(isMe?'#fbbf24':'#2a2a3a')+'"></div></div>'+
+      '<div class="ranking-px">'+admPx+' PX</div>'+
+      '</div>';
+    return;
+  }
+
+  // Pestañas estudiantes y docentes — 8 programas
   var esDocente=tab==='docentes';
   var EST_BASE=[312,287,254,231,198,176,154,132];
   var DOC_BASE=[187,164,143,121,108,94,82,71];
