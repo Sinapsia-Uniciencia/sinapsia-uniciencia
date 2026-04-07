@@ -383,51 +383,59 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .txt-est,.txt-doc,.txt-adm{display:none}
 
 /* ── NEURO — Personaje guía ── */
-.neuro-fab{position:fixed;bottom:20px;left:16px;z-index:160;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-.neuro-character{width:120px;height:140px;cursor:pointer;filter:drop-shadow(0 12px 32px rgba(139,127,245,.6));transition:transform .3s cubic-bezier(.34,1.56,.64,1);display:block}
-.neuro-character:hover{transform:scale(1.1) translateY(-6px);filter:drop-shadow(0 16px 40px rgba(139,127,245,.8))}
-.neuro-character:active{transform:scale(.96)}
-.neuro-bubble{position:relative;background:linear-gradient(135deg,#16153a,#0f0f1e);border:1.5px solid rgba(139,127,245,.6);border-radius:20px;border-bottom-left-radius:4px;padding:16px 18px;max-width:290px;min-width:220px;display:none;animation:neuro-pop .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(179,171,255,.1)}
-.neuro-bubble::before{content:'';position:absolute;bottom:-10px;left:22px;width:0;height:0;border-left:10px solid transparent;border-right:6px solid transparent;border-top:10px solid rgba(139,127,245,.6)}
-.neuro-bubble::after{content:'';position:absolute;bottom:-8px;left:23px;width:0;height:0;border-left:9px solid transparent;border-right:5px solid transparent;border-top:9px solid #16153a}
+.neuro-fab{position:fixed;bottom:16px;left:12px;z-index:160;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.neuro-character{width:160px;height:190px;cursor:pointer;filter:drop-shadow(0 16px 40px rgba(139,127,245,.65));transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;display:block}
+.neuro-character:hover{transform:scale(1.06) translateY(-8px);filter:drop-shadow(0 22px 50px rgba(139,127,245,.85))}
+.neuro-character:active{transform:scale(.97) translateY(-2px)}
+.neuro-bubble{position:relative;background:linear-gradient(145deg,#1a1840,#100e2a);border:1.5px solid rgba(139,127,245,.55);border-radius:22px;border-bottom-left-radius:6px;padding:16px 18px;max-width:300px;min-width:240px;display:none;animation:neuro-pop .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 12px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(179,171,255,.12)}
+.neuro-bubble::before{content:'';position:absolute;bottom:-11px;left:24px;width:0;height:0;border-left:11px solid transparent;border-right:7px solid transparent;border-top:11px solid rgba(139,127,245,.55)}
+.neuro-bubble::after{content:'';position:absolute;bottom:-9px;left:25px;width:0;height:0;border-left:10px solid transparent;border-right:6px solid transparent;border-top:9px solid #1a1840}
 .neuro-bubble.show{display:block}
-@keyframes neuro-pop{0%{opacity:0;transform:scale(.7) translateY(16px) rotate(-3deg)}60%{transform:scale(1.05) translateY(-2px) rotate(.5deg)}100%{opacity:1;transform:scale(1) translateY(0) rotate(0)}}
-.neuro-bubble-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(139,127,245,.2)}
-.neuro-bubble-avatar{width:32px;height:32px;flex-shrink:0}
-.neuro-bubble-info{flex:1}
+@keyframes neuro-pop{0%{opacity:0;transform:scale(.65) translateY(20px) rotate(-4deg)}55%{transform:scale(1.04) translateY(-3px)}100%{opacity:1;transform:scale(1) translateY(0) rotate(0)}}
+.neuro-bubble-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(139,127,245,.18)}
+.neuro-bubble-avatar{width:36px;height:36px;flex-shrink:0}
 .neuro-bubble-name{font-size:12px;font-weight:700;color:#c4bcff;font-family:monospace;text-transform:uppercase;letter-spacing:1.5px;display:block}
-.neuro-bubble-status{font-size:10px;color:#4a4870;font-family:monospace;display:flex;align-items:center;gap:4px}
-.neuro-status-dot{width:6px;height:6px;background:#2dd4bf;border-radius:50%;animation:status-blink 2s ease-in-out infinite}
+.neuro-bubble-status{font-size:10px;color:#5a5888;font-family:monospace;display:flex;align-items:center;gap:4px;margin-top:2px}
+.neuro-status-dot{width:6px;height:6px;background:#2dd4bf;border-radius:50%;flex-shrink:0;animation:status-blink 2s ease-in-out infinite}
 @keyframes status-blink{0%,100%{opacity:1}50%{opacity:.3}}
-.neuro-bubble-msg{font-size:13px;color:#d4d0f0;line-height:1.65;margin-bottom:8px}
-.neuro-bubble-tip{font-size:11px;color:#3a3860;font-family:monospace;padding:8px 10px;background:rgba(139,127,245,.08);border-radius:8px;border-left:2px solid #8b7ff5;line-height:1.5}
-.neuro-bubble-close{position:absolute;top:10px;right:12px;background:none;border:none;color:#3a3860;cursor:pointer;font-size:18px;line-height:1;transition:color .15s,transform .15s}
-.neuro-bubble-close:hover{color:#b3abff;transform:scale(1.2)}
-/* Animaciones del SVG */
-@keyframes neuro-float{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-5px) rotate(1deg)}75%{transform:translateY(-3px) rotate(-1deg)}}
-@keyframes neuro-soma-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-@keyframes neuro-eye-blink{0%,88%,100%{transform:scaleY(1)}93%{transform:scaleY(.05)}}
-@keyframes neuro-eye-blink2{0%,85%,100%{transform:scaleY(1)}90%{transform:scaleY(.05)}}
-@keyframes neuro-signal{0%{stroke-dashoffset:30;opacity:.3}50%{opacity:1}100%{stroke-dashoffset:0;opacity:.3}}
-@keyframes neuro-aura{0%,100%{r:36;opacity:.08}50%{r:40;opacity:.15}}
-@keyframes neuro-axon-glow{0%,100%{opacity:.5;stroke-width:3}50%{opacity:1;stroke-width:4.5}}
-@keyframes neuro-think{0%,100%{opacity:0;transform:translateY(0) scale(.5)}20%,80%{opacity:1;transform:translateY(-8px) scale(1)}100%{opacity:0;transform:translateY(-14px) scale(.5)}}
-.neuro-float-g{animation:neuro-float 4s ease-in-out infinite}
-.neuro-soma-g{animation:neuro-soma-breathe 3s ease-in-out infinite;transform-origin:32px 32px}
-.n-eye-l{animation:neuro-eye-blink 5s ease-in-out infinite;transform-origin:24px 30px}
-.n-eye-r{animation:neuro-eye-blink2 5s ease-in-out infinite 0.1s;transform-origin:40px 30px}
-.n-d1{animation:neuro-signal 1.8s linear infinite;stroke-dasharray:6 6}
-.n-d2{animation:neuro-signal 1.8s linear infinite .4s;stroke-dasharray:6 6}
-.n-d3{animation:neuro-signal 1.8s linear infinite .8s;stroke-dasharray:6 6}
-.n-d4{animation:neuro-signal 1.8s linear infinite 1.2s;stroke-dasharray:6 6}
-.n-d5{animation:neuro-signal 1.8s linear infinite 1.6s;stroke-dasharray:6 6}
-.n-axon{animation:neuro-axon-glow 2.5s ease-in-out infinite}
-.n-aura{animation:neuro-aura 3s ease-in-out infinite}
-.n-think1{animation:neuro-think 3s ease-in-out infinite 0s}
-.n-think2{animation:neuro-think 3s ease-in-out infinite .5s}
-.n-think3{animation:neuro-think 3s ease-in-out infinite 1s}
-/* Badge novedad */
-.neuro-badge-new{position:absolute;top:4px;right:4px;width:16px;height:16px;background:#f97066;border-radius:50%;border:2px solid #0a0a0f;display:none;animation:neuro-pop .3s ease;font-size:9px;color:white;display:none;align-items:center;justify-content:center;font-weight:700}
+.neuro-bubble-msg{font-size:13px;color:#ccc8ee;line-height:1.65;margin-bottom:10px}
+.neuro-bubble-actions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.neuro-action-btn{padding:6px 12px;background:rgba(139,127,245,.12);border:1px solid rgba(139,127,245,.35);border-radius:20px;font-size:11px;color:#b3abff;cursor:pointer;font-family:monospace;transition:all .2s;white-space:nowrap}
+.neuro-action-btn:hover{background:rgba(139,127,245,.25);border-color:#8b7ff5;color:#d4d0ff}
+.neuro-bubble-tip{font-size:11px;color:#3a3860;font-family:monospace;padding:8px 10px;background:rgba(139,127,245,.07);border-radius:8px;border-left:2px solid rgba(139,127,245,.4);line-height:1.5}
+.neuro-bubble-close{position:absolute;top:10px;right:12px;background:none;border:none;color:#3a3860;cursor:pointer;font-size:18px;line-height:1;transition:color .15s}
+.neuro-bubble-close:hover{color:#b3abff}
+.neuro-msg-dots{display:flex;gap:5px;justify-content:center;margin-top:10px}
+.neuro-msg-dot{width:7px;height:7px;border-radius:50%;background:#2a2850;cursor:pointer;transition:all .2s}
+.neuro-msg-dot.active{background:#8b7ff5;transform:scale(1.3)}
+@keyframes neuro-float{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-7px) rotate(1.2deg)}75%{transform:translateY(-4px) rotate(-1deg)}}
+@keyframes neuro-soma-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes n-eye-blink{0%,87%,100%{transform:scaleY(1)}92%{transform:scaleY(.05)}}
+@keyframes n-eye-blink2{0%,83%,100%{transform:scaleY(1)}88%{transform:scaleY(.05)}}
+@keyframes neuro-signal{0%{stroke-dashoffset:36;opacity:.25}40%{opacity:1}100%{stroke-dashoffset:0;opacity:.25}}
+@keyframes neuro-aura{0%,100%{r:52;opacity:.07}50%{r:58;opacity:.16}}
+@keyframes neuro-axon-pulse{0%,100%{opacity:.45;stroke-width:4}50%{opacity:1;stroke-width:6}}
+@keyframes neuro-think{0%,100%{opacity:0;transform:translateY(0) scale(.4)}40%,70%{opacity:1;transform:translateY(-10px) scale(1)}}
+@keyframes neuro-sparkle{0%,100%{opacity:0;transform:scale(0) rotate(0)}50%{opacity:1;transform:scale(1) rotate(180deg)}}
+.neuro-float-g{animation:neuro-float 4.5s ease-in-out infinite}
+.neuro-soma-g{animation:neuro-soma-breathe 3.5s ease-in-out infinite;transform-origin:80px 85px}
+.n-eye-l{animation:n-eye-blink 6s ease-in-out infinite;transform-origin:62px 78px}
+.n-eye-r{animation:n-eye-blink2 6s ease-in-out infinite .12s;transform-origin:98px 78px}
+.n-d1{animation:neuro-signal 2s linear infinite;stroke-dasharray:7 7}
+.n-d2{animation:neuro-signal 2s linear infinite .5s;stroke-dasharray:7 7}
+.n-d3{animation:neuro-signal 2s linear infinite 1s;stroke-dasharray:7 7}
+.n-d4{animation:neuro-signal 2s linear infinite 1.5s;stroke-dasharray:7 7}
+.n-d5{animation:neuro-signal 2s linear infinite .8s;stroke-dasharray:7 7}
+.n-d6{animation:neuro-signal 2s linear infinite 1.3s;stroke-dasharray:5 5}
+.n-axon{animation:neuro-axon-pulse 3s ease-in-out infinite}
+.n-aura{animation:neuro-aura 4s ease-in-out infinite}
+.n-think1{animation:neuro-think 3.5s ease-in-out infinite}
+.n-think2{animation:neuro-think 3.5s ease-in-out infinite .6s}
+.n-think3{animation:neuro-think 3.5s ease-in-out infinite 1.2s}
+.n-sparkle1{animation:neuro-sparkle 2.5s ease-in-out infinite .3s}
+.n-sparkle2{animation:neuro-sparkle 2.5s ease-in-out infinite 1.1s}
+.n-sparkle3{animation:neuro-sparkle 2.5s ease-in-out infinite 1.9s}
+.neuro-badge-new{position:absolute;top:6px;right:6px;width:18px;height:18px;background:#f97066;border-radius:50%;border:2px solid #0a0a0f;display:none;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:700;font-family:monospace}
 .neuro-badge-new.show{display:flex}
 
 /* ── PANEL DE SESIÓN ACTIVA ── */
@@ -624,179 +632,173 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <button class="neuro-bubble-close" onclick="neuroClose()">×</button>
       <div class="neuro-bubble-header">
         <svg class="neuro-bubble-avatar" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="mini-grad" cx="38%" cy="32%" r="65%">
-              <stop offset="0%" stop-color="#c4bcff"/>
-              <stop offset="60%" stop-color="#8b7ff5"/>
-              <stop offset="100%" stop-color="#4030a0"/>
-            </radialGradient>
-          </defs>
+          <defs><radialGradient id="mg" cx="38%" cy="32%" r="65%"><stop offset="0%" stop-color="#d4ccff"/><stop offset="60%" stop-color="#8b7ff5"/><stop offset="100%" stop-color="#3020a0"/></radialGradient></defs>
           <circle cx="32" cy="32" r="30" fill="#1a1640"/>
-          <circle cx="32" cy="32" r="16" fill="url(#mini-grad)"/>
-          <ellipse cx="26" cy="29" rx="4" ry="4" fill="white"/>
-          <ellipse cx="38" cy="29" rx="4" ry="4" fill="white"/>
-          <circle cx="27" cy="30" r="2.2" fill="#2a1060"/>
-          <circle cx="39" cy="30" r="2.2" fill="#2a1060"/>
-          <circle cx="27.8" cy="29" r=".9" fill="white" opacity=".9"/>
-          <circle cx="39.8" cy="29" r=".9" fill="white" opacity=".9"/>
-          <path d="M25 37 Q32 42 39 37" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-          <ellipse cx="22" cy="36" rx="4" ry="2.5" fill="#f97066" opacity=".3"/>
-          <ellipse cx="42" cy="36" rx="4" ry="2.5" fill="#f97066" opacity=".3"/>
+          <circle cx="32" cy="32" r="18" fill="url(#mg)"/>
+          <ellipse cx="26" cy="29" rx="4.5" ry="4.5" fill="white"/>
+          <ellipse cx="38" cy="29" rx="4.5" ry="4.5" fill="white"/>
+          <circle cx="27" cy="30" r="2.5" fill="#2a1060"/>
+          <circle cx="39" cy="30" r="2.5" fill="#2a1060"/>
+          <circle cx="28" cy="29" r="1" fill="white" opacity=".9"/>
+          <circle cx="40" cy="29" r="1" fill="white" opacity=".9"/>
+          <path d="M24 38 Q32 44 40 38" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="20" cy="37" rx="4.5" ry="3" fill="#f97066" opacity=".3"/>
+          <ellipse cx="44" cy="37" rx="4.5" ry="3" fill="#f97066" opacity=".3"/>
         </svg>
-        <div class="neuro-bubble-info">
+        <div>
           <span class="neuro-bubble-name">NEURO</span>
-          <div class="neuro-bubble-status"><div class="neuro-status-dot"></div>Guía activo</div>
+          <div class="neuro-bubble-status"><div class="neuro-status-dot"></div>Guía neuronal activo</div>
         </div>
       </div>
-      <div class="neuro-bubble-msg" id="neuro-msg">¡Hola! Soy NEURO, tu guía de entrenamiento cognitivo.</div>
+      <div class="neuro-bubble-msg" id="neuro-msg">¡Hola! Soy tu guía de entrenamiento cognitivo.</div>
+      <div class="neuro-bubble-actions" id="neuro-actions"></div>
       <div class="neuro-bubble-tip" id="neuro-tip" style="display:none"></div>
+      <div class="neuro-msg-dots" id="neuro-dots"></div>
     </div>
 
-    <div style="position:relative;width:120px;height:140px">
-      <svg class="neuro-character" viewBox="0 0 120 150" width="120" height="140" xmlns="http://www.w3.org/2000/svg" onclick="neuroToggle()">
+    <div style="position:relative;width:165px;height:200px">
+      <svg class="neuro-character" viewBox="0 0 165 210" xmlns="http://www.w3.org/2000/svg" onclick="neuroToggle()">
         <defs>
-          <!-- Gradiente principal del soma — da volumen esférico -->
-          <radialGradient id="soma-3d" cx="38%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#d4ccff"/>
-            <stop offset="30%" stop-color="#a090ff"/>
-            <stop offset="65%" stop-color="#7060d0"/>
-            <stop offset="100%" stop-color="#2a1a70"/>
+          <radialGradient id="s3d" cx="36%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#e0d8ff"/>
+            <stop offset="25%" stop-color="#b8acff"/>
+            <stop offset="55%" stop-color="#8070e8"/>
+            <stop offset="80%" stop-color="#5040c0"/>
+            <stop offset="100%" stop-color="#2010708"/>
           </radialGradient>
-          <!-- Gradiente de sombra inferior -->
-          <radialGradient id="soma-shadow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#0a0a1a" stop-opacity=".6"/>
-            <stop offset="100%" stop-color="#0a0a1a" stop-opacity="0"/>
+          <radialGradient id="eye3d" cx="32%" cy="28%" r="68%">
+            <stop offset="0%" stop-color="#6050d0"/>
+            <stop offset="100%" stop-color="#0a0520"/>
           </radialGradient>
-          <!-- Gradiente del axón -->
-          <linearGradient id="axon-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#7060d0"/>
-            <stop offset="100%" stop-color="#3020a0" stop-opacity=".4"/>
+          <radialGradient id="cheek" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f97066" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#f97066" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="axg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#7060d8"/>
+            <stop offset="100%" stop-color="#2010608" stop-opacity=".3"/>
           </linearGradient>
-          <!-- Gradiente brillo ojo -->
-          <radialGradient id="eye-grad" cx="35%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#5040c0"/>
-            <stop offset="100%" stop-color="#1a0a50"/>
-          </radialGradient>
-          <!-- Filtro sombra suave -->
-          <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
-            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0a0020" flood-opacity=".5"/>
-          </filter>
-          <filter id="glow-f" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
+          <filter id="fshadow"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#000018" flood-opacity=".55"/></filter>
+          <filter id="feye"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000018" flood-opacity=".4"/></filter>
         </defs>
 
         <g class="neuro-float-g">
 
-          <!-- ── AURA exterior pulsante ── -->
-          <circle cx="60" cy="62" r="46" fill="none" stroke="#8b7ff5" stroke-width="1.5" class="n-aura" opacity=".12"/>
-          <circle cx="60" cy="62" r="52" fill="none" stroke="#6050c0" stroke-width="1" opacity=".06" class="n-aura" style="animation-delay:.8s"/>
+          <!-- Aura doble pulsante -->
+          <circle cx="82" cy="88" r="52" fill="none" stroke="#8b7ff5" stroke-width="1.5" class="n-aura" opacity=".1"/>
+          <circle cx="82" cy="88" r="60" fill="none" stroke="#5040a0" stroke-width="1" opacity=".05" class="n-aura" style="animation-delay:1s"/>
 
-          <!-- ── DENDRITAS con ramas ── -->
-          <!-- Diagonal superior izquierda con rama -->
-          <path d="M38 28 Q24 16 12 8" fill="none" stroke="#8070e0" stroke-width="3" stroke-linecap="round" class="n-d1"/>
-          <path d="M26 18 Q20 12 16 6" fill="none" stroke="#6050c0" stroke-width="2" stroke-linecap="round" class="n-d2" opacity=".7"/>
-          <circle cx="12" cy="8" r="4.5" fill="#5040b0" opacity=".8"/>
-          <circle cx="12" cy="8" r="2" fill="#a090ff" opacity=".9"/>
+          <!-- Destellos / partículas de energía -->
+          <path d="M118 32 L121 28 L124 32 L121 36Z" fill="#fbbf24" class="n-sparkle1"/>
+          <path d="M32 45 L34 42 L36 45 L34 48Z" fill="#2dd4bf" class="n-sparkle2"/>
+          <path d="M140 68 L142 65 L144 68 L142 71Z" fill="#e879f9" class="n-sparkle3"/>
 
-          <!-- Diagonal superior derecha con rama -->
-          <path d="M82 28 Q96 16 108 8" fill="none" stroke="#8070e0" stroke-width="3" stroke-linecap="round" class="n-d2"/>
-          <path d="M96 18 Q102 12 106 6" fill="none" stroke="#6050c0" stroke-width="2" stroke-linecap="round" class="n-d1" opacity=".7"/>
-          <circle cx="108" cy="8" r="4.5" fill="#5040b0" opacity=".8"/>
-          <circle cx="108" cy="8" r="2" fill="#a090ff" opacity=".9"/>
+          <!-- DENDRITAS principales con ramas -->
+          <!-- Superior izquierda -->
+          <path d="M52 40 Q36 24 18 12" fill="none" stroke="#9080f0" stroke-width="3.5" stroke-linecap="round" class="n-d1"/>
+          <path d="M36 26 Q28 18 22 10" fill="none" stroke="#7060c8" stroke-width="2.5" stroke-linecap="round" class="n-d2" opacity=".75"/>
+          <path d="M28 20 Q22 16 18 14" fill="none" stroke="#6050b0" stroke-width="1.5" stroke-linecap="round" class="n-d3" opacity=".5"/>
+          <circle cx="18" cy="12" r="6" fill="#4030a8" opacity=".85"/>
+          <circle cx="18" cy="12" r="3" fill="#a090ff"/>
+          <circle cx="18" cy="12" r="1.2" fill="white" opacity=".7"/>
 
-          <!-- Superior centro -->
-          <path d="M60 18 Q58 8 60 2" fill="none" stroke="#8070e0" stroke-width="3" stroke-linecap="round" class="n-d3"/>
-          <circle cx="60" cy="2" r="4" fill="#5040b0" opacity=".8"/>
-          <circle cx="60" cy="2" r="1.8" fill="#a090ff" opacity=".9"/>
+          <!-- Superior derecha -->
+          <path d="M112 40 Q128 24 146 12" fill="none" stroke="#9080f0" stroke-width="3.5" stroke-linecap="round" class="n-d2"/>
+          <path d="M128 26 Q136 18 142 10" fill="none" stroke="#7060c8" stroke-width="2.5" stroke-linecap="round" class="n-d1" opacity=".75"/>
+          <path d="M136 20 Q142 16 146 14" fill="none" stroke="#6050b0" stroke-width="1.5" stroke-linecap="round" class="n-d3" opacity=".5"/>
+          <circle cx="146" cy="12" r="6" fill="#4030a8" opacity=".85"/>
+          <circle cx="146" cy="12" r="3" fill="#a090ff"/>
+          <circle cx="146" cy="12" r="1.2" fill="white" opacity=".7"/>
 
-          <!-- Lateral izquierda con bifurcación -->
-          <path d="M18 56 Q6 50 2 42" fill="none" stroke="#8070e0" stroke-width="3" stroke-linecap="round" class="n-d4"/>
-          <path d="M10 48 Q4 46 2 50" fill="none" stroke="#6050c0" stroke-width="2" stroke-linecap="round" class="n-d5" opacity=".7"/>
-          <circle cx="2" cy="42" r="4" fill="#5040b0" opacity=".8"/>
-          <circle cx="2" cy="42" r="1.8" fill="#a090ff" opacity=".9"/>
+          <!-- Superior centro con bifurcación -->
+          <path d="M82 36 Q80 20 82 4" fill="none" stroke="#9080f0" stroke-width="3.5" stroke-linecap="round" class="n-d3"/>
+          <path d="M80 18 Q72 10 68 4" fill="none" stroke="#7060c8" stroke-width="2" stroke-linecap="round" class="n-d4" opacity=".65"/>
+          <path d="M82 18 Q90 10 96 4" fill="none" stroke="#7060c8" stroke-width="2" stroke-linecap="round" class="n-d5" opacity=".65"/>
+          <circle cx="82" cy="4" r="5.5" fill="#4030a8" opacity=".85"/>
+          <circle cx="82" cy="4" r="2.8" fill="#a090ff"/>
 
-          <!-- Lateral derecha con bifurcación -->
-          <path d="M102 56 Q114 50 118 42" fill="none" stroke="#8070e0" stroke-width="3" stroke-linecap="round" class="n-d5"/>
-          <path d="M110 48 Q116 46 118 50" fill="none" stroke="#6050c0" stroke-width="2" stroke-linecap="round" class="n-d4" opacity=".7"/>
-          <circle cx="118" cy="42" r="4" fill="#5040b0" opacity=".8"/>
-          <circle cx="118" cy="42" r="1.8" fill="#a090ff" opacity=".9"/>
+          <!-- Lateral izquierda -->
+          <path d="M28 80 Q12 72 4 58" fill="none" stroke="#9080f0" stroke-width="3.5" stroke-linecap="round" class="n-d4"/>
+          <path d="M16 68 Q6 64 2 70" fill="none" stroke="#7060c8" stroke-width="2" stroke-linecap="round" class="n-d6" opacity=".6"/>
+          <circle cx="4" cy="58" r="6" fill="#4030a8" opacity=".85"/>
+          <circle cx="4" cy="58" r="3" fill="#a090ff"/>
 
-          <!-- ── AXÓN ── -->
-          <path d="M55 106 Q50 120 48 138" fill="none" stroke="url(#axon-grad)" stroke-width="5" stroke-linecap="round" class="n-axon"/>
-          <path d="M65 106 Q70 120 72 138" fill="none" stroke="url(#axon-grad)" stroke-width="4" stroke-linecap="round" class="n-axon" opacity=".7"/>
-          <path d="M60 104 Q60 118 60 136" fill="none" stroke="#8070e0" stroke-width="2" stroke-linecap="round" class="n-axon" opacity=".4"/>
-          <!-- Terminales sinápticos -->
-          <circle cx="48" cy="139" r="5.5" fill="#3020a0"/>
-          <circle cx="48" cy="139" r="3" fill="#7060d0"/>
-          <circle cx="60" cy="141" r="4.5" fill="#3020a0" opacity=".8"/>
-          <circle cx="60" cy="141" r="2.5" fill="#7060d0"/>
-          <circle cx="72" cy="139" r="4" fill="#3020a0" opacity=".6"/>
-          <circle cx="72" cy="139" r="2.2" fill="#7060d0"/>
+          <!-- Lateral derecha -->
+          <path d="M136 80 Q152 72 160 58" fill="none" stroke="#9080f0" stroke-width="3.5" stroke-linecap="round" class="n-d5"/>
+          <path d="M148 68 Q158 64 162 70" fill="none" stroke="#7060c8" stroke-width="2" stroke-linecap="round" class="n-d6" opacity=".6"/>
+          <circle cx="160" cy="58" r="6" fill="#4030a8" opacity=".85"/>
+          <circle cx="160" cy="58" r="3" fill="#a090ff"/>
 
-          <!-- ── SOMBRA PROYECTADA ── -->
-          <ellipse cx="62" cy="110" rx="30" ry="8" fill="#0a0a1a" opacity=".35"/>
+          <!-- AXÓN con terminales sinápticos -->
+          <path d="M74 142 Q68 158 64 178" fill="none" stroke="url(#axg)" stroke-width="6" stroke-linecap="round" class="n-axon"/>
+          <path d="M82 144 Q82 162 82 180" fill="none" stroke="url(#axg)" stroke-width="4" stroke-linecap="round" class="n-axon" opacity=".7"/>
+          <path d="M90 142 Q96 158 100 178" fill="none" stroke="url(#axg)" stroke-width="5" stroke-linecap="round" class="n-axon" opacity=".6"/>
+          <!-- Terminales -->
+          <circle cx="64" cy="180" r="7" fill="#2a1880"/>
+          <circle cx="64" cy="180" r="4" fill="#6050c0"/>
+          <circle cx="64" cy="180" r="1.8" fill="#a090ff" opacity=".8"/>
+          <circle cx="82" cy="183" r="6" fill="#2a1880" opacity=".9"/>
+          <circle cx="82" cy="183" r="3.5" fill="#6050c0"/>
+          <circle cx="100" cy="180" r="5.5" fill="#2a1880" opacity=".8"/>
+          <circle cx="100" cy="180" r="3" fill="#6050c0"/>
 
-          <!-- ── SOMA principal ── -->
-          <g class="neuro-soma-g" filter="url(#soft-shadow)">
-            <!-- Capa base oscura para profundidad -->
-            <circle cx="60" cy="62" r="42" fill="#1a1040"/>
-            <!-- Soma con gradiente 3D -->
-            <circle cx="60" cy="62" r="40" fill="url(#soma-3d)"/>
-            <!-- Anillo de borde para dar relieve -->
-            <circle cx="60" cy="62" r="40" fill="none" stroke="#c4bcff" stroke-width="1" opacity=".15"/>
-            <circle cx="60" cy="62" r="38" fill="none" stroke="#6050a0" stroke-width="1.5" opacity=".2"/>
-            <!-- Brillo principal (especular) -->
-            <ellipse cx="46" cy="40" rx="16" ry="10" fill="white" opacity=".18" transform="rotate(-25,46,40)"/>
-            <!-- Brillo secundario pequeño -->
-            <ellipse cx="38" cy="34" rx="7" ry="4" fill="white" opacity=".25" transform="rotate(-20,38,34)"/>
+          <!-- Sombra proyectada -->
+          <ellipse cx="84" cy="152" rx="38" ry="9" fill="#0a0a1a" opacity=".3"/>
+
+          <!-- SOMA cuerpo principal -->
+          <g class="neuro-soma-g" filter="url(#fshadow)">
+            <circle cx="82" cy="88" r="56" fill="#15104a"/>
+            <circle cx="82" cy="88" r="53" fill="url(#s3d)"/>
+            <circle cx="82" cy="88" r="53" fill="none" stroke="#d0c8ff" stroke-width="1" opacity=".14"/>
+            <circle cx="82" cy="88" r="50" fill="none" stroke="#5040a0" stroke-width="2" opacity=".18"/>
+            <!-- Brillo principal -->
+            <ellipse cx="62" cy="56" rx="22" ry="13" fill="white" opacity=".17" transform="rotate(-28,62,56)"/>
+            <!-- Brillo secundario -->
+            <ellipse cx="52" cy="48" rx="10" ry="6" fill="white" opacity=".24" transform="rotate(-22,52,48)"/>
+            <!-- Textura interior sutil -->
+            <circle cx="82" cy="88" r="35" fill="none" stroke="#8070e0" stroke-width=".5" opacity=".1"/>
           </g>
 
-          <!-- ── OJOS ── -->
-          <!-- Ojo izquierdo -->
-          <g class="n-eye-l">
-            <!-- Esclerótica -->
-            <ellipse cx="46" cy="58" rx="10" ry="10" fill="white" filter="url(#soft-shadow)"/>
-            <!-- Iris con gradiente -->
-            <ellipse cx="47" cy="59" rx="7" ry="7" fill="url(#eye-grad)"/>
-            <!-- Pupila -->
-            <circle cx="47" cy="59" r="4" fill="#0a0520"/>
-            <!-- Reflejo luz principal -->
-            <circle cx="48.5" cy="57" r="2" fill="white" opacity=".95"/>
-            <!-- Reflejo luz secundario -->
-            <circle cx="45.5" cy="61" r=".9" fill="white" opacity=".5"/>
+          <!-- OJOS elaborados -->
+          <g class="n-eye-l" filter="url(#feye)">
+            <ellipse cx="62" cy="82" rx="14" ry="14" fill="white"/>
+            <ellipse cx="64" cy="84" rx="10" ry="10" fill="url(#eye3d)"/>
+            <circle cx="64" cy="84" r="6" fill="#06030f"/>
+            <circle cx="66.5" cy="81.5" r="3" fill="white" opacity=".95"/>
+            <circle cx="62.5" cy="86" r="1.3" fill="white" opacity=".5"/>
           </g>
-          <!-- Ojo derecho -->
-          <g class="n-eye-r">
-            <ellipse cx="74" cy="58" rx="10" ry="10" fill="white" filter="url(#soft-shadow)"/>
-            <ellipse cx="75" cy="59" rx="7" ry="7" fill="url(#eye-grad)"/>
-            <circle cx="75" cy="59" r="4" fill="#0a0520"/>
-            <circle cx="76.5" cy="57" r="2" fill="white" opacity=".95"/>
-            <circle cx="73.5" cy="61" r=".9" fill="white" opacity=".5"/>
+          <g class="n-eye-r" filter="url(#feye)">
+            <ellipse cx="102" cy="82" rx="14" ry="14" fill="white"/>
+            <ellipse cx="104" cy="84" rx="10" ry="10" fill="url(#eye3d)"/>
+            <circle cx="104" cy="84" r="6" fill="#06030f"/>
+            <circle cx="106.5" cy="81.5" r="3" fill="white" opacity=".95"/>
+            <circle cx="102.5" cy="86" r="1.3" fill="white" opacity=".5"/>
           </g>
 
-          <!-- ── NARIZ ── -->
-          <ellipse cx="60" cy="70" rx="3" ry="2" fill="#4030a0" opacity=".4"/>
+          <!-- Cejas expresivas -->
+          <path d="M50 68 Q62 64 74 66" stroke="#c4bcff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
+          <path d="M90 66 Q102 64 114 68" stroke="#c4bcff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
 
-          <!-- ── BOCA ── -->
-          <path d="M48 80 Q60 90 72 80" stroke="#c4bcff" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <!-- Comisuras -->
-          <circle cx="48" cy="80" r="2" fill="#c4bcff" opacity=".6"/>
-          <circle cx="72" cy="80" r="2" fill="#c4bcff" opacity=".6"/>
+          <!-- Nariz -->
+          <ellipse cx="82" cy="96" rx="4" ry="2.8" fill="#3020908" opacity=".35"/>
 
-          <!-- ── MEJILLAS ── -->
-          <ellipse cx="36" cy="74" rx="8" ry="5" fill="#f97066" opacity=".22"/>
-          <ellipse cx="84" cy="74" rx="8" ry="5" fill="#f97066" opacity=".22"/>
+          <!-- Boca sonriente elaborada -->
+          <path d="M64 110 Q82 124 100 110" stroke="#d4d0ff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <circle cx="64" cy="110" r="2.5" fill="#c4bcff" opacity=".7"/>
+          <circle cx="100" cy="110" r="2.5" fill="#c4bcff" opacity=".7"/>
 
-          <!-- ── BURBUJAS DE PENSAMIENTO ── -->
-          <circle cx="88" cy="28" r="5.5" fill="#b3abff" opacity=".7" class="n-think1"/>
-          <circle cx="96" cy="18" r="4" fill="#b3abff" opacity=".5" class="n-think2"/>
-          <circle cx="102" cy="10" r="2.5" fill="#b3abff" opacity=".3" class="n-think3"/>
+          <!-- Mejillas -->
+          <ellipse cx="48" cy="104" rx="11" ry="7" fill="url(#cheek)"/>
+          <ellipse cx="116" cy="104" rx="11" ry="7" fill="url(#cheek)"/>
+
+          <!-- Burbujas de pensamiento -->
+          <circle cx="122" cy="42" r="7" fill="#c4bcff" opacity=".65" class="n-think1"/>
+          <circle cx="132" cy="28" r="5.5" fill="#c4bcff" opacity=".5" class="n-think2"/>
+          <circle cx="140" cy="16" r="3.5" fill="#c4bcff" opacity=".3" class="n-think3"/>
 
         </g>
       </svg>
-      <div class="neuro-badge-new" id="neuro-badge-new" style="position:absolute;top:8px;right:4px">!</div>
+      <div class="neuro-badge-new" id="neuro-badge-new">!</div>
     </div>
   </div>
 
@@ -5146,6 +5148,962 @@ function neuroSayLogro(logro){
   neuroOpen();
   setTimeout(function(){neuroClose();},5000);
 }
+
+/* ── PRE-TESTING ── */
+function ptSave(){
+  var topic=document.getElementById('pt-topic').value.trim();
+  if(!topic)return;
+  var entry={date:new Date().toLocaleDateString('es-CO'),topic:topic,
+    a1:document.getElementById('pt-a1').value,
+    a2:document.getElementById('pt-a2').value,
+    a3:document.getElementById('pt-a3').value};
+  S.push('pretests',entry);
+  showSaved('pt-saved-msg');
+  document.getElementById('pt-phase').textContent='¡Ahora estudia el tema!';
+  ptRenderHistory();
+  logSes('Lab 1 — Memoria de Trabajo',1);updateHome();
+}
+function ptRenderHistory(){
+  var a=S.get('pretests')||[];
+  var el=document.getElementById('pt-history');
+  if(!a.length){el.innerHTML='';return;}
+  el.innerHTML=a.slice(0,3).map(function(e){
+    return '<div class="diary-entry"><div class="diary-meta"><span class="diary-date">'+e.date+'</span><span class="diary-lab" style="background:#2d2650;color:#b3abff">'+e.topic+'</span></div></div>';
+  }).join('');
+}
+
+/* ── ANALOGÍAS ESTRUCTURALES ── */
+function anSave(){
+  var concept=document.getElementById('an-concept').value.trim();
+  if(!concept)return;
+  var entry={date:new Date().toLocaleDateString('es-CO'),concept:concept,
+    analogy:document.getElementById('an-analogy').value,
+    limits:document.getElementById('an-limits').value};
+  S.push('analogies',entry);
+  showSaved('an-saved-msg');
+  anRenderHistory();
+  logSes('Lab 3 — Flexibilidad Cognitiva',1);updateHome();
+}
+function anRenderHistory(){
+  var a=S.get('analogies')||[];
+  var el=document.getElementById('an-history');
+  if(!a.length){el.innerHTML='';return;}
+  el.innerHTML=a.slice(0,3).map(function(e){
+    return '<div class="diary-entry"><div class="diary-meta"><span class="diary-date">'+e.date+'</span><span class="diary-lab" style="background:var(--amber3);color:var(--amber2)">'+e.concept+'</span></div>'+
+      (e.analogy?'<div class="diary-body" style="font-size:12px">&#8658; '+e.analogy+'</div>':'')+'</div>';
+  }).join('');
+}
+
+/* ── SQ4R ── */
+function sq4rSave(){
+  var text=document.getElementById('sq-text').value.trim();
+  if(!text)return;
+  S.push('sq4r',{date:new Date().toLocaleDateString('es-CO'),text:text,
+    s:document.getElementById('sq-s').value,
+    q:document.getElementById('sq-q').value,
+    rr:document.getElementById('sq-rr').value,
+    recite:document.getElementById('sq-recite').value,
+    review:document.getElementById('sq-review').value});
+  showSaved('sq4r-saved-msg');
+  document.getElementById('sq4r-phase').textContent='Guardado';
+  logSes('Lab 4 — Planificación',15);updateHome();
+}
+
+/* ── INTERLEAVING ── */
+var ilSubjects=[];
+function ilAdd(){
+  var v=document.getElementById('il-input').value.trim();
+  if(!v)return;
+  ilSubjects.push(v);
+  document.getElementById('il-input').value='';
+  ilRenderList();
+  document.getElementById('il-gen-btn').style.display=ilSubjects.length>=2?'':'none';
+}
+function ilRenderList(){
+  var el=document.getElementById('il-list');
+  if(!ilSubjects.length){el.innerHTML='';return;}
+  el.innerHTML=ilSubjects.map(function(s,i){
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px;background:#1c1c28;border-radius:8px;margin-bottom:6px;border:1px solid #2a2a3a">'+
+      '<div style="flex:1;font-size:13px;color:#f0eff8">'+s+'</div>'+
+      '<button onclick="ilRemove('+i+')" style="background:none;border:none;color:#5c5a7a;cursor:pointer;font-size:14px">&#10005;</button></div>';
+  }).join('');
+}
+function ilRemove(i){ilSubjects.splice(i,1);ilRenderList();if(ilSubjects.length<2)document.getElementById('il-gen-btn').style.display='none';}
+function ilGenerate(){
+  var n=ilSubjects.length;
+  var schedule=[];
+  var reps=Math.ceil(8/n);
+  for(var r=0;r<reps;r++){
+    var shuffled=ilSubjects.slice().sort(function(){return Math.random()-.5;});
+    shuffled.forEach(function(s){schedule.push(s);});
+  }
+  schedule=schedule.slice(0,8);
+  var colors=['#2d2650','#0d3d38','#3d2d08','#3d1a18','#0d3d28'];
+  var textColors=['#b3abff','#5eead4','#fbbf24','#fca5a1','#34d399'];
+  document.getElementById('il-order').innerHTML=schedule.map(function(s,i){
+    var ci=ilSubjects.indexOf(s)%colors.length;
+    return '<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:'+colors[ci]+';border-radius:8px;border:1px solid '+textColors[ci]+'33">'+
+      '<div style="font-family:monospace;font-size:11px;color:'+textColors[ci]+'">Pomodoro '+(i+1)+'</div>'+
+      '<div style="flex:1;font-size:14px;color:'+textColors[ci]+';font-weight:500">'+s+'</div>'+
+      '<div style="font-size:11px;color:'+textColors[ci]+'44">25 min</div></div>';
+  }).join('');
+  document.getElementById('il-schedule').style.display='block';
+  document.getElementById('il-gen-btn').style.display='none';
+  document.getElementById('il-phase').textContent='Plan generado';
+  S.set('interleaving',{date:new Date().toLocaleDateString('es-CO'),subjects:ilSubjects,schedule:schedule});
+  logSes('Lab 4 — Planificación',1);updateHome();
+}
+function ilReset(){ilSubjects=[];ilRenderList();document.getElementById('il-schedule').style.display='none';document.getElementById('il-gen-btn').style.display='none';}
+
+/* ── AUTO-EXPLICACIÓN ── */
+var ae={running:false,t:3*60,iv:null};
+function aeToggle(){
+  if(ae.running){clearInterval(ae.iv);ae.running=false;document.getElementById('ae-btn').textContent='Continuar';return;}
+  ae.running=true;document.getElementById('ae-btn').textContent='Pausar';
+  if(ae.t===3*60)document.getElementById('ae-phase-lbl').textContent='Explica sin mirar el material...';
+  ae.iv=setInterval(function(){
+    ae.t--;
+    var m=Math.floor(ae.t/60),s=ae.t%60;
+    document.getElementById('ae-timer').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    document.getElementById('ae-bar').style.width=Math.round(ae.t/(3*60)*100)+'%';
+    if(ae.t<=0){
+      clearInterval(ae.iv);ae.running=false;
+      document.getElementById('ae-phase-lbl').textContent='Tiempo completado — identifica tus lagunas ↓';
+      document.getElementById('ae-btn').textContent='Reiniciar (nuevo párrafo)';
+      document.getElementById('ae-btn').onclick=function(){ae={running:false,t:3*60,iv:null};document.getElementById('ae-timer').textContent='3:00';document.getElementById('ae-bar').style.width='100%';document.getElementById('ae-btn').textContent='Iniciar pausa de auto-explicación (3 min)';document.getElementById('ae-btn').onclick=aeToggle;document.getElementById('ae-phase-lbl').textContent='Presiona iniciar y explica en voz alta (o escribe)';};
+    }
+  },1000);
+}
+function aeSave(){
+  var topic=document.getElementById('ae-topic').value.trim();
+  if(!topic)return;
+  S.push('autoexp',{date:new Date().toLocaleDateString('es-CO'),topic:topic,
+    gaps:document.getElementById('ae-gaps').value,
+    strengths:document.getElementById('ae-strengths').value});
+  showSaved('ae-saved-msg');
+  document.getElementById('ae-phase').textContent='Guardado';
+  logSes('Lab 5 — Metacognición',3);updateHome();
+}
+
+/* ── MÉTODO DE LOCI ── */
+var LOCI_RECS={
+  casa:{label:'🏠 Mi casa',emojis:['🚪','🛋️','🍳','🛏️','🚿','📚','🌿','🅿️','💡','🪟'],names:['Puerta','Sala','Cocina','Cuarto','Baño','Estudio','Patio','Garage','Pasillo','Ventana']},
+  uni:{label:'🎓 Universidad',emojis:['🚌','🏢','🎓','📚','🍽️','⚗️','🌳','🏋️','🏥','🅿️'],names:['Entrada','Recepción','Aula','Biblioteca','Cafetería','Laboratorio','Jardín','Gimnasio','Bienestar','Parqueadero']},
+  calle:{label:'🛣️ Mi camino',emojis:['🏠','🌳','🏪','🚦','🌉','🏫','⛪','🏦','🛒','🎯'],names:['Casa','Árbol grande','Tienda','Semáforo','Puente','Colegio','Iglesia','Banco','Supermercado','Destino']}
+};
+var loci={rec:null,estaciones:[],tema:'',recallIdx:0,recallScore:0,recallOrder:[]};
+function lociTab(n){
+  for(var i=1;i<=4;i++){
+    var t=document.getElementById('loci-t'+i);
+    var btn=document.getElementById('lt'+i);
+    if(t)t.style.display=i===n?'block':'none';
+    if(btn){btn.style.background=i===n?'#2d2650':'none';btn.style.color=i===n?'#b3abff':'#5c5a7a';}
+  }
+  if(n===3)lociRenderMap();
+  if(n===4)lociInitRecall();
+}
+function lociSelectRec(key){
+  loci.rec=key;
+  var r=LOCI_RECS[key];
+  document.getElementById('loci-rec-selected').style.display='block';
+  document.getElementById('loci-rec-selected').textContent='✓ '+r.label+' seleccionado';
+  document.getElementById('loci-next1').style.display='';
+  ['casa','uni','calle'].forEach(function(k){
+    var b=document.getElementById('lrec-'+k);
+    if(b){b.style.borderColor=k===key?'#8b7ff5':'#2a2a3a';b.style.color=k===key?'#b3abff':'#9996b8';}
+  });
+}
+function lociCargar(){
+  if(!loci.rec){showSaved('loci-carga-msg');return;}
+  var texto=document.getElementById('loci-conceptos').value.trim();
+  var tema=document.getElementById('loci-tema').value.trim();
+  if(!texto)return;
+  var conceptos=texto.split('\n').filter(function(c){return c.trim();}).slice(0,10);
+  loci.tema=tema;
+  var r=LOCI_RECS[loci.rec];
+  loci.estaciones=conceptos.map(function(c,i){
+    return {emoji:r.emojis[i],name:r.names[i],concept:c,imagen:'',sensory:''};
+  });
+  showSaved('loci-carga-msg');
+  document.getElementById('loci-phase').textContent=conceptos.length+' conceptos cargados';
+  setTimeout(function(){lociTab(3);},600);
+}
+function lociRenderMap(){
+  var el=document.getElementById('loci-stations-map');
+  if(!loci.estaciones.length){el.innerHTML='<div style="color:#5c5a7a;font-size:12px;text-align:center;grid-column:1/-1;padding:1rem">Carga conceptos primero ↑</div>';return;}
+  el.innerHTML=loci.estaciones.map(function(e,i){
+    var ok=e.imagen.length>0;
+    return '<div onclick="lociOpenStation('+i+')" style="height:58px;border-radius:8px;background:'+(ok?'#2d2650':'#1c1c28')+';border:2px solid '+(ok?'#8b7ff5':'#2a2a3a')+';cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .15s;font-size:1.2rem">'+
+      e.emoji+'<div style="font-size:8px;color:'+(ok?'#b3abff':'#5c5a7a')+';font-family:monospace;margin-top:2px">'+(ok?'✓':'+')+' '+e.name+'</div></div>';
+  }).join('');
+  var loaded=loci.estaciones.filter(function(e){return e.imagen;}).length;
+  document.getElementById('loci-to-recall').style.display=loaded>0?'':'none';
+}
+function lociOpenStation(i){
+  var e=loci.estaciones[i];
+  var form=document.getElementById('loci-station-form');
+  form.style.display='block';form.setAttribute('data-idx',i);
+  document.getElementById('loci-st-emoji').textContent=e.emoji;
+  document.getElementById('loci-st-place').textContent=e.name;
+  document.getElementById('loci-st-concept').textContent='Concepto: '+e.concept;
+  document.getElementById('loci-img-text').value=e.imagen||'';
+  document.getElementById('loci-img-sensory').value=e.sensory||'';
+  document.getElementById('loci-img-msg').style.display='none';
+  form.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function lociGuardarImg(){
+  var idx=parseInt(document.getElementById('loci-station-form').getAttribute('data-idx'));
+  var img=document.getElementById('loci-img-text').value.trim();
+  if(!img)return;
+  loci.estaciones[idx].imagen=img;
+  loci.estaciones[idx].sensory=document.getElementById('loci-img-sensory').value;
+  showSaved('loci-img-msg');
+  setTimeout(function(){lociRenderMap();},400);
+}
+function lociInitRecall(){
+  var loaded=loci.estaciones.filter(function(e){return e.imagen;});
+  if(!loaded.length){document.getElementById('loci-recall-card').innerHTML='<div style="color:#5c5a7a;font-size:13px;padding:1rem;text-align:center">Agrega imágenes mentales en el paso ③ primero</div>';return;}
+  loci.recallOrder=loaded.sort(function(){return Math.random()-.5;});
+  loci.recallIdx=0;loci.recallScore=0;
+  document.getElementById('loci-r-total').textContent=loci.recallOrder.length;
+  document.getElementById('loci-r-score').textContent=0;
+  document.getElementById('loci-r-pct').textContent='—';
+  document.getElementById('loci-r-bar').style.width='0%';
+  lociShowRecall();
+}
+function lociShowRecall(){
+  if(loci.recallIdx>=loci.recallOrder.length){
+    var pct=Math.round(loci.recallScore/loci.recallOrder.length*100);
+    document.getElementById('loci-r-pct').textContent=pct+'%';
+    document.getElementById('loci-recall-card').innerHTML=
+      '<div style="font-size:2.5rem;margin-bottom:8px">🏆</div>'+
+      '<div style="font-size:15px;font-weight:600;color:#b3abff;margin-bottom:6px">Recorrido completado</div>'+
+      '<div style="font-size:13px;color:#9996b8">Retención: <strong style="color:'+(pct>=80?'#34d399':pct>=60?'#fbbf24':'#f97066')+'">'+pct+'%</strong></div>'+
+      '<div style="font-size:11px;color:#5c5a7a;margin-top:6px;font-family:monospace">'+(pct>=80?'Consolidación sináptica óptima ✓':'Repasa el recorrido mañana')+'</div>';
+    logSes('Lab 6 — Mnemotécnicas',3);updateHome();
+    return;
+  }
+  var e=loci.recallOrder[loci.recallIdx];
+  document.getElementById('loci-r-emoji').textContent=e.emoji;
+  document.getElementById('loci-r-place').textContent=e.name;
+  document.getElementById('loci-r-question').textContent='¿Qué concepto está en "'+e.name+'"?';
+  document.getElementById('loci-r-bar').style.width=Math.round(loci.recallIdx/loci.recallOrder.length*100)+'%';
+  var wrong=loci.estaciones.filter(function(s){return s.concept!==e.concept;}).sort(function(){return Math.random()-.5;}).slice(0,3).map(function(s){return s.concept;});
+  var opts=[e.concept].concat(wrong).sort(function(){return Math.random()-.5;});
+  document.getElementById('loci-r-options').innerHTML=opts.map(function(o){
+    return '<button onclick="lociRecallAnswer(this,\''+o.replace(/'/g,"\\'")+'\')" style="padding:10px 14px;border:1px solid #2a2a3a;background:#16161f;border-radius:8px;font-size:13px;cursor:pointer;color:#9996b8;text-align:left;transition:all .15s">'+o+'</button>';
+  }).join('');
+  document.getElementById('loci-r-fb').style.display='none';
+}
+function lociRecallAnswer(btn,chosen){
+  var correct=loci.recallOrder[loci.recallIdx].concept;
+  document.getElementById('loci-r-options').querySelectorAll('button').forEach(function(b){b.onclick=null;});
+  if(chosen===correct){
+    btn.style.background='#0d3d28';btn.style.borderColor='#34d399';btn.style.color='#a7f3d0';
+    loci.recallScore++;document.getElementById('loci-r-score').textContent=loci.recallScore;
+    showFB('loci-r-fb','Correcto ✓','ok');
+  } else {
+    btn.style.background='#3d1a18';btn.style.borderColor='#f97066';btn.style.color='#fca5a1';
+    document.getElementById('loci-r-options').querySelectorAll('button').forEach(function(b){if(b.textContent===correct){b.style.background='#0d3d28';b.style.borderColor='#34d399';b.style.color='#a7f3d0';}});
+    showFB('loci-r-fb','Era: '+correct,'err');
+  }
+  loci.recallIdx++;
+  setTimeout(lociShowRecall,1200);
+}
+
+/* ── TÉCNICA FEYNMAN ── */
+function feynmanSave(){
+  var c=document.getElementById('fey-concept').value.trim();
+  if(!c)return;
+  S.push('feynman',{date:new Date().toLocaleDateString('es-CO'),concept:c,
+    simple:document.getElementById('fey-simple').value,
+    gaps:document.getElementById('fey-gaps').value,
+    analogy:document.getElementById('fey-analogy').value});
+  showSaved('fey-saved-msg');
+  feynmanRenderHistory();
+  logSes('Lab 6 — Mnemotécnicas',5);updateHome();
+}
+function feynmanRenderHistory(){
+  var a=S.get('feynman')||[];
+  var el=document.getElementById('fey-history');
+  if(!a.length){el.innerHTML='';return;}
+  el.innerHTML=a.slice(0,3).map(function(e){
+    return '<div class="diary-entry"><div class="diary-meta"><span class="diary-date">'+e.date+'</span><span class="diary-lab" style="background:#3d0d42;color:#f0abfc">'+e.concept+'</span></div></div>';
+  }).join('');
+}
+
+/* ── HISTORIA ENCADENADA ── */
+function hcSave(){
+  var lista=document.getElementById('hc-lista').value.trim();
+  var historia=document.getElementById('hc-historia').value.trim();
+  if(!lista||!historia)return;
+  S.push('hcadenadada',{date:new Date().toLocaleDateString('es-CO'),lista:lista,historia:historia});
+  showSaved('hc-saved-msg');
+  logSes('Lab 6 — Mnemotécnicas',3);updateHome();
+}
+
+/* ── CODIFICACIÓN ELABORATIVA ── */
+function ceSave(){
+  var c=document.getElementById('ce-concept').value.trim();
+  if(!c)return;
+  S.push('elaborativa',{date:new Date().toLocaleDateString('es-CO'),concept:c,
+    imagen:document.getElementById('ce-imagen').value,
+    emocion:document.getElementById('ce-emocion').value,
+    conexion:document.getElementById('ce-conexion').value});
+  showSaved('ce-saved-msg');
+  logSes('Lab 6 — Mnemotécnicas',2);updateHome();
+}
+
+/* ── ACRÓNIMOS GENERATIVOS ── */
+function acroGenerar(){
+  var lista=document.getElementById('acro-lista').value.trim().split('\n').filter(function(l){return l.trim();});
+  if(!lista.length)return;
+  var iniciales=lista.map(function(l){return l.trim()[0].toUpperCase();}).join('');
+  var el=document.getElementById('acro-sugerencias');
+  el.innerHTML='<div style="padding:10px;background:#1c1c28;border-radius:8px;border:1px solid #2a2a3a;margin-bottom:8px">'+
+    '<div style="font-size:11px;color:#5c5a7a;font-family:monospace;margin-bottom:6px">Iniciales extraídas:</div>'+
+    '<div style="font-size:1.5rem;font-weight:700;color:#b3abff;font-family:monospace;letter-spacing:4px">'+iniciales+'</div>'+
+    '<div style="font-size:11px;color:#5c5a7a;margin-top:6px">Crea una frase memorable donde cada palabra empiece con estas letras</div></div>';
+  document.getElementById('acro-result').placeholder='ej: '+iniciales+' — [tu frase aquí]';
+}
+function acroSave(){
+  var lista=document.getElementById('acro-lista').value.trim();
+  var result=document.getElementById('acro-result').value.trim();
+  if(!lista||!result)return;
+  S.push('acronimos',{date:new Date().toLocaleDateString('es-CO'),lista:lista,acronimo:result});
+  showSaved('acro-saved-msg');
+  acroRenderHistory();
+  logSes('Lab 6 — Mnemotécnicas',2);updateHome();
+}
+function acroRenderHistory(){
+  var a=S.get('acronimos')||[];
+  var el=document.getElementById('acro-history');
+  if(!a.length){el.innerHTML='';return;}
+  el.innerHTML=a.slice(0,3).map(function(e){
+    return '<div class="diary-entry"><div class="diary-meta"><span class="diary-date">'+e.date+'</span><span class="diary-lab" style="background:#3d0d42;color:#f0abfc">'+e.acronimo+'</span></div></div>';
+  }).join('');
+}
+
+/* ── REVALUACIÓN COGNITIVA ── */
+function rvSave(){
+  var sit=document.getElementById('rv-situation').value.trim();
+  if(!sit)return;
+  S.push('revaluacion',{date:new Date().toLocaleDateString('es-CO'),situation:sit,
+    initial:document.getElementById('rv-initial').value,
+    r1:document.getElementById('rv-r1').value,
+    r2:document.getElementById('rv-r2').value,
+    r3:document.getElementById('rv-r3').value,
+    action:document.getElementById('rv-action').value});
+  showSaved('rv-saved-msg');
+  logSes('Lab 5 — Metacognición',5);updateHome();
+}
+
+/* ── CALENDARIO DE ESPACIADO ── */
+var calExams=[];
+function calAdd(){
+  var mat=document.getElementById('cal-materia').value.trim();
+  var fecha=document.getElementById('cal-fecha').value;
+  if(!mat||!fecha)return;
+  calExams.push({materia:mat,fecha:fecha});
+  document.getElementById('cal-materia').value='';
+  document.getElementById('cal-fecha').value='';
+  calRenderList();
+  if(calExams.length>0)document.getElementById('cal-gen-btn').style.display='';
+}
+function calRenderList(){
+  var el=document.getElementById('cal-exams-list');
+  if(!calExams.length){el.innerHTML='';return;}
+  el.innerHTML=calExams.map(function(e,i){
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px;background:#1c1c28;border-radius:8px;margin-bottom:6px;border:1px solid #2a2a3a">'+
+      '<div style="flex:1;font-size:13px;color:#f0eff8">'+e.materia+'</div>'+
+      '<div style="font-size:11px;font-family:monospace;color:#2dd4bf">'+e.fecha+'</div>'+
+      '<button onclick="calRemove('+i+')" style="background:none;border:none;color:#5c5a7a;cursor:pointer;font-size:14px">✕</button></div>';
+  }).join('');
+}
+function calRemove(i){calExams.splice(i,1);calRenderList();if(!calExams.length)document.getElementById('cal-gen-btn').style.display='none';}
+function calGenerate(){
+  var INTERVALS=[1,3,7,14,30];
+  var LABELS=['1 día antes','3 días antes','1 semana antes','2 semanas antes','1 mes antes'];
+  var colors=['#3d1a18','#3d2d08','#0d3d38','#2d2650','#1e2d4a'];
+  var textColors=['#fca5a1','#fde68a','#99f6e4','#b3abff','#93c5fd'];
+  var plan=[];
+  calExams.forEach(function(e){
+    var examDate=new Date(e.fecha);
+    INTERVALS.forEach(function(days,j){
+      var repaso=new Date(examDate);
+      repaso.setDate(repaso.getDate()-days);
+      if(repaso>=new Date()){
+        plan.push({materia:e.materia,fecha:repaso.toLocaleDateString('es-CO'),dias:days,label:LABELS[j],ci:j});
+      }
+    });
+  });
+  plan.sort(function(a,b){return new Date(a.fecha)-new Date(b.fecha);});
+  document.getElementById('cal-plan').innerHTML=plan.length?plan.map(function(p){
+    return '<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:'+colors[p.ci]+';border-radius:8px;margin-bottom:6px;border:1px solid '+textColors[p.ci]+'33">'+
+      '<div style="font-size:11px;font-family:monospace;color:'+textColors[p.ci]+';min-width:80px">'+p.fecha+'</div>'+
+      '<div style="flex:1;font-size:13px;color:'+textColors[p.ci]+';font-weight:500">'+p.materia+'</div>'+
+      '<div style="font-size:10px;color:'+textColors[p.ci]+'99;font-family:monospace">'+p.label+'</div></div>';
+  }).join(''):'<div style="color:#5c5a7a;font-size:12px;text-align:center;padding:1rem">Todos los repasos ya pasaron — agrega fechas futuras</div>';
+  document.getElementById('cal-schedule').style.display='block';
+  document.getElementById('cal-phase').textContent=plan.length+' repasos programados';
+  S.set('calendario',{exams:calExams,plan:plan,date:new Date().toLocaleDateString('es-CO')});
+  logSes('Lab 4 — Planificación',1);updateHome();
+}
+
+
+/* ── DASHBOARD SISTEMA COMPLETO ── */
+var PROGRAMAS=['Derecho','Economía','Adm. de Empresas','Ing. de Sistemas','Ing. Industrial','Diseño de Modas','Contaduría Pública','Publicidad'];
+var RANGOS=[
+  {min:0,name:'Potencial Sináptico',badge:'🧬',sub:'Completa tu primera sesión para activar tu conectoma',color:'#5c5a7a'},
+  {min:5,name:'Explorador Prefrontal',badge:'🔬',sub:'Has activado tu corteza prefrontal. El viaje comienza.',color:'#8b7ff5'},
+  {min:20,name:'Arquitecto de Memoria',badge:'🏛️',sub:'Tu hipocampo está construyendo estructuras duraderas.',color:'#2dd4bf'},
+  {min:50,name:'Estratega de Conectómica',badge:'⚡',sub:'Tus redes prefrontales operan en sincronía theta-gamma.',color:'#fbbf24'},
+  {min:100,name:'Maestro de la Plasticidad',badge:'🧠',sub:'Has alcanzado el nivel máximo de neuroplasticidad entrenada.',color:'#e879f9'}
+];
+var LOGROS=[
+  {id:'primera',icon:'🌱',name:'Señal Dopaminérgica',desc:'Completaste tu primera sesión. El viaje neuroplástico comienza.',cond:function(d){return d.totalSes>=1;}},
+  {id:'racha7',icon:'🔥',name:'Poda Superada',desc:'7 días consecutivos. La sinapsis que se usa, sobrevive.',cond:function(d){return d.racha>=7;}},
+  {id:'racha30',icon:'🏆',name:'Corredor de Fondo',desc:'30 días activo. Neuroplasticidad estructural consolidada.',cond:function(d){return d.racha>=30;}},
+  {id:'explorador',icon:'🗺️',name:'Explorador del Conectoma',desc:'Has visitado los 6 laboratorios. Tu red prefrontal está mapeada.',cond:function(d){return d.labsVisited>=6;}},
+  {id:'theta',icon:'🌊',name:'Sincronía Theta',desc:'5 sesiones de respiración. Tus ondas theta están calibradas.',cond:function(d){return d.respiracion>=5;}},
+  {id:'feynman',icon:'💡',name:'Efecto Feynman',desc:'10 conceptos simplificados. Complejidad que se vuelve claridad.',cond:function(d){return d.feynman>=10;}},
+  {id:'inhibidor',icon:'🛑',name:'Inhibidor Maestro',desc:'0 falsas alarmas en Go/No-Go. Control prefrontal absoluto.',cond:function(d){return d.gonogoPerf===true;}},
+  {id:'loci3',icon:'🏰',name:'Maestro del Loci',desc:'3 palacios de memoria construidos. El hipocampo navega en el espacio.',cond:function(d){return d.lociPalacios>=3;}},
+  {id:'sm50',icon:'📚',name:'Arquitecto Hipocampal',desc:'50 flashcards SM-2. Tu hipocampo construye palacios de conocimiento.',cond:function(d){return d.sm2Cards>=50;}},
+  {id:'nback3',icon:'🎯',name:'Sincronía Theta-Gamma',desc:'N-Back nivel 3 alcanzado. Acoplamiento de alta frecuencia.',cond:function(d){return d.nbackLevel>=3;}},
+  {id:'pomodoro10',icon:'⏱️',name:'Flujo Cognitivo',desc:'10 Pomodoros completados. Estado de flow repetido y consolidado.',cond:function(d){return d.pomodoros>=10;}},
+  {id:'meditacion10',icon:'🧘',name:'Mente Samatha',desc:'10 sesiones de meditación. Calma prefrontal entrenada y sostenida.',cond:function(d){return d.meditaciones>=10;}},
+  {id:'stroop0',icon:'🌈',name:'Impulso Inhibido',desc:'Stroop sin errores. El dlPFC venció al automatismo verbal.',cond:function(d){return d.stroopPerf===true;}},
+  {id:'span7',icon:'🔢',name:'Bucle Fonológico',desc:'Span de dígitos nivel 7. Memoria verbal de élite.',cond:function(d){return d.spanLevel>=7;}},
+  {id:'revaluacion5',icon:'💭',name:'Regulador Emocional',desc:'5 revaluaciones cognitivas. El vlPFC domina la amígdala.',cond:function(d){return d.revaluaciones>=5;}},
+  {id:'focus60',icon:'🎵',name:'Vigilia Cortical',desc:'60 minutos de foco profundo con ruido rosa. Arousal óptimo sostenido.',cond:function(d){return d.focusMin>=60;}},
+  {id:'analogias10',icon:'🔗',name:'Pensamiento Relacional',desc:'10 analogías estructurales. Razonamiento frontal avanzado activado.',cond:function(d){return d.analogias>=10;}},
+  {id:'ses100',icon:'💎',name:'Constructor de Redes',desc:'100 sesiones totales. Tu conectoma está en plena expansión.',cond:function(d){return d.totalSes>=100;}},
+  {id:'calendario',icon:'📅',name:'Arquitecto del Tiempo',desc:'Primer calendario de espaciado generado. Ebbinghaus en acción.',cond:function(d){return d.calendario===true;}},
+  {id:'maestro',icon:'🧠',name:'Arquitecto de la Mente',desc:'Rango Maestro de Plasticidad alcanzado. Neuroplasticidad completa.',cond:function(d){return d.totalSes>=100&&d.racha>=30;}}
+];
+
+// ── ONBOARDING ──
+var obData={nombre:'',rol:'estudiante',programa:'',color:'#8b7ff5',colorName:'violet'};
+function obCheck(){
+  var profile=S.get('userProfile');
+  if(!profile){
+    document.getElementById('onboarding-overlay').style.display='flex';
+  } else {
+    obData=profile;
+    applyUserProfile();
+    setTimeout(function(){applyRolUI();applyRolTextos();},200);
+    neuroInit();
+  }
+}
+function obNext(step){
+  if(step===2){
+    var n=document.getElementById('ob-nombre').value.trim();
+    if(!n)return;
+    obData.nombre=n;
+  }
+  document.querySelectorAll('.onboarding-step').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('ob-step'+step).classList.add('active');
+}
+function obSelectRol(btn,rol){
+  obData.rol=rol;
+  document.querySelectorAll('#ob-step2 .programa-btn').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+  var rolBtn=document.getElementById('ob-rol-btn');
+  rolBtn.disabled=false;rolBtn.style.opacity='1';
+  // Administrativo: saltar selección de programa
+  if(rol==='administrativo'){
+    obData.programa='Administrativos';
+    rolBtn.textContent='Continuar →';
+    rolBtn.onclick=function(){obNext(4);};
+  } else {
+    rolBtn.textContent='Continuar →';
+    rolBtn.onclick=function(){obNext(3);};
+    if(rol==='docente'){
+      document.getElementById('ob-step3-icon').textContent='👨‍🏫';
+      document.getElementById('ob-step3-title').textContent='¿Cuál es tu programa?';
+      document.getElementById('ob-step3-sub').textContent='Esto personaliza el ranking docente.';
+      document.getElementById('ob-programas-est').style.display='none';
+      document.getElementById('ob-programas-doc').style.display='grid';
+    } else {
+      document.getElementById('ob-step3-icon').textContent='🎓';
+      document.getElementById('ob-step3-title').textContent='¿Cuál es tu programa?';
+      document.getElementById('ob-step3-sub').textContent='Esto nos permite personalizar el ranking por facultad.';
+      document.getElementById('ob-programas-est').style.display='grid';
+      document.getElementById('ob-programas-doc').style.display='none';
+    }
+  }
+}
+function obSelectProg(btn,prog){
+  obData.programa=prog;
+  document.querySelectorAll('#ob-step3 .programa-btn').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+  var obBtn=document.getElementById('ob-prog-btn');
+  obBtn.disabled=false;obBtn.style.opacity='1';
+}
+function obSelectColor(el,color,name){
+  obData.color=color;obData.colorName=name;
+  document.querySelectorAll('.color-opt').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+}
+function obFinish(){
+  S.set('userProfile',obData);
+  document.getElementById('onboarding-overlay').style.display='none';
+  applyUserProfile();
+  dashUpdate();
+  neuroInit();
+  setTimeout(function(){neuroShow('home');},600);
+}
+function applyUserProfile(){
+  if(!obData.nombre)return;
+  applyRolUI();
+  applyRolTextos();
+  var rol=obData.rol||'estudiante';
+  var greeting=rol==='docente'?
+    'Bienvenido, Prof. '+obData.nombre+'. Tu mente enseña mejor cuando está entrenada.' :
+    rol==='administrativo'?
+    'Bienvenido, '+obData.nombre+'. Una mente ágil es la base de una gestión eficiente.' :
+    'Bienvenido de nuevo, '+obData.nombre+'. Tu conectoma te espera.';
+  document.getElementById('hero-greeting').textContent=greeting;
+  var badge=document.getElementById('rol-badge');
+  if(!badge){
+    badge=document.createElement('div');
+    badge.id='rol-badge';
+    badge.style.cssText='font-size:10px;font-family:monospace;padding:2px 8px;border-radius:10px;margin-left:6px;display:inline-block';
+    var sub=document.querySelector('.header-sub');
+    if(sub)sub.appendChild(badge);
+  }
+  var badgeMap={
+    'docente':['👨‍🏫 Docente','#0d3d38','#2dd4bf'],
+    'administrativo':['🏛️ Administrativo','#2d1a08','#fbbf24'],
+    'estudiante':['🎓 Estudiante','#2d2650','#b3abff']
+  };
+  var bm=badgeMap[rol]||badgeMap['estudiante'];
+  badge.textContent=bm[0];badge.style.background=bm[1];badge.style.color=bm[2];
+}
+
+// ── DATOS DEL DASHBOARD ──
+function getDashData(){
+  var diary=S.get('diary')||[];
+  var meta=S.get('meta')||[];
+  var all=[...diary,...meta];
+  var totalSes=all.length;
+  var totalMin=diary.reduce(function(a,e){return a+(parseInt(e.min)||0);},0);
+  // Racha
+  var racha=0;
+  if(all.length>0){
+    var today=new Date().toLocaleDateString('es-CO');
+    var dates=[...new Set(all.map(function(e){return e.date;}))].sort();
+    var consecutive=0;
+    var checkDate=new Date();
+    for(var i=0;i<30;i++){
+      var d=checkDate.toLocaleDateString('es-CO');
+      if(dates.includes(d)){consecutive++;}
+      else if(i>0)break;
+      checkDate.setDate(checkDate.getDate()-1);
+    }
+    racha=consecutive;
+  }
+  // Labs visitados
+  var labsVisited=0;
+  ['lab1','lab2','lab3','lab4','lab5','lab6'].forEach(function(lab){
+    if(diary.some(function(e){return e.lab&&e.lab.toLowerCase().includes(lab.replace('lab','lab '));}))labsVisited++;
+  });
+  // Actividades específicas
+  var respiracion=diary.filter(function(e){return e.lab&&e.lab.includes('Memoria')&&parseInt(e.min)<=3;}).length;
+  var feynman=(S.get('feynman')||[]).length;
+  var lociPalacios=S.get('loci_palaces_count')||0;
+  var sm2Cards=(S.get('sm2cards')||[]).length;
+  var nbackLevel=S.get('nback_best_level')||1;
+  var pomodoros=S.get('pom_total')||0;
+  var meditaciones=diary.filter(function(e){return e.lab&&e.lab.includes('Metacog')&&parseInt(e.min)>=5;}).length;
+  var revaluaciones=(S.get('revaluacion')||[]).length;
+  var analogias=(S.get('analogies')||[]).length;
+  var focusMin=S.get('focus_minutes')||0;
+  var spanLevel=S.get('span_best')||1;
+  var calendario=!!(S.get('calendario'));
+  // PX: 10 por sesión + 5 bonus por racha
+  var px=totalSes*10+(racha>3?racha*5:0);
+  return {totalSes:totalSes,totalMin:totalMin,racha:racha,labsVisited:labsVisited,
+    respiracion:respiracion,feynman:feynman,lociPalacios:lociPalacios,sm2Cards:sm2Cards,
+    nbackLevel:nbackLevel,pomodoros:pomodoros,meditaciones:meditaciones,
+    revaluaciones:revaluaciones,analogias:analogias,focusMin:focusMin,
+    spanLevel:spanLevel,calendario:calendario,px:px,
+    gonogoPerf:S.get('gng_perfect')||false,stroopPerf:S.get('stroop_perfect')||false};
+}
+
+// ── CEREBRO SVG ──
+function updateBrain(d){
+  var now=Date.now();
+  var diary=S.get('diary')||[];
+  var labs=['lab1','lab2','lab3','lab4','lab5','lab6'];
+  var labNames=['Memoria de Trabajo','Control Inhibitorio','Flexibilidad','Planificación','Metacognición','Mnemotécnicas'];
+  labs.forEach(function(lab,i){
+    var zone=document.getElementById('zone-'+lab);
+    if(!zone)return;
+    var lastEntry=diary.filter(function(e){return e.lab&&e.lab.toLowerCase().includes(labNames[i].toLowerCase().split(' ')[0]);}).pop();
+    if(!lastEntry){
+      zone.classList.remove('warm','cool');zone.classList.add('cold');
+    } else {
+      var lastDate=new Date(lastEntry.date.split('/').reverse().join('-')||Date.now());
+      var hoursAgo=(now-lastDate.getTime())/3600000;
+      zone.classList.remove('warm','cool','cold');
+      if(hoursAgo<72){zone.classList.add('warm');}
+      else if(hoursAgo<168){zone.classList.add('cool');}
+      else{zone.classList.add('cold');}
+    }
+  });
+  // Pulso en zonas activas
+  var warmZones=document.querySelectorAll('.brain-zone.warm');
+  warmZones.forEach(function(z){
+    var pulse=z.querySelector('circle');
+    if(pulse){pulse.style.animation='brain-pulse-anim 2s infinite';}
+  });
+  // Status text
+  var activeCount=document.querySelectorAll('.brain-zone.warm').length;
+  var statusEl=document.getElementById('brain-status');
+  if(statusEl){
+    if(activeCount===0)statusEl.textContent='Inicia sesiones para iluminar tu conectoma';
+    else if(activeCount<3)statusEl.textContent=activeCount+' zona'+(activeCount>1?'s':'')+' activa'+(activeCount>1?'s':'')+' · Continúa entrenando';
+    else if(activeCount<6)statusEl.textContent=activeCount+' zonas activas · Tu red prefrontal se expande';
+    else statusEl.textContent='¡Conectoma completo activo! Neuroplasticidad máxima ✓';
+  }
+}
+
+// ── RANGO ──
+function updateRango(d){
+  var rango=RANGOS[0];
+  for(var i=RANGOS.length-1;i>=0;i--){if(d.totalSes>=RANGOS[i].min){rango=RANGOS[i];break;}}
+  var nextRango=RANGOS[Math.min(RANGOS.indexOf(rango)+1,RANGOS.length-1)];
+  var progress=rango===nextRango?100:Math.round((d.totalSes-rango.min)/(nextRango.min-rango.min)*100);
+  document.getElementById('rank-badge').textContent=rango.badge;
+  document.getElementById('rank-name').textContent=rango.name;
+  document.getElementById('rank-sub').textContent=rango.sub;
+  document.getElementById('rank-bar').style.width=progress+'%';
+  document.getElementById('rank-bar').style.background=rango.color;
+  if(rango===nextRango){
+    document.getElementById('rank-next').textContent='¡Nivel máximo alcanzado! '+rango.badge;
+  } else {
+    document.getElementById('rank-next').textContent=d.totalSes+' / '+nextRango.min+' sesiones para "'+nextRango.name+'"';
+  }
+}
+
+// ── MÉTRICAS ──
+function updateMetrics(d){
+  document.getElementById('dash-streak').textContent=d.racha;
+  document.getElementById('dash-px').textContent=d.px;
+  document.getElementById('dash-focus').textContent=d.focusMin;
+  document.getElementById('h-ses').textContent=d.totalSes;
+  document.getElementById('h-min').textContent=d.totalMin;
+  document.getElementById('h-dias').textContent=d.racha;
+}
+
+// ── LOGROS ──
+var logrosUnlocked=[];
+function updateLogros(d){
+  var prev=S.get('logros_unlocked')||[];
+  var newUnlocks=[];
+  LOGROS.forEach(function(l){
+    if(l.cond(d)&&!prev.includes(l.id)){newUnlocks.push(l);prev.push(l.id);}
+  });
+  if(newUnlocks.length)S.set('logros_unlocked',prev);
+  logrosUnlocked=prev;
+  // Mostrar toast para nuevos
+  if(newUnlocks.length>0){
+    setTimeout(function(){showLogroToast(newUnlocks[0]);},500);
+  }
+  // Render grid
+  var el=document.getElementById('logros-grid');
+  if(!el)return;
+  el.innerHTML=LOGROS.map(function(l){
+    var ok=prev.includes(l.id);
+    return '<div class="logro '+(ok?'unlocked':'')+'" title="'+l.desc+'">'+
+      '<span class="logro-icon">'+l.icon+'</span>'+
+      '<div class="logro-name">'+(ok?l.name:'???')+'</div>'+
+      '</div>';
+  }).join('');
+}
+function showLogroToast(l){
+  neuroSayLogro(l);
+  var toast=document.getElementById('logro-toast');
+  document.getElementById('logro-toast-icon').textContent=l.icon;
+  document.getElementById('logro-toast-name').textContent='🏅 '+l.name;
+  document.getElementById('logro-toast-desc').textContent=l.desc;
+  toast.style.display='flex';
+  setTimeout(function(){toast.classList.add('show');},10);
+  setTimeout(function(){
+    toast.classList.remove('show');
+    setTimeout(function(){toast.style.display='none';},400);
+  },4000);
+}
+
+// ── RANKING FACULTADES ──
+var currentRankingTab='estudiantes';
+function rankingTab(tab){
+  currentRankingTab=tab;
+  var tabMap={'estudiantes':'est','docentes':'doc','administrativos':'adm'};
+  ['est','doc','adm'].forEach(function(t){
+    var btn=document.getElementById('rtab-'+t);
+    if(!btn)return;
+    var active=tabMap[tab]===t;
+    btn.style.background=active?'#2d2650':'none';
+    btn.style.color=active?'#b3abff':'#5c5a7a';
+  });
+  var d=getDashData();
+  updateRanking(d);
+}
+function updateRanking(d){
+  var el=document.getElementById('ranking-card');
+  if(!el)return;
+  var profile=S.get('userProfile');
+  var myProg=profile?profile.programa:'';
+  var myRol=profile?profile.rol:'estudiante';
+  var myPx=d.px;
+  var seed=myPx||10;
+  var medals=['🥇','🥈','🥉'];
+  var tab=currentRankingTab;
+
+  // Pestaña administrativos — categoría única
+  if(tab==='administrativos'){
+    var isMe=myRol==='administrativo';
+    var admPx=isMe?myPx:Math.max(8,Math.floor(seed*0.7+25));
+    var header='<div style="font-size:11px;color:#fbbf24;font-family:monospace;margin-bottom:8px;padding:6px 8px;background:#2d1a08;border-radius:6px">🏛️ Ranking administrativos · Puntos de Plasticidad</div>';
+    var barW=100;
+    var bg=isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
+    var nc=isMe?'color:#fde68a;font-weight:600;':'';
+    el.innerHTML=header+
+      '<div class="ranking-row" style="'+bg+'">'+
+      '<div class="ranking-pos gold">🥇</div>'+
+      '<div style="font-size:11px;margin-right:4px">🏛️</div>'+
+      '<div class="ranking-prog" style="'+nc+'">Administrativos UNICIENCIA'+(isMe?' ← tú':'')+'</div>'+
+      '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+(isMe?'#fbbf24':'#2a2a3a')+'"></div></div>'+
+      '<div class="ranking-px">'+admPx+' PX</div>'+
+      '</div>';
+    return;
+  }
+
+  // Pestañas estudiantes y docentes — 8 programas
+  var esDocente=tab==='docentes';
+  var EST_BASE=[312,287,254,231,198,176,154,132];
+  var DOC_BASE=[187,164,143,121,108,94,82,71];
+  var baseArr=esDocente?DOC_BASE:EST_BASE;
+  var list=PROGRAMAS.map(function(p,i){
+    var isMe=p===myProg&&((tab==='estudiantes'&&myRol==='estudiante')||(tab==='docentes'&&myRol==='docente'));
+    var variation=Math.floor(Math.sin(i*1.7+seed*0.01)*20);
+    var px=isMe?myPx:Math.max(5,baseArr[i]+variation);
+    return {name:p,px:px,icon:esDocente?'👨‍🏫':'🎓',isMe:isMe};
+  });
+  list.sort(function(a,b){return b.px-a.px;});
+  var maxPx=list[0]?list[0].px:1;
+  var header=esDocente?
+    '<div style="font-size:11px;color:#2dd4bf;font-family:monospace;margin-bottom:8px;padding:6px 8px;background:#0d3d38;border-radius:6px">👨‍🏫 Ranking docentes · PX promedio por programa</div>':
+    '<div style="font-size:11px;color:#b3abff;font-family:monospace;margin-bottom:8px;padding:6px 8px;background:#2d2650;border-radius:6px">🎓 Ranking estudiantes · PX promedio por programa</div>';
+  el.innerHTML=header+list.map(function(p,i){
+    var barW=Math.round(p.px/maxPx*100);
+    var bg=p.isMe?'background:#1a1630;border-radius:8px;padding:8px 4px;':'';
+    var nc=p.isMe?'color:#b3abff;font-weight:600;':'';
+    var bc=p.isMe?'#8b7ff5':esDocente?'#2dd4bf':'#2a2a3a';
+    return '<div class="ranking-row" style="'+bg+'">'+
+      '<div class="ranking-pos '+(i<3?['gold','silver','bronze'][i]:'')+'">'+(i<3?medals[i]:i+1)+'</div>'+
+      '<div style="font-size:11px;margin-right:4px">'+p.icon+'</div>'+
+      '<div class="ranking-prog" style="'+nc+'">'+p.name+(p.isMe?' ← tú':'')+'</div>'+
+      '<div style="flex:1;padding:0 8px"><div class="ranking-bar" style="width:'+barW+'%;background:'+bc+'"></div></div>'+
+      '<div class="ranking-px">'+p.px+' PX</div>'+
+      '</div>';
+  }).join('');
+}
+
+// ── UPDATE PRINCIPAL ──
+function dashUpdate(){
+  var d=getDashData();
+  updateBrain(d);
+  updateRango(d);
+  updateMetrics(d);
+  updateLogros(d);
+  updateRanking(d);
+  applyUserProfile();
+  applyRolUI();
+}
+
+/* ── PWA ── */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+function openInstallModal(){document.getElementById('install-overlay').style.display='flex';}
+function closeInstallModal(e){if(!e||e.target===document.getElementById('install-overlay'))document.getElementById('install-overlay').style.display='none';}
+function switchTab(tab){
+  document.querySelectorAll('.install-tab').forEach((t,i)=>t.classList.toggle('active',['android','ios','pc'][i]===tab));
+  document.querySelectorAll('.install-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='android'&&deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted'){closeInstallModal();deferredPrompt=null;}});
+  }
+}
+function installApp(){openInstallModal();}
+window.addEventListener('appinstalled',()=>{deferredPrompt=null;});
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
+}
+/* ── INIT ── */
+renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);
+</script>
+</body>
+</html/* ── NEURO — Personaje guía ── */
+var NEURO_MSGS={
+  'home':[
+    {msg:'¡Bienvenido de vuelta! Tu corteza prefrontal está lista para entrenar. ¿Por dónde empezamos hoy?',tip:'💡 5 a 20 minutos al día producen cambios reales en tu conectoma.',actions:[{label:'→ Ir al Lab 1',fn:"showScreen('lab1')"},{label:'→ Ver ranking',fn:"document.getElementById('ranking-card').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'¿Sabías que la memoria de trabajo es el predictor más fuerte del rendimiento académico, incluso por encima del CI?',tip:'🧠 dlPFC · Parietal Superior · Acoplamiento Theta-Gamma',actions:[{label:'→ Entrenar ahora',fn:"showScreen('lab1')"}]},
+    {msg:'Tu racha sináptica está activa. Cada día que practicas, consolidas nuevas conexiones en tu corteza prefrontal.',tip:'⚡ La neuroplasticidad requiere repetición sostenida — no intensidad.',actions:[{label:'→ Continuar hoy',fn:"showScreen('lab2')"}]}
+  ],
+  'lab1':[
+    {msg:'Este lab entrena tu Memoria de Trabajo — la pizarra mental del cerebro. Te recomiendo empezar con el Span de Dígitos si es tu primera sesión.',tip:'🧠 dlPFC + Parietal Superior · Acoplamiento Theta-Gamma',actions:[{label:'→ Span de Dígitos',fn:"document.querySelector('#screen-lab1 .card').scrollIntoView({behavior:'smooth'})"},{label:'→ Dual N-Back',fn:"document.getElementById('nb-ses-panel').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'El Dual N-Back es la actividad más exigente de este lab. Recuerda: necesitas recordar tanto la POSICIÓN como la LETRA de N turnos atrás.',tip:'💡 Empieza en N1 hasta alcanzar 80% de precisión, luego sube a N2.',actions:[{label:'→ Iniciar N-Back',fn:"nbStart()"}]},
+    {msg:'El Corsi Block mide tu memoria visuoespacial — la misma capacidad que usan los arquitectos y cirujanos. El promedio adulto es span 5-6.',tip:'🏛️ Hipocampo · Corteza Parietal · Vía "dónde" del cerebro',actions:[{label:'→ Iniciar Corsi',fn:"corsiStart()"}]}
+  ],
+  'lab2':[
+    {msg:'El Control Inhibitorio es el "freno" del cerebro. El Stroop activa el conflicto entre la respuesta automática y la respuesta correcta.',tip:'🧠 Circuito Fronto-striatal · Theta frontal · ACC',actions:[{label:'→ Iniciar Stroop',fn:"stroopStart()"}]},
+    {msg:'El Go/No-Go mide tu capacidad de inhibir respuestas impulsivas. En adultos sanos, las falsas alarmas deben ser menores al 15%.',tip:'⚡ Cada error en Go/No-Go es información valiosa — no es un fallo.',actions:[{label:'→ Iniciar Go/No-Go',fn:"gngStart()"}]}
+  ],
+  'lab3':[
+    {msg:'La Flexibilidad Cognitiva te permite cambiar de perspectiva cuando las reglas cambian. El Task Switching mide exactamente eso.',tip:'🧠 DMN · Ganglios Basales · Red de control ejecutivo',actions:[{label:'→ Ver actividades',fn:"document.getElementById('screen-lab3').querySelector('.card').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'La Torre de Hanói no es solo un juego — activa la planificación prospectiva del aPFC. Intenta resolverla en el mínimo de movimientos.',tip:'💡 Mínimo movimientos para N discos = 2ᴺ−1',actions:[{label:'→ Ir a Hanói',fn:"hanoiReset(3)"}]}
+  ],
+  'lab4':[
+    {msg:'La Técnica 3-2-1 activa el aPFC antes de cualquier sesión de trabajo. Solo 6 minutos cambian completamente la calidad de lo que sigue.',tip:'🧠 aPFC · Red Frontoparietal · Planificación prospectiva',actions:[{label:'→ Iniciar 3-2-1',fn:"document.getElementById('p321-obj').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'El Pomodoro no es solo gestión del tiempo — fortalece la anticorrelación DMN-ECN, el mecanismo neural del foco profundo.',tip:'💡 25 min de foco + 5 min de descanso. El descanso NO es opcional.',actions:[{label:'→ Iniciar Pomodoro',fn:"pomStart()"}]}
+  ],
+  'lab5':[
+    {msg:'El Diario Metacognitivo es la actividad con mayor impacto a largo plazo. 5 minutos al finalizar cada sesión consolida el aprendizaje.',tip:'🧠 Triple Red DMN–SN–ECN · Theta frontal aumentada',actions:[{label:'→ Escribir hoy',fn:"document.getElementById('meta-learned').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'La Escritura Expresiva de Pennebaker libera recursos cognitivos bloqueados por la rumiación. 15 minutos reduce el cortisol mediblemente.',tip:'📚 Pennebaker & Smyth: mejoras de hasta 30% en rendimiento posterior.',actions:[{label:'→ Comenzar escritura',fn:"document.getElementById('ew-exam').scrollIntoView({behavior:'smooth'})"}]}
+  ],
+  'lab6':[
+    {msg:'El Método de Loci es la técnica mnemotécnica más antigua y más potente. Construirás un palacio mental para anclar información.',tip:'🧠 Hipocampo · Corteza Temporal · aPFC · Memoria episódica',actions:[{label:'→ Construir palacio',fn:"document.getElementById('loci-tema').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'La Técnica Feynman activa la auto-explicación — el proceso cognitivo con mayor tamaño de efecto en el aprendizaje profundo.',tip:'💡 Si no puedes explicarlo con palabras simples, aún no lo entiendes.',actions:[{label:'→ Aplicar Feynman',fn:"document.getElementById('fey-concept').scrollIntoView({behavior:'smooth'})"}]}
+  ],
+  'labd1':[
+    {msg:'El Calentamiento Cognitivo de 5 minutos puede aumentar la retención de tus estudiantes hasta un 40%. Es la intervención con mejor ratio costo-beneficio.',tip:'📚 Activación prefrontal · LTP hipocampal · Dopamina anticipatoria',actions:[{label:'→ Ver protocolo',fn:"document.getElementById('screen-labd1').querySelector('.collapse-btn').click()"}]}
+  ],
+  'labd2':[
+    {msg:'Los primeros 3 minutos de clase determinan el nivel de atención del resto de la sesión. El gancho cognitivo es tu herramienta más poderosa.',tip:'📚 Locus Coeruleus · Norepinefrina · Red Atencional Dorsal',actions:[{label:'→ Ver protocolo',fn:"document.getElementById('screen-labd2').querySelector('.collapse-btn').click()"}]}
+  ],
+  'labd3':[
+    {msg:'Sin repaso espaciado, tus estudiantes olvidan el 70% en 24 horas. El diseño con espaciado revierte esto con mínimo esfuerzo adicional.',tip:'📚 Curva del olvido de Ebbinghaus · Consolidación hipocampal · LTP',actions:[{label:'→ Ver protocolo',fn:"document.getElementById('screen-labd3').querySelector('.collapse-btn').click()"}]}
+  ],
+  'labd4':[
+    {msg:'Puedes leer la fatiga mental de tu grupo antes de que sea demasiado tarde. Aprende las señales neuroconductuales que preceden a la desconexión.',tip:'📚 Cortisol · Agotamiento prefrontal · BDNF',actions:[{label:'→ Ver indicadores',fn:"document.getElementById('screen-labd4').querySelector('.collapse-btn').click()"}]}
+  ],
+  'diario':[
+    {msg:'El diario es donde todo se integra. Registrar lo que practicaste activa la metacognición — el proceso que más acelera el aprendizaje futuro.',tip:'💡 Escribe siempre en los primeros 5 minutos después de practicar.',actions:[{label:'→ Nueva entrada',fn:"document.getElementById('d-text').focus()"}]}
+  ]
+};
+
+var neuroState={open:false,currentLab:'home',msgIdx:0,rotateIv:null};
+
+function neuroInit(){
+  var fab=document.getElementById('neuro-fab');
+  if(fab)fab.style.display='flex';
+}
+
+function neuroGetMsgs(lab){
+  return NEURO_MSGS[lab]||NEURO_MSGS['home'];
+}
+
+function neuroRenderMsg(lab,idx){
+  var msgs=neuroGetMsgs(lab);
+  idx=((idx%msgs.length)+msgs.length)%msgs.length;
+  neuroState.msgIdx=idx;
+  var m=msgs[idx];
+  document.getElementById('neuro-msg').textContent=m.msg;
+  var tipEl=document.getElementById('neuro-tip');
+  if(m.tip){tipEl.textContent=m.tip;tipEl.style.display='block';}
+  else tipEl.style.display='none';
+  // Botones de acción
+  var actEl=document.getElementById('neuro-actions');
+  actEl.innerHTML='';
+  if(m.actions){
+    m.actions.forEach(function(a){
+      var btn=document.createElement('button');
+      btn.className='neuro-action-btn';
+      btn.textContent=a.label;
+      btn.onclick=function(){try{eval(a.fn);}catch(e){}neuroClose();};
+      actEl.appendChild(btn);
+    });
+  }
+  // Dots de navegación
+  var dotsEl=document.getElementById('neuro-dots');
+  dotsEl.innerHTML='';
+  if(msgs.length>1){
+    msgs.forEach(function(_,i){
+      var d=document.createElement('div');
+      d.className='neuro-msg-dot'+(i===idx?' active':'');
+      d.onclick=function(){neuroRenderMsg(neuroState.currentLab,i);};
+      dotsEl.appendChild(d);
+    });
+  }
+}
+
+function neuroStartRotation(lab){
+  clearInterval(neuroState.rotateIv);
+  var msgs=neuroGetMsgs(lab);
+  if(msgs.length>1){
+    neuroState.rotateIv=setInterval(function(){
+      if(neuroState.open){
+        neuroRenderMsg(lab,(neuroState.msgIdx+1));
+      }
+    },18000);
+  }
+}
+
+function neuroShow(lab){
+  neuroState.currentLab=lab||'home';
+  neuroRenderMsg(neuroState.currentLab,0);
+  neuroStartRotation(neuroState.currentLab);
+  var visto=S.get('neuro_visto')||{};
+  if(!visto[neuroState.currentLab]){
+    visto[neuroState.currentLab]=true;
+    S.set('neuro_visto',visto);
+    setTimeout(function(){
+      neuroOpen();
+      var badge=document.getElementById('neuro-badge-new');
+      if(badge)badge.classList.add('show');
+    },900);
+  }
+}
+
+function neuroOpen(){
+  neuroState.open=true;
+  var bubble=document.getElementById('neuro-bubble');
+  if(bubble)bubble.classList.add('show');
+  var badge=document.getElementById('neuro-badge-new');
+  if(badge)badge.classList.remove('show');
+}
+
+function neuroClose(){
+  neuroState.open=false;
+  var bubble=document.getElementById('neuro-bubble');
+  if(bubble)bubble.classList.remove('show');
+}
+
+function neuroToggle(){
+  if(neuroState.open){neuroClose();}
+  else{neuroRenderMsg(neuroState.currentLab,neuroState.msgIdx);neuroOpen();}
+}
+
+function neuroSayLogro(logro){
+  neuroRenderMsg=function(){};
+  document.getElementById('neuro-msg').textContent='¡Felicitaciones! Desbloqueaste "'+logro.name+'" — '+logro.desc;
+  var tipEl=document.getElementById('neuro-tip');
+  tipEl.textContent='⚡ Cada logro es evidencia de neuroplasticidad activa.';
+  tipEl.style.display='block';
+  document.getElementById('neuro-actions').innerHTML='';
+  neuroOpen();
+  setTimeout(function(){
+    neuroClose();
+    neuroRenderMsg=neuroRenderMsgOrig;
+  },5500);
+}
+var neuroRenderMsgOrig=neuroRenderMsg;
+
 
 /* ── PRE-TESTING ── */
 function ptSave(){
