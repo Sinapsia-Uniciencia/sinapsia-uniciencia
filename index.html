@@ -3208,7 +3208,7 @@ function nbLevel(d){if(nb.running)return;nb.level=Math.max(1,Math.min(4,nb.level
 function nbStart(){
   if(nb.running){clearInterval(nb.iv);nb.running=false;
     nbFinalizar();document.getElementById('nb-start-btn').textContent='Iniciar sesión (20 turnos)';document.getElementById('nb-phase').textContent='Detenido';document.getElementById('nb-pos-btn').disabled=true;document.getElementById('nb-let-btn').disabled=true;return;}
-  nb={...nb,running:true,seq:[],trial:0,score:0,errors:0};
+  nb={...nb,running:true,seq:[],trial:0,score:0,errors:0,answered:false};
   sesStart('nb-ses-panel','Lab 1 — Memoria de Trabajo','Dual N-Back');
   document.getElementById('nb-score').textContent=0;document.getElementById('nb-errors').textContent=0;document.getElementById('nb-trial').textContent='0/20';
   document.getElementById('nb-start-btn').textContent='Detener sesión';
@@ -3225,6 +3225,7 @@ function nbNext(){
   }
   const pos=Math.floor(Math.random()*9),letter=LETTERS[Math.floor(Math.random()*LETTERS.length)];
   nb.seq.push({pos,letter});nb.trial++;
+  nb.answered=false; // resetear flag de respuesta
   document.getElementById('nb-trial').textContent=nb.trial+'/20';
   document.getElementById('nb-phase').textContent='Turno '+nb.trial;
   document.getElementById('nb-letter').textContent=letter;
@@ -3232,10 +3233,14 @@ function nbNext(){
 }
 function nbAnswer(type){
   if(!nb.running||nb.seq.length<=nb.level)return;
-  const cur=nb.seq[nb.seq.length-1],prev=nb.seq[nb.seq.length-1-nb.level];
+  if(nb.answered)return; // evitar respuesta doble en el mismo turno
+  nb.answered=true;
+  // Comparar el turno actual (último) con el turno N posiciones atrás
+  const cur=nb.seq[nb.seq.length-1];
+  const prev=nb.seq[nb.seq.length-1-nb.level];
   const match=type==='pos'?cur.pos===prev.pos:cur.letter===prev.letter;
-  if(match){nb.score++;document.getElementById('nb-score').textContent=nb.score;showFB('nb-feedback','Correcto','ok');}
-  else{nb.errors++;document.getElementById('nb-errors').textContent=nb.errors;showFB('nb-feedback','Incorrecto','err');}
+  if(match){nb.score++;document.getElementById('nb-score').textContent=nb.score;showFB('nb-feedback','Correcto ✓','ok');}
+  else{nb.errors++;document.getElementById('nb-errors').textContent=nb.errors;showFB('nb-feedback','Incorrecto — no había coincidencia','err');}
 }
 
 /* ── RESPIRACIÓN ── */
