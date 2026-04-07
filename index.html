@@ -6880,25 +6880,6 @@ function dashUpdate(){
   applyRolUI();
 }
 
-/* ── PWA ── */
-let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-function openInstallModal(){document.getElementById('install-overlay').style.display='flex';}
-function closeInstallModal(e){if(!e||e.target===document.getElementById('install-overlay'))document.getElementById('install-overlay').style.display='none';}
-function switchTab(tab){
-  document.querySelectorAll('.install-tab').forEach((t,i)=>t.classList.toggle('active',['android','ios','pc'][i]===tab));
-  document.querySelectorAll('.install-content').forEach(c=>c.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-  if(tab==='android'&&deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted'){closeInstallModal();deferredPrompt=null;}});
-  }
-}
-function installApp(){openInstallModal();}
-window.addEventListener('appinstalled',()=>{deferredPrompt=null;});
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
-}
 /* ── INIT ── */
 renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);
 </script>
