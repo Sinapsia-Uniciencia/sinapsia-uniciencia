@@ -5594,6 +5594,7 @@ function obCheck(){
     applyUserProfile();
     setTimeout(function(){applyRolUI();applyRolTextos();},200);
     neuroInit();
+    setTimeout(function(){neuroShow('home');},1200);
   }
 }
 function obNext(step){
@@ -6540,17 +6541,6 @@ var LOGROS=[
 
 // ── ONBOARDING ──
 var obData={nombre:'',rol:'estudiante',programa:'',color:'#8b7ff5',colorName:'violet'};
-function obCheck(){
-  var profile=S.get('userProfile');
-  if(!profile){
-    document.getElementById('onboarding-overlay').style.display='flex';
-  } else {
-    obData=profile;
-    applyUserProfile();
-    setTimeout(function(){applyRolUI();applyRolTextos();},200);
-    neuroInit();
-  }
-}
 function obNext(step){
   if(step===2){
     var n=document.getElementById('ob-nombre').value.trim();
