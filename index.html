@@ -4684,6 +4684,7 @@ function applyRolTextos(){
   });
 
   // Badge docente en cada lab header
+  var esDocente=rol==='docente';
   ['lab1','lab2','lab3','lab4','lab5','lab6'].forEach(function(lab){
     var existing=document.getElementById(lab+'-doc-badge');
     if(esDocente&&!existing){
