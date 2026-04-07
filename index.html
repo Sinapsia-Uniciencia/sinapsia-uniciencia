@@ -5031,57 +5031,6 @@ function dpdSave(){
 }
 
 /* ── NEURO — Personaje guía ── */
-var NEURO_MSGS={
-  'home':{
-    msg:'¡Bienvenido a SINAPSIA! Aquí entrenas las funciones ejecutivas de tu cerebro. Elige un laboratorio para comenzar — te recomiendo el Lab 1 si es tu primera vez.',
-    tip:'💡 5 a 20 minutos al día producen cambios reales en tu corteza prefrontal.'
-  },
-  'lab1':{
-    msg:'Este lab entrena tu Memoria de Trabajo — la pizarra mental de tu cerebro. Empieza con el Span de Dígitos: te mostraré una secuencia de números y debes recordarla en orden.',
-    tip:'🧠 dlPFC + Parietal Superior · Acoplamiento Theta-Gamma'
-  },
-  'lab2':{
-    msg:'Este lab entrena tu Control Inhibitorio — la capacidad de frenar respuestas automáticas. El Stroop es ideal para empezar: verás una palabra de color pero debes decir el COLOR, no la palabra.',
-    tip:'🧠 Circuito Fronto-striatal · Theta frontal'
-  },
-  'lab3':{
-    msg:'Este lab entrena tu Flexibilidad Cognitiva — cambiar de perspectiva cuando la situación lo exige. Prueba el Task Switching: alternarás entre dos reglas diferentes sin perder el hilo.',
-    tip:'🧠 DMN · Ganglios Basales · Red de control ejecutivo'
-  },
-  'lab4':{
-    msg:'Este lab entrena tu Planificación — la capacidad de anticipar, organizar y monitorear tus metas. La Técnica 3-2-1 es el mejor punto de partida: solo toma 6 minutos.',
-    tip:'🧠 aPFC · Red Frontoparietal · Corteza prefrontal anterior'
-  },
-  'lab5':{
-    msg:'Este lab entrena tu Metacognición — la capacidad de observar y regular tus propios procesos mentales. El Diario de Aprendizaje es clave: 5 minutos al finalizar cada sesión.',
-    tip:'🧠 Triple Red DMN–SN–ECN · Theta frontal aumentada'
-  },
-  'lab6':{
-    msg:'Este lab te enseña estrategias para memorizar de forma profunda y duradera. El Método de Loci es el más poderoso: construirás un palacio mental para anclar información.',
-    tip:'🧠 Hipocampo · Corteza Temporal · aPFC'
-  },
-  'labd1':{
-    msg:'Este lab contiene estrategias neuropsicopedagógicas listas para aplicar en el aula. El Calentamiento Cognitivo de 5 minutos puede transformar la calidad de cualquier clase.',
-    tip:'📚 Basado en conectómica cerebral y protocolos de activación prefrontal'
-  },
-  'labd2':{
-    msg:'Aquí encontrarás técnicas para capturar y sostener la atención de tu grupo. El Gancho Cognitivo de los primeros 3 minutos es el protocolo más impactante.',
-    tip:'📚 Locus Coeruleus · Norepinefrina · Red Atencional Dorsal'
-  },
-  'labd3':{
-    msg:'Aprende a diseñar clases que respetan la neurociencia del aprendizaje. El Diseño con Espaciado puede duplicar la retención de tus estudiantes sin esfuerzo adicional.',
-    tip:'📚 Curva del olvido de Ebbinghaus · LTP hipocampal'
-  },
-  'labd4':{
-    msg:'Este lab te enseña a leer el estado cognitivo de tu grupo y adaptar tu clase en tiempo real. Aprende a detectar la fatiga mental antes de perder la atención del grupo.',
-    tip:'📚 Cortisol · Neuroplasticidad colectiva · BDNF'
-  },
-  'diario':{
-    msg:'El Diario de Práctica es donde registras y reflexionas sobre tu entrenamiento. La metacognición activa consolida lo que aprendes mejor que cualquier repaso pasivo.',
-    tip:'💡 Escribe siempre justo después de practicar — cuando la experiencia está más fresca.'
-  }
-};
-
 var neuroState={open:false,currentLab:'home'};
 
 function neuroInit(){
