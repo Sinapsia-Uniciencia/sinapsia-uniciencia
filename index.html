@@ -541,7 +541,29 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
           <div class="color-opt" style="background:#f97066" onclick="obSelectColor(this,'#f97066','coral')" title="Coral inhibitorio"></div>
           <div class="color-opt" style="background:#e879f9" onclick="obSelectColor(this,'#e879f9','pink')" title="Rosa mnemotécnico"></div>
         </div>
-        <button class="btn btn-v btn-full" id="ob-finish-btn" onclick="obFinish()">Iniciar mi entrenamiento →</button>
+        <button class="btn btn-v btn-full" onclick="obNext(5)">Continuar →</button>
+      </div>
+
+      <!-- Paso 5: Contextualización -->
+      <div class="onboarding-step" id="ob-step5">
+        <div style="font-size:2.8rem;margin-bottom:16px">🧠</div>
+        <div class="onboarding-title" style="font-size:1.3rem;margin-bottom:10px">Tu cerebro puede mejorar.<br><em style="color:#8b7ff5">Literalmente.</em></div>
+        <div style="text-align:left;display:flex;flex-direction:column;gap:14px;margin-bottom:1.5rem">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="font-size:1.4rem;flex-shrink:0">⚡</div>
+            <div style="font-size:13px;color:#9996b8;line-height:1.6">Las <strong style="color:#f0eff8">funciones ejecutivas</strong> son las habilidades mentales que te permiten planificar, concentrarte, recordar instrucciones y manejar múltiples tareas al mismo tiempo. No son un talento fijo — son circuitos neuronales que se fortalecen con práctica deliberada.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="font-size:1.4rem;flex-shrink:0">🔬</div>
+            <div style="font-size:13px;color:#9996b8;line-height:1.6">La neurociencia ha demostrado que el cerebro adulto conserva <strong style="color:#f0eff8">plasticidad a lo largo de toda la vida</strong>. Cada vez que entrenas una función ejecutiva, produces cambios reales en la corteza prefrontal: nuevas conexiones sinápticas y mejor coordinación entre redes cerebrales.</div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="font-size:1.4rem;flex-shrink:0">🎯</div>
+            <div style="font-size:13px;color:#9996b8;line-height:1.6">SINAPSIA traduce esa evidencia en <strong style="color:#f0eff8">6 laboratorios de entrenamiento cognitivo</strong>. No es motivación ni autoayuda — es práctica basada en mecanismos neurobiológicos documentados. Cinco a veinte minutos al día, sostenidos en el tiempo, producen mejoras medibles en tu capacidad de aprender, decidir y organizarte.</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#5c5a7a;font-family:monospace;text-align:center;margin-bottom:16px">UNICIENCIA · Centro SINAPSIA · Neuroeducación basada en evidencia</div>
+        <button class="btn btn-v btn-full" id="ob-finish-btn" onclick="obFinish()">Comenzar mi entrenamiento →</button>
       </div>
     </div>
   </div>
