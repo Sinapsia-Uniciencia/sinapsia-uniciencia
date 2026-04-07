@@ -384,28 +384,39 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
 /* ── NEURO — Personaje guía ── */
 .neuro-fab{position:fixed;bottom:24px;left:24px;z-index:160;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-.neuro-btn{width:52px;height:52px;background:linear-gradient(135deg,#2d2650,#1c1c28);border:2px solid #8b7ff5;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(139,127,245,.3);transition:transform .2s,box-shadow .2s;padding:0}
-.neuro-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(139,127,245,.5)}
-.neuro-btn svg{width:32px;height:32px}
-.neuro-bubble{background:#1c1c28;border:1px solid #8b7ff5;border-radius:16px;border-bottom-left-radius:4px;padding:12px 14px;max-width:260px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:none;animation:neuro-pop .3s cubic-bezier(.34,1.56,.64,1)}
+/* Botón NEURO */
+.neuro-btn{width:64px;height:64px;background:#0d0d15;border:2px solid #8b7ff5;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(139,127,245,.15),0 4px 20px rgba(0,0,0,.4);transition:transform .25s,box-shadow .25s;padding:0;overflow:visible}
+.neuro-btn:hover{transform:scale(1.08);box-shadow:0 0 0 6px rgba(139,127,245,.25),0 6px 28px rgba(0,0,0,.5)}
+/* Burbuja de diálogo */
+.neuro-bubble{position:relative;background:#12121e;border:1px solid rgba(139,127,245,.5);border-radius:16px;border-bottom-left-radius:4px;padding:14px 16px;max-width:270px;display:none;animation:neuro-pop .35s cubic-bezier(.34,1.56,.64,1)}
+.neuro-bubble::after{content:'';position:absolute;bottom:-8px;left:18px;width:14px;height:8px;background:#12121e;clip-path:polygon(0 0,100% 0,50% 100%);border-left:1px solid rgba(139,127,245,.5)}
 .neuro-bubble.show{display:block}
-@keyframes neuro-pop{from{opacity:0;transform:scale(.8) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes neuro-pop{from{opacity:0;transform:scale(.85) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .neuro-bubble-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.neuro-bubble-name{font-size:11px;font-weight:600;color:#b3abff;font-family:monospace;text-transform:uppercase;letter-spacing:1px}
-.neuro-bubble-msg{font-size:13px;color:#e0dff8;line-height:1.5}
-.neuro-bubble-tip{font-size:11px;color:#5c5a7a;font-family:monospace;margin-top:8px;padding-top:8px;border-top:1px solid #2a2a3a}
-.neuro-bubble-close{position:absolute;top:8px;right:10px;background:none;border:none;color:#5c5a7a;cursor:pointer;font-size:16px;line-height:1}
-.neuro-bubble{position:relative}
-/* Pulso animado en el soma */
-@keyframes neuro-pulse{0%,100%{r:7}50%{r:9}}
-@keyframes neuro-dendrite{0%,100%{opacity:.4}50%{opacity:1}}
-.neuro-soma{animation:neuro-pulse 2.5s ease-in-out infinite}
-.neuro-d1,.neuro-d2,.neuro-d3,.neuro-d4{animation:neuro-dendrite 2.5s ease-in-out infinite}
-.neuro-d2{animation-delay:.5s}
-.neuro-d3{animation-delay:1s}
-.neuro-d4{animation-delay:1.5s}
-/* Badge de novedad */
-.neuro-badge-new{position:absolute;top:-3px;right:-3px;width:12px;height:12px;background:#f97066;border-radius:50%;border:2px solid #0a0a0f;display:none}
+.neuro-bubble-name{font-size:11px;font-weight:700;color:#b3abff;font-family:monospace;text-transform:uppercase;letter-spacing:1.5px}
+.neuro-bubble-msg{font-size:12.5px;color:#d4d2f0;line-height:1.6}
+.neuro-bubble-tip{font-size:11px;color:#4a4870;font-family:monospace;margin-top:8px;padding-top:8px;border-top:1px solid #1e1e2e}
+.neuro-bubble-close{position:absolute;top:8px;right:10px;background:none;border:none;color:#4a4870;cursor:pointer;font-size:18px;line-height:1;transition:color .15s}
+.neuro-bubble-close:hover{color:#b3abff}
+/* Animaciones NEURO SVG */
+@keyframes soma-pulse{0%,100%{r:10;opacity:1}50%{r:11.5;opacity:.85}}
+@keyframes soma-glow{0%,100%{filter:none}50%{filter:drop-shadow(0 0 6px #8b7ff5)}}
+@keyframes eye-blink{0%,90%,100%{ry:2.5}95%{ry:.3}}
+@keyframes dendrite-flow{0%{stroke-dashoffset:20}100%{stroke-dashoffset:0}}
+@keyframes axon-pulse{0%,100%{opacity:.5;stroke-width:2}50%{opacity:1;stroke-width:3}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.neuro-body{animation:float 3s ease-in-out infinite}
+.neuro-soma-circle{animation:soma-pulse 2.5s ease-in-out infinite}
+.neuro-eye-l,.neuro-eye-r{animation:eye-blink 4s ease-in-out infinite}
+.neuro-eye-r{animation-delay:.05s}
+.neuro-d1{animation:dendrite-flow 2s linear infinite;stroke-dasharray:4 4}
+.neuro-d2{animation:dendrite-flow 2s linear infinite .4s;stroke-dasharray:4 4}
+.neuro-d3{animation:dendrite-flow 2s linear infinite .8s;stroke-dasharray:4 4}
+.neuro-d4{animation:dendrite-flow 2s linear infinite 1.2s;stroke-dasharray:4 4}
+.neuro-d5{animation:dendrite-flow 2s linear infinite 1.6s;stroke-dasharray:4 4}
+.neuro-axon{animation:axon-pulse 2.5s ease-in-out infinite}
+/* Badge novedad */
+.neuro-badge-new{position:absolute;top:-2px;right:-2px;width:13px;height:13px;background:#f97066;border-radius:50%;border:2px solid #0a0a0f;display:none;animation:neuro-pop .3s ease}
 .neuro-badge-new.show{display:block}
 /* ── PANEL DE SESIÓN ACTIVA ── */
 .session-panel{background:#0d3d38;border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:12px 16px;margin-bottom:10px;display:none}
@@ -599,7 +610,18 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
     <div class="neuro-bubble" id="neuro-bubble">
       <button class="neuro-bubble-close" onclick="neuroClose()">×</button>
       <div class="neuro-bubble-header">
-        <svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="7" fill="#8b7ff5" class="neuro-soma"/><line x1="16" y1="9" x2="16" y2="3" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d1"/><line x1="16" y1="23" x2="16" y2="29" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d2"/><line x1="9" y1="16" x2="3" y2="16" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d3"/><line x1="23" y1="16" x2="29" y2="16" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d4"/><circle cx="13" cy="14" r="1.5" fill="white"/><circle cx="19" cy="14" r="1.5" fill="white"/><path d="M13 19 Q16 21 19 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="22" r="11" fill="#8b7ff5"/>
+          <ellipse cx="20" cy="20" rx="2.8" ry="2.8" fill="white" opacity=".95" class="neuro-eye-l"/>
+          <ellipse cx="28" cy="20" rx="2.8" ry="2.8" fill="white" opacity=".95" class="neuro-eye-r"/>
+          <circle cx="20" cy="20" r="1.2" fill="#3d2080"/>
+          <circle cx="28" cy="20" r="1.2" fill="#3d2080"/>
+          <path d="M19 26.5 Q24 30 29 26.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <line x1="24" y1="11" x2="24" y2="4" stroke="#b3abff" stroke-width="2" stroke-linecap="round"/>
+          <line x1="13" y1="22" x2="5" y2="22" stroke="#b3abff" stroke-width="2" stroke-linecap="round"/>
+          <line x1="35" y1="22" x2="43" y2="22" stroke="#b3abff" stroke-width="2" stroke-linecap="round"/>
+          <line x1="24" y1="33" x2="24" y2="44" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
         <div class="neuro-bubble-name">NEURO</div>
       </div>
       <div class="neuro-bubble-msg" id="neuro-msg">¡Hola! Soy NEURO, tu guía de entrenamiento cognitivo.</div>
@@ -607,24 +629,40 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
     </div>
     <div style="position:relative">
       <button class="neuro-btn" onclick="neuroToggle()" title="NEURO — Guía de entrenamiento">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="16" cy="16" r="7" fill="#8b7ff5" class="neuro-soma"/>
-          <line x1="16" y1="9" x2="16" y2="3" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d1"/>
-          <line x1="16" y1="23" x2="16" y2="29" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d2"/>
-          <line x1="9" y1="16" x2="3" y2="16" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d3"/>
-          <line x1="23" y1="16" x2="29" y2="16" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d4"/>
-          <line x1="10" y1="10" x2="5" y2="5" stroke="#b3abff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
-          <line x1="22" y1="10" x2="27" y2="5" stroke="#b3abff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
-          <circle cx="13.5" cy="14.5" r="1.5" fill="white"/>
-          <circle cx="18.5" cy="14.5" r="1.5" fill="white"/>
-          <path d="M13 19 Q16 21.5 19 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <svg viewBox="0 0 64 64" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+          <g class="neuro-body">
+            <!-- Axón (cuerpo inferior) -->
+            <line x1="32" y1="46" x2="32" y2="60" stroke="#6d5fd4" stroke-width="3" stroke-linecap="round" class="neuro-axon"/>
+            <!-- Dendritas diagonales -->
+            <line x1="20" y1="18" x2="8" y2="8" stroke="#7060cc" stroke-width="2" stroke-linecap="round" class="neuro-d1"/>
+            <line x1="44" y1="18" x2="56" y2="8" stroke="#7060cc" stroke-width="2" stroke-linecap="round" class="neuro-d2"/>
+            <!-- Dendritas laterales -->
+            <line x1="16" y1="30" x2="4" y2="30" stroke="#7060cc" stroke-width="2" stroke-linecap="round" class="neuro-d3"/>
+            <line x1="48" y1="30" x2="60" y2="30" stroke="#7060cc" stroke-width="2" stroke-linecap="round" class="neuro-d4"/>
+            <!-- Dendrita superior -->
+            <line x1="32" y1="16" x2="32" y2="4" stroke="#7060cc" stroke-width="2" stroke-linecap="round" class="neuro-d5"/>
+            <!-- Soma (cuerpo) -->
+            <circle cx="32" cy="30" r="16" fill="#8b7ff5" class="neuro-soma-circle"/>
+            <circle cx="32" cy="30" r="14" fill="#9d91f7" opacity=".4"/>
+            <!-- Ojos -->
+            <ellipse cx="26" cy="27" rx="3.5" ry="3.5" fill="white" opacity=".95" class="neuro-eye-l"/>
+            <ellipse cx="38" cy="27" rx="3.5" ry="3.5" fill="white" opacity=".95" class="neuro-eye-r"/>
+            <circle cx="27" cy="28" r="1.8" fill="#3d2080"/>
+            <circle cx="39" cy="28" r="1.8" fill="#3d2080"/>
+            <circle cx="27.8" cy="27.2" r=".7" fill="white"/>
+            <circle cx="39.8" cy="27.2" r=".7" fill="white"/>
+            <!-- Sonrisa -->
+            <path d="M25 35 Q32 40 39 35" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <!-- Brillo del soma -->
+            <ellipse cx="26" cy="22" rx="5" ry="3" fill="white" opacity=".12"/>
+          </g>
         </svg>
       </button>
       <div class="neuro-badge-new" id="neuro-badge-new"></div>
     </div>
   </div>
 
-  <!-- TOAST DE LOGRO -->
+    <!-- TOAST DE LOGRO -->
   <div class="logro-toast" id="logro-toast">
     <span id="logro-toast-icon" style="font-size:1.5rem">🏅</span>
     <div><div style="font-weight:600;font-size:12px" id="logro-toast-name"></div><div style="font-size:11px;color:#9996b8" id="logro-toast-desc"></div></div>
