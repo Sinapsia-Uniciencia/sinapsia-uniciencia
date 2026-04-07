@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sinapsia-v36';
+const CACHE_NAME = 'sinapsia-v37';
 const STATIC_ASSETS = [
   '/sinapsia-uniciencia/',
   '/sinapsia-uniciencia/index.html',
