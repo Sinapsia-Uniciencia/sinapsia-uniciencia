@@ -297,7 +297,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
 /* ── ONBOARDING ── */
 .onboarding-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem}
-.onboarding-card{background:#0d1117;border:1px solid #2a2a3a;border-radius:20px;padding:2rem;max-width:420px;width:100%;text-align:center}
+.onboarding-card{background:#0d1117;border:1px solid #2a2a3a;border-radius:20px;padding:1.5rem;max-width:420px;width:100%;text-align:center;max-height:90vh;overflow-y:auto}
 .onboarding-step{display:none}.onboarding-step.active{display:block}
 .onboarding-title{font-size:1.4rem;font-weight:700;color:#f0eff8;margin-bottom:8px}
 .onboarding-sub{font-size:13px;color:#9996b8;margin-bottom:1.5rem;line-height:1.6}
@@ -381,6 +381,32 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .noise-vol{width:100%;margin-bottom:8px}
 /* ── TEXTOS POR ROL ── */
 .txt-est,.txt-doc,.txt-adm{display:none}
+
+/* ── NEURO — Personaje guía ── */
+.neuro-fab{position:fixed;bottom:24px;left:24px;z-index:160;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.neuro-btn{width:52px;height:52px;background:linear-gradient(135deg,#2d2650,#1c1c28);border:2px solid #8b7ff5;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(139,127,245,.3);transition:transform .2s,box-shadow .2s;padding:0}
+.neuro-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(139,127,245,.5)}
+.neuro-btn svg{width:32px;height:32px}
+.neuro-bubble{background:#1c1c28;border:1px solid #8b7ff5;border-radius:16px;border-bottom-left-radius:4px;padding:12px 14px;max-width:260px;box-shadow:0 4px 24px rgba(0,0,0,.4);display:none;animation:neuro-pop .3s cubic-bezier(.34,1.56,.64,1)}
+.neuro-bubble.show{display:block}
+@keyframes neuro-pop{from{opacity:0;transform:scale(.8) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.neuro-bubble-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.neuro-bubble-name{font-size:11px;font-weight:600;color:#b3abff;font-family:monospace;text-transform:uppercase;letter-spacing:1px}
+.neuro-bubble-msg{font-size:13px;color:#e0dff8;line-height:1.5}
+.neuro-bubble-tip{font-size:11px;color:#5c5a7a;font-family:monospace;margin-top:8px;padding-top:8px;border-top:1px solid #2a2a3a}
+.neuro-bubble-close{position:absolute;top:8px;right:10px;background:none;border:none;color:#5c5a7a;cursor:pointer;font-size:16px;line-height:1}
+.neuro-bubble{position:relative}
+/* Pulso animado en el soma */
+@keyframes neuro-pulse{0%,100%{r:7}50%{r:9}}
+@keyframes neuro-dendrite{0%,100%{opacity:.4}50%{opacity:1}}
+.neuro-soma{animation:neuro-pulse 2.5s ease-in-out infinite}
+.neuro-d1,.neuro-d2,.neuro-d3,.neuro-d4{animation:neuro-dendrite 2.5s ease-in-out infinite}
+.neuro-d2{animation-delay:.5s}
+.neuro-d3{animation-delay:1s}
+.neuro-d4{animation-delay:1.5s}
+/* Badge de novedad */
+.neuro-badge-new{position:absolute;top:-3px;right:-3px;width:12px;height:12px;background:#f97066;border-radius:50%;border:2px solid #0a0a0f;display:none}
+.neuro-badge-new.show{display:block}
 /* ── PANEL DE SESIÓN ACTIVA ── */
 .session-panel{background:#0d3d38;border:1px solid rgba(45,212,191,.3);border-radius:12px;padding:12px 16px;margin-bottom:10px;display:none}
 .session-panel.active{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -546,25 +572,55 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 
       <!-- Paso 5: Contextualización -->
       <div class="onboarding-step" id="ob-step5">
-        <div style="font-size:2.8rem;margin-bottom:16px">🧠</div>
-        <div class="onboarding-title" style="font-size:1.3rem;margin-bottom:10px">Tu cerebro puede mejorar.<br><em style="color:#8b7ff5">Literalmente.</em></div>
-        <div style="text-align:left;display:flex;flex-direction:column;gap:14px;margin-bottom:1.5rem">
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <div style="font-size:1.4rem;flex-shrink:0">⚡</div>
-            <div style="font-size:13px;color:#9996b8;line-height:1.6">Las <strong style="color:#f0eff8">funciones ejecutivas</strong> son las habilidades mentales que te permiten planificar, concentrarte, recordar instrucciones y manejar múltiples tareas al mismo tiempo. No son un talento fijo — son circuitos neuronales que se fortalecen con práctica deliberada.</div>
+        <div style="font-size:2rem;margin-bottom:10px">🧠</div>
+        <div class="onboarding-title" style="font-size:1.2rem;margin-bottom:8px">Tu cerebro puede mejorar.<br><em style="color:#8b7ff5">Literalmente.</em></div>
+        <div style="text-align:left;display:flex;flex-direction:column;gap:10px;margin-bottom:1rem">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:1.2rem;flex-shrink:0">⚡</div>
+            <div style="font-size:12px;color:#9996b8;line-height:1.5">Las <strong style="color:#f0eff8">funciones ejecutivas</strong> son las habilidades mentales que te permiten planificar, concentrarte y manejar múltiples tareas. No son un talento fijo — son circuitos neuronales que se fortalecen con práctica deliberada.</div>
           </div>
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <div style="font-size:1.4rem;flex-shrink:0">🔬</div>
-            <div style="font-size:13px;color:#9996b8;line-height:1.6">La neurociencia ha demostrado que el cerebro adulto conserva <strong style="color:#f0eff8">plasticidad a lo largo de toda la vida</strong>. Cada vez que entrenas una función ejecutiva, produces cambios reales en la corteza prefrontal: nuevas conexiones sinápticas y mejor coordinación entre redes cerebrales.</div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:1.2rem;flex-shrink:0">🔬</div>
+            <div style="font-size:12px;color:#9996b8;line-height:1.5">El cerebro adulto conserva <strong style="color:#f0eff8">plasticidad toda la vida</strong>. Cada vez que entrenas una función ejecutiva produces cambios reales en la corteza prefrontal: nuevas conexiones sinápticas y mejor coordinación entre redes cerebrales.</div>
           </div>
-          <div style="display:flex;gap:12px;align-items:flex-start">
-            <div style="font-size:1.4rem;flex-shrink:0">🎯</div>
-            <div style="font-size:13px;color:#9996b8;line-height:1.6">SINAPSIA traduce esa evidencia en <strong style="color:#f0eff8">6 laboratorios de entrenamiento cognitivo</strong>. No es motivación ni autoayuda — es práctica basada en mecanismos neurobiológicos documentados. Cinco a veinte minutos al día, sostenidos en el tiempo, producen mejoras medibles en tu capacidad de aprender, decidir y organizarte.</div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:1.2rem;flex-shrink:0">🎯</div>
+            <div style="font-size:12px;color:#9996b8;line-height:1.5">SINAPSIA traduce esa evidencia en <strong style="color:#f0eff8">laboratorios de entrenamiento cognitivo</strong>. No es motivación ni autoayuda — es práctica basada en mecanismos neurobiológicos documentados.</div>
           </div>
         </div>
-        <div style="font-size:11px;color:#5c5a7a;font-family:monospace;text-align:center;margin-bottom:16px">UNICIENCIA · Centro SINAPSIA · Neuroeducación basada en evidencia</div>
+        <div style="font-size:10px;color:#5c5a7a;font-family:monospace;text-align:center;margin-bottom:12px">UNICIENCIA · Centro SINAPSIA · Neuroeducación basada en evidencia</div>
         <button class="btn btn-v btn-full" id="ob-finish-btn" onclick="obFinish()">Comenzar mi entrenamiento →</button>
       </div>
+    </div>
+  </div>
+
+  <!-- NEURO — Personaje guía -->
+  <div class="neuro-fab" id="neuro-fab" style="display:none">
+    <div class="neuro-bubble" id="neuro-bubble">
+      <button class="neuro-bubble-close" onclick="neuroClose()">×</button>
+      <div class="neuro-bubble-header">
+        <svg width="20" height="20" viewBox="0 0 32 32"><circle cx="16" cy="16" r="7" fill="#8b7ff5" class="neuro-soma"/><line x1="16" y1="9" x2="16" y2="3" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d1"/><line x1="16" y1="23" x2="16" y2="29" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d2"/><line x1="9" y1="16" x2="3" y2="16" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d3"/><line x1="23" y1="16" x2="29" y2="16" stroke="#b3abff" stroke-width="2" stroke-linecap="round" class="neuro-d4"/><circle cx="13" cy="14" r="1.5" fill="white"/><circle cx="19" cy="14" r="1.5" fill="white"/><path d="M13 19 Q16 21 19 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+        <div class="neuro-bubble-name">NEURO</div>
+      </div>
+      <div class="neuro-bubble-msg" id="neuro-msg">¡Hola! Soy NEURO, tu guía de entrenamiento cognitivo.</div>
+      <div class="neuro-bubble-tip" id="neuro-tip"></div>
+    </div>
+    <div style="position:relative">
+      <button class="neuro-btn" onclick="neuroToggle()" title="NEURO — Guía de entrenamiento">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="7" fill="#8b7ff5" class="neuro-soma"/>
+          <line x1="16" y1="9" x2="16" y2="3" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d1"/>
+          <line x1="16" y1="23" x2="16" y2="29" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d2"/>
+          <line x1="9" y1="16" x2="3" y2="16" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d3"/>
+          <line x1="23" y1="16" x2="29" y2="16" stroke="#b3abff" stroke-width="2.5" stroke-linecap="round" class="neuro-d4"/>
+          <line x1="10" y1="10" x2="5" y2="5" stroke="#b3abff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+          <line x1="22" y1="10" x2="27" y2="5" stroke="#b3abff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+          <circle cx="13.5" cy="14.5" r="1.5" fill="white"/>
+          <circle cx="18.5" cy="14.5" r="1.5" fill="white"/>
+          <path d="M13 19 Q16 21.5 19 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="neuro-badge-new" id="neuro-badge-new"></div>
     </div>
   </div>
 
@@ -3110,8 +3166,8 @@ function showScreen(id){
   document.querySelectorAll('.nav-btn').forEach(b=>{if(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
   if(id==='diario')renderDiary();
   if(id==='home'){dashUpdate();}
-  if(id.startsWith('lab')){
-    setTimeout(function(){applyRolTextos();},10);
+  if(id.startsWith('lab')||id==='diario'||id==='home'){
+    setTimeout(function(){applyRolTextos();neuroShow(id);},10);
   }
 }
 function updateHome(){
@@ -4791,6 +4847,125 @@ function dpdSave(){
   updateHome();
 }
 
+/* ── NEURO — Personaje guía ── */
+var NEURO_MSGS={
+  'home':{
+    msg:'¡Bienvenido a SINAPSIA! Aquí entrenas las funciones ejecutivas de tu cerebro. Elige un laboratorio para comenzar — te recomiendo el Lab 1 si es tu primera vez.',
+    tip:'💡 5 a 20 minutos al día producen cambios reales en tu corteza prefrontal.'
+  },
+  'lab1':{
+    msg:'Este lab entrena tu Memoria de Trabajo — la pizarra mental de tu cerebro. Empieza con el Span de Dígitos: te mostraré una secuencia de números y debes recordarla en orden.',
+    tip:'🧠 dlPFC + Parietal Superior · Acoplamiento Theta-Gamma'
+  },
+  'lab2':{
+    msg:'Este lab entrena tu Control Inhibitorio — la capacidad de frenar respuestas automáticas. El Stroop es ideal para empezar: verás una palabra de color pero debes decir el COLOR, no la palabra.',
+    tip:'🧠 Circuito Fronto-striatal · Theta frontal'
+  },
+  'lab3':{
+    msg:'Este lab entrena tu Flexibilidad Cognitiva — cambiar de perspectiva cuando la situación lo exige. Prueba el Task Switching: alternarás entre dos reglas diferentes sin perder el hilo.',
+    tip:'🧠 DMN · Ganglios Basales · Red de control ejecutivo'
+  },
+  'lab4':{
+    msg:'Este lab entrena tu Planificación — la capacidad de anticipar, organizar y monitorear tus metas. La Técnica 3-2-1 es el mejor punto de partida: solo toma 6 minutos.',
+    tip:'🧠 aPFC · Red Frontoparietal · Corteza prefrontal anterior'
+  },
+  'lab5':{
+    msg:'Este lab entrena tu Metacognición — la capacidad de observar y regular tus propios procesos mentales. El Diario de Aprendizaje es clave: 5 minutos al finalizar cada sesión.',
+    tip:'🧠 Triple Red DMN–SN–ECN · Theta frontal aumentada'
+  },
+  'lab6':{
+    msg:'Este lab te enseña estrategias para memorizar de forma profunda y duradera. El Método de Loci es el más poderoso: construirás un palacio mental para anclar información.',
+    tip:'🧠 Hipocampo · Corteza Temporal · aPFC'
+  },
+  'labd1':{
+    msg:'Este lab contiene estrategias neuropsicopedagógicas listas para aplicar en el aula. El Calentamiento Cognitivo de 5 minutos puede transformar la calidad de cualquier clase.',
+    tip:'📚 Basado en conectómica cerebral y protocolos de activación prefrontal'
+  },
+  'labd2':{
+    msg:'Aquí encontrarás técnicas para capturar y sostener la atención de tu grupo. El Gancho Cognitivo de los primeros 3 minutos es el protocolo más impactante.',
+    tip:'📚 Locus Coeruleus · Norepinefrina · Red Atencional Dorsal'
+  },
+  'labd3':{
+    msg:'Aprende a diseñar clases que respetan la neurociencia del aprendizaje. El Diseño con Espaciado puede duplicar la retención de tus estudiantes sin esfuerzo adicional.',
+    tip:'📚 Curva del olvido de Ebbinghaus · LTP hipocampal'
+  },
+  'labd4':{
+    msg:'Este lab te enseña a leer el estado cognitivo de tu grupo y adaptar tu clase en tiempo real. Aprende a detectar la fatiga mental antes de perder la atención del grupo.',
+    tip:'📚 Cortisol · Neuroplasticidad colectiva · BDNF'
+  },
+  'diario':{
+    msg:'El Diario de Práctica es donde registras y reflexionas sobre tu entrenamiento. La metacognición activa consolida lo que aprendes mejor que cualquier repaso pasivo.',
+    tip:'💡 Escribe siempre justo después de practicar — cuando la experiencia está más fresca.'
+  }
+};
+
+var neuroState={open:false,currentLab:'home'};
+
+function neuroInit(){
+  var fab=document.getElementById('neuro-fab');
+  if(fab)fab.style.display='flex';
+}
+
+function neuroShow(lab){
+  neuroState.currentLab=lab||'home';
+  var msgs=NEURO_MSGS[neuroState.currentLab]||NEURO_MSGS['home'];
+  document.getElementById('neuro-msg').textContent=msgs.msg;
+  var tipEl=document.getElementById('neuro-tip');
+  tipEl.textContent=msgs.tip||'';
+  tipEl.style.display=msgs.tip?'block':'none';
+
+  // Primera vez en este lab?
+  var visto=S.get('neuro_visto')||{};
+  if(!visto[neuroState.currentLab]){
+    visto[neuroState.currentLab]=true;
+    S.set('neuro_visto',visto);
+    // Mostrar automáticamente
+    setTimeout(function(){
+      neuroOpen();
+      // Badge de novedad
+      var badge=document.getElementById('neuro-badge-new');
+      if(badge)badge.classList.add('show');
+    },800);
+  }
+}
+
+function neuroOpen(){
+  neuroState.open=true;
+  var bubble=document.getElementById('neuro-bubble');
+  if(bubble)bubble.classList.add('show');
+  var badge=document.getElementById('neuro-badge-new');
+  if(badge)badge.classList.remove('show');
+}
+
+function neuroClose(){
+  neuroState.open=false;
+  var bubble=document.getElementById('neuro-bubble');
+  if(bubble)bubble.classList.remove('show');
+}
+
+function neuroToggle(){
+  if(neuroState.open){
+    neuroClose();
+  } else {
+    // Actualizar mensaje con lab actual
+    var msgs=NEURO_MSGS[neuroState.currentLab]||NEURO_MSGS['home'];
+    document.getElementById('neuro-msg').textContent=msgs.msg;
+    var tipEl=document.getElementById('neuro-tip');
+    tipEl.textContent=msgs.tip||'';
+    tipEl.style.display=msgs.tip?'block':'none';
+    neuroOpen();
+  }
+}
+
+function neuroSayLogro(logro){
+  document.getElementById('neuro-msg').textContent='¡Felicitaciones! Desbloqueaste "'+logro.name+'" — '+logro.desc;
+  var tipEl=document.getElementById('neuro-tip');
+  tipEl.textContent='⚡ Cada logro es evidencia de neuroplasticidad activa.';
+  tipEl.style.display='block';
+  neuroOpen();
+  setTimeout(function(){neuroClose();},5000);
+}
+
 /* ── PRE-TESTING ── */
 function ptSave(){
   var topic=document.getElementById('pt-topic').value.trim();
@@ -5235,6 +5410,7 @@ function obCheck(){
     obData=profile;
     applyUserProfile();
     setTimeout(function(){applyRolUI();applyRolTextos();},200);
+    neuroInit();
   }
 }
 function obNext(step){
@@ -5292,6 +5468,8 @@ function obFinish(){
   document.getElementById('onboarding-overlay').style.display='none';
   applyUserProfile();
   dashUpdate();
+  neuroInit();
+  setTimeout(function(){neuroShow('home');},600);
 }
 function applyUserProfile(){
   if(!obData.nombre)return;
@@ -5463,6 +5641,7 @@ function updateLogros(d){
   }).join('');
 }
 function showLogroToast(l){
+  neuroSayLogro(l);
   var toast=document.getElementById('logro-toast');
   document.getElementById('logro-toast-icon').textContent=l.icon;
   document.getElementById('logro-toast-name').textContent='🏅 '+l.name;
