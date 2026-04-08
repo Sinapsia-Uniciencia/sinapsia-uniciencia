@@ -6021,7 +6021,7 @@ function neuroGetTutorial(){
   var steps=[
     {msg:'¡Hola, [nombre]! Soy NEURO, tu guía. Te mostraré cómo funciona SINAPSIA en 4 pasos.',target:null},
     {msg:'Esta es tu barra de navegación. Cada botón lleva a un laboratorio que entrena una función ejecutiva distinta.',target:'.nav-scroll'},
-    {msg:'Este es tu Mapa Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72h sin usarlas.',target:'.brain-container'}
+    {msg:'Este es tu Mapa Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72h sin usarlas.',target:'.brain-container',forceTop:true}
   ];
   if(esDocente){
     steps.push({msg:'Como docente tienes acceso a los laboratorios D1, D2, D3 y D4 — son estrategias neuropsicopedagógicas listas para aplicar en el aula: calentamiento cognitivo, gancho atencional, diseño con espaciado y lectura del estado cognitivo del grupo.',target:'.nav-scroll'});
@@ -6088,7 +6088,8 @@ function neuroTutorialRender(){
         // Si el elemento está en la mitad inferior → burbuja arriba
         // Si está en la mitad superior → burbuja abajo
         var bTop, bClass;
-        if(rect.top > window.innerHeight/2){
+        var forceTop=step.forceTop||false;
+        if(forceTop||rect.top > window.innerHeight/2){
           bTop=Math.max(140, rect.top-210)+'px';
           bClass='neuro-tutorial-bubble arrow-bottom';
         } else {
