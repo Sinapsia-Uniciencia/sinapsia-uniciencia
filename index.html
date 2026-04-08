@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- SINAPSIA v48 generado: 2026-04-08 15:01 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -660,7 +659,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
       <div class="neuro-tutorial-actions">
         <div class="neuro-tutorial-dots" id="neuro-tut-dots"></div>
         <button class="neuro-tutorial-skip" onclick="neuroTutorialSkip()">Saltar</button>
-        <button class="neuro-tutorial-next" id="neuro-tut-next" onclick="neuroTutorialNext()">Siguiente →</button>
+        <button class="neuro-tutorial-next" id="neuro-tut-next">Siguiente →</button>
       </div>
     </div>
     <!-- NEURO posicionado en el tutorial -->
@@ -6008,11 +6007,11 @@ if('serviceWorker' in navigator){
 /* ── INIT ── */
 renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);/* ── NEURO TUTORIAL ── */
 var NEURO_TUTORIAL=[
-  {msg:'¡Hola, [nombre]! Soy NEURO, tu guía de entrenamiento cognitivo. Voy a mostrarte cómo funciona SINAPSIA en 4 pasos rápidos.',target:null,pos:'center',charPos:{bottom:'20px',left:'20px'}},
-  {msg:'Esta es tu barra de navegación. Cada botón te lleva a un laboratorio diferente — cada uno entrena una función ejecutiva distinta de tu cerebro.',target:'.nav-wrap',pos:'below',charPos:{top:'160px',left:'20px'}},
-  {msg:'Este es tu Mapa de Conectividad Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72 horas sin usar ese laboratorio.',target:'.brain-container',pos:'right',charPos:{bottom:'20px',left:'20px'}},
-  {msg:'Aquí están tus métricas: racha sináptica, puntos de plasticidad y minutos de foco. Cada sesión las actualiza en tiempo real.',target:'.dash-metrics',pos:'above',charPos:{bottom:'20px',left:'20px'}},
-  {msg:'¡Y aquí estoy yo siempre! Presióname en cualquier momento para recibir instrucciones o ir directo a una actividad. ¿Empezamos con el Lab 1?',target:null,pos:'center',charPos:{bottom:'20px',left:'20px'}}
+  {msg:'¡Hola, [nombre]! Soy NEURO, tu guía de entrenamiento cognitivo. Voy a mostrarte cómo funciona SINAPSIA en 4 pasos rápidos.',target:null,pos:'center',charPos:{top:'16px',left:'50%',transform:'translateX(-50%)'}},
+  {msg:'Esta es tu barra de navegación. Cada botón te lleva a un laboratorio diferente — cada uno entrena una función ejecutiva distinta de tu cerebro.',target:'.nav-wrap',pos:'below',charPos:{top:'16px',right:'16px'}},
+  {msg:'Este es tu Mapa de Conectividad Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72 horas sin usar ese laboratorio.',target:'.brain-container',pos:'below',charPos:{top:'16px',right:'16px'}},
+  {msg:'Aquí están tus métricas: racha sináptica, puntos de plasticidad y minutos de foco. Cada sesión las actualiza en tiempo real.',target:'.dash-metrics',pos:'above',charPos:{top:'16px',right:'16px'}},
+  {msg:'¡Listo! Presióname en cualquier momento para recibir instrucciones. Estaré aquí abajo a la izquierda. ¿Empezamos con el Lab 1?',target:null,pos:'center',charPos:{top:'16px',left:'50%',transform:'translateX(-50%)'}}
 ];
 var neuroTutState={step:0,active:false};
 function neuroTutorialStart(nombre){
@@ -6020,6 +6019,11 @@ function neuroTutorialStart(nombre){
   neuroTutState={step:0,active:true};
   var overlay=document.getElementById('neuro-tutorial-overlay');
   overlay.style.display='block';
+  // Asignar eventos a los botones
+  var nextBtn=document.getElementById('neuro-tut-next');
+  if(nextBtn)nextBtn.onclick=neuroTutorialNext;
+  var skipBtn=document.querySelector('.neuro-tutorial-skip');
+  if(skipBtn)skipBtn.onclick=neuroTutorialSkip;
   setTimeout(function(){neuroTutorialRender();},300);
 }
 function neuroTutorialRender(){
