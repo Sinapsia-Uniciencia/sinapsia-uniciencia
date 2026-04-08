@@ -483,11 +483,11 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 }
 
 /* ── NEURO TUTORIAL ── */
-.neuro-overlay{position:fixed;inset:0;z-index:500;pointer-events:none;transition:opacity .4s}
+.neuro-overlay{position:fixed;inset:0;z-index:500;pointer-events:all;transition:opacity .4s}
 .neuro-overlay.active{pointer-events:all}
 .neuro-overlay-bg{position:absolute;inset:0;background:rgba(0,0,0,.75);transition:opacity .4s}
 .neuro-spotlight{position:absolute;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.75),0 0 0 3px #8b7ff5,0 0 24px rgba(139,127,245,.5);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
-.neuro-tutorial-bubble{position:absolute;background:linear-gradient(145deg,#1a1840,#100e2a);border:1.5px solid rgba(139,127,245,.6);border-radius:20px;padding:18px 20px;max-width:300px;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:neuro-pop .4s cubic-bezier(.34,1.56,.64,1);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.neuro-tutorial-bubble{position:absolute;background:linear-gradient(145deg,#1a1840,#100e2a);border:1.5px solid rgba(139,127,245,.6);border-radius:20px;padding:18px 20px;max-width:300px;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:neuro-pop .4s cubic-bezier(.34,1.56,.64,1);transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:all;z-index:502}
 .neuro-tutorial-bubble::before{content:'';position:absolute;width:0;height:0;border:10px solid transparent}
 .neuro-tutorial-bubble.arrow-bottom::before{bottom:-20px;left:30px;border-top-color:rgba(139,127,245,.6)}
 .neuro-tutorial-bubble.arrow-top::before{top:-20px;left:30px;border-bottom-color:rgba(139,127,245,.6)}
@@ -495,9 +495,9 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .neuro-tutorial-step{font-size:10px;color:#5a5888;font-family:monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
 .neuro-tutorial-msg{font-size:13px;color:#d4d0f0;line-height:1.6;margin-bottom:14px}
 .neuro-tutorial-actions{display:flex;gap:8px;align-items:center}
-.neuro-tutorial-next{flex:1;padding:8px 14px;background:#8b7ff5;border:none;border-radius:10px;font-size:12px;font-weight:600;color:white;cursor:pointer;transition:all .2s;font-family:monospace}
+.neuro-tutorial-next{flex:1;padding:8px 14px;background:#8b7ff5;border:none;border-radius:10px;font-size:12px;font-weight:600;color:white;cursor:pointer;transition:all .2s;font-family:monospace;pointer-events:all;position:relative;z-index:503}
 .neuro-tutorial-next:hover{background:#a090ff;transform:translateY(-1px)}
-.neuro-tutorial-skip{padding:6px 10px;background:none;border:1px solid rgba(139,127,245,.2);border-radius:8px;font-size:11px;color:#4a4870;cursor:pointer;font-family:monospace;transition:all .2s}
+.neuro-tutorial-skip{padding:6px 10px;background:none;border:1px solid rgba(139,127,245,.2);border-radius:8px;font-size:11px;color:#4a4870;cursor:pointer;font-family:monospace;transition:all .2s;pointer-events:all;position:relative;z-index:503}
 .neuro-tutorial-skip:hover{color:#8b7ff5;border-color:rgba(139,127,245,.4)}
 .neuro-tutorial-dots{display:flex;gap:5px;align-items:center;margin-right:8px}
 .neuro-tutorial-dot{width:6px;height:6px;border-radius:50%;background:#2a2850;transition:all .2s}
@@ -6072,7 +6072,7 @@ function neuroTutorialRender(){
 
   // NEURO arriba al centro
   var charEl=document.getElementById('neuro-tut-char');
-  charEl.style.cssText='position:absolute;top:60px;left:50%;transform:translateX(-50%);transition:all .4s ease';
+  charEl.style.cssText='position:absolute;top:90px;left:50%;transform:translateX(-50%);transition:all .4s ease';
 }
 
 function neuroTutorialNext(){
