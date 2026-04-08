@@ -6016,17 +6016,26 @@ if('serviceWorker' in navigator){
 }
 /* ── INIT ── */
 renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);/* ── NEURO TUTORIAL ── */
-var NEURO_TUTORIAL=[
-  {msg:'¡Hola, [nombre]! Soy NEURO, tu guía. Te mostraré cómo funciona SINAPSIA en 4 pasos.',target:null},
-  {msg:'Esta es tu barra de navegación. Cada botón lleva a un laboratorio que entrena una función ejecutiva distinta.',target:'.nav-scroll'},
-  {msg:'Este es tu Mapa Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72h sin usarlas.',target:'.brain-container'},
-  {msg:'Aquí están tus métricas: racha sináptica, puntos de plasticidad y minutos de foco profundo.',target:'.dash-metrics'},
-  {msg:'¡Listo! Estaré en la esquina inferior izquierda siempre. Presióname para recibir ayuda. ¿Empezamos?',target:null}
-];
+function neuroGetTutorial(){
+  var esDocente=(S.get('userProfile')||{}).rol==='docente';
+  var steps=[
+    {msg:'¡Hola, [nombre]! Soy NEURO, tu guía. Te mostraré cómo funciona SINAPSIA en 4 pasos.',target:null},
+    {msg:'Esta es tu barra de navegación. Cada botón lleva a un laboratorio que entrena una función ejecutiva distinta.',target:'.nav-scroll'},
+    {msg:'Este es tu Mapa Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72h sin usarlas.',target:'.brain-container'},
+    {msg:'Aquí están tus métricas: racha sináptica, puntos de plasticidad y minutos de foco profundo.',target:'.dash-metrics'}
+  ];
+  if(esDocente){
+    steps.push({msg:'Como docente tienes acceso a los laboratorios D1, D2, D3 y D4 — son estrategias neuropsicopedagógicas listas para aplicar en el aula: calentamiento cognitivo, gancho atencional, diseño con espaciado y lectura del estado cognitivo del grupo.',target:'.nav-scroll'});
+  }
+  steps.push({msg:'¡Listo! Estaré en la esquina inferior izquierda siempre. Presióname para recibir ayuda. ¿Empezamos?',target:null});
+  return steps;
+}
+var NEURO_TUTORIAL=[];
 var neuroTutState={step:0,active:false};
 
 function neuroTutorialStart(){
   if(S.get('neuro_tutorial_done'))return;
+  NEURO_TUTORIAL=neuroGetTutorial();
   neuroTutState={step:0,active:true};
   var overlay=document.getElementById('neuro-tutorial-overlay');
   if(!overlay)return;
