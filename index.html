@@ -486,7 +486,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 .neuro-overlay{position:fixed;inset:0;z-index:500;pointer-events:all;transition:opacity .4s}
 .neuro-overlay.active{pointer-events:all}
 .neuro-overlay-bg{position:absolute;inset:0;background:rgba(0,0,0,.75);transition:opacity .4s}
-.neuro-spotlight{position:absolute;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.75),0 0 0 3px #8b7ff5,0 0 24px rgba(139,127,245,.5);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.neuro-spotlight{position:absolute;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.65),0 0 0 3px #8b7ff5,0 0 0 8px rgba(139,127,245,.4),0 0 40px rgba(139,127,245,.6);transition:all .45s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:501}
 .neuro-tutorial-bubble{position:absolute;background:linear-gradient(145deg,#1a1840,#100e2a);border:1.5px solid rgba(139,127,245,.6);border-radius:20px;padding:18px 20px;max-width:300px;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:neuro-pop .4s cubic-bezier(.34,1.56,.64,1);transition:all .4s cubic-bezier(.4,0,.2,1);pointer-events:all;z-index:502}
 .neuro-tutorial-bubble::before{content:'';position:absolute;width:0;height:0;border:10px solid transparent}
 .neuro-tutorial-bubble.arrow-bottom::before{bottom:-20px;left:30px;border-top-color:rgba(139,127,245,.6)}
@@ -6056,17 +6056,33 @@ function neuroTutorialRender(){
   if(step.target){
     var el=document.querySelector(step.target);
     if(el){
-      var rect=el.getBoundingClientRect();
-      var pad=10;
-      spotlight.style.cssText='display:block;position:absolute;left:'+(rect.left-pad)+'px;top:'+(rect.top-pad)+'px;width:'+(rect.width+pad*2)+'px;height:'+(rect.height+pad*2)+'px;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.78),0 0 0 3px #8b7ff5,0 0 20px rgba(139,127,245,.4);pointer-events:none';
-      // Burbuja debajo del spotlight
-      var bTop=Math.min(rect.bottom+pad+16, window.innerHeight-200);
-      bubble.style.cssText='position:absolute;top:'+bTop+'px;left:50%;transform:translateX(-50%)';
-      bubble.className='neuro-tutorial-bubble';
+      // Scroll al elemento si no es visible
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(function(){
+        var rect=el.getBoundingClientRect();
+        var pad=8;
+        spotlight.style.display='block';
+        spotlight.style.left=(rect.left-pad)+'px';
+        spotlight.style.top=(rect.top+window.scrollY-pad)+'px';
+        spotlight.style.width=(rect.width+pad*2)+'px';
+        spotlight.style.height=(rect.height+pad*2)+'px';
+        // Burbuja: si hay espacio abajo la pone abajo, si no arriba
+        var spaceBelow=window.innerHeight-(rect.bottom+pad+16);
+        var bTop, bClass;
+        if(spaceBelow>180){
+          bTop=(rect.bottom+pad+16+window.scrollY)+'px';
+          bClass='neuro-tutorial-bubble arrow-top';
+        } else {
+          bTop=(rect.top+window.scrollY-200)+'px';
+          bClass='neuro-tutorial-bubble arrow-bottom';
+        }
+        bubble.style.cssText='position:absolute;top:'+bTop+';left:50%;transform:translateX(-50%)';
+        bubble.className=bClass;
+      },350);
     }
   } else {
-    spotlight.style.cssText='display:none';
-    bubble.style.cssText='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';
+    spotlight.style.display='none';
+    bubble.style.cssText='position:absolute;top:45%;left:50%;transform:translate(-50%,-50%)';
     bubble.className='neuro-tutorial-bubble';
   }
 
