@@ -4674,6 +4674,7 @@ function sesEnd(panelId,resumenId,stats){
   }
   updateHome();
   dashUpdate();
+  if(typeof neuroSesionCompletada==='function')setTimeout(function(){neuroSesionCompletada(activeSes.lab,stats);},400);
 }
 function generarMensajeSesion(stats){
   if(!stats)return'Sesión registrada. ¡Buen trabajo!';
@@ -5087,6 +5088,37 @@ function neuroToggle(){
     tipEl.style.display=msgs.tip?'block':'none';
     neuroOpen();
   }
+}
+
+function neuroSesionCompletada(lab, stats){
+  // Mensajes de respuesta al progreso según resultado
+  var msgs=[];
+  if(stats&&stats.aciertos!==undefined){
+    var pct=stats.pct||0;
+    if(pct>=80){
+      msgs=['¡Excelente! '+pct+'% de precisión. Tu corteza prefrontal está trabajando al máximo.','¡'+stats.aciertos+' aciertos! Eso es neuroplasticidad en acción.'];
+    } else if(pct>=50){
+      msgs=['Buen trabajo — '+pct+'% de precisión. Con práctica regular ese número subirá.','Cada sesión cuenta. La plasticidad no requiere perfección, requiere consistencia.'];
+    } else {
+      msgs=['La dificultad que sientes ES la señal de que está funcionando. El cerebro crece con el esfuerzo.','No te preocupes por el resultado de hoy. Lo importante es que viniste. Vuelve mañana.'];
+    }
+  } else {
+    msgs=['¡Sesión completada! Cada práctica deja una huella en tu conectoma.','Bien hecho. Tu cerebro registró esta sesión como una señal para crecer.'];
+  }
+  var msg=msgs[Math.floor(Math.random()*msgs.length)];
+  document.getElementById('neuro-msg').textContent=msg;
+  var tipEl=document.getElementById('neuro-tip');
+  tipEl.textContent='⚡ Sesión registrada en tu diario de neuroplasticidad.';
+  tipEl.style.display='block';
+  var actEl=document.getElementById('neuro-actions');
+  actEl.innerHTML='';
+  var btn=document.createElement('button');
+  btn.className='neuro-action-btn';
+  btn.textContent='→ Continuar entrenando';
+  btn.onclick=function(){neuroClose();};
+  actEl.appendChild(btn);
+  neuroOpen();
+  setTimeout(function(){neuroClose();},6000);
 }
 
 function neuroSayLogro(logro){
@@ -5900,49 +5932,49 @@ renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable(
 /* ── NEURO — Personaje guía ── */
 var NEURO_MSGS={
   'home':[
-    {msg:'¡Bienvenido de vuelta! Tu corteza prefrontal está lista para entrenar. ¿Por dónde empezamos hoy?',tip:'💡 5 a 20 minutos al día producen cambios reales en tu conectoma.',actions:[{label:'→ Ir al Lab 1',fn:"showScreen('lab1')"},{label:'→ Ver ranking',fn:"document.getElementById('ranking-card').scrollIntoView({behavior:'smooth'})"}]},
-    {msg:'¿Sabías que la memoria de trabajo es el predictor más fuerte del rendimiento académico, incluso por encima del CI?',tip:'🧠 dlPFC · Parietal Superior · Acoplamiento Theta-Gamma',actions:[{label:'→ Entrenar ahora',fn:"showScreen('lab1')"}]},
-    {msg:'Tu racha sináptica está activa. Cada día que practicas, consolidas nuevas conexiones en tu corteza prefrontal.',tip:'⚡ La neuroplasticidad requiere repetición sostenida — no intensidad.',actions:[{label:'→ Continuar hoy',fn:"showScreen('lab2')"}]}
+    {msg:'¡Hola! ¿Listo para entrenar hoy? Te recomiendo empezar con el Lab 1 si quieres trabajar tu memoria.',tip:'💡 5-20 min al día producen cambios reales en tu corteza prefrontal.',actions:[{label:'→ Lab 1 · Memoria',fn:"showScreen('lab1')"},{label:'→ Ver mi progreso',fn:"document.getElementById('rank-card').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'¿Sabías que tu memoria de trabajo predice el rendimiento académico más que el CI? Vale la pena entrenarla.',tip:'🧠 dlPFC · Parietal Superior · Acoplamiento Theta-Gamma',actions:[{label:'→ Entrenar ahora',fn:"showScreen('lab1')"}]},
+    {msg:'Cada día que practicas consolidas nuevas conexiones en tu corteza prefrontal. ¡Tu racha sináptica importa!',tip:'⚡ La neuroplasticidad requiere repetición sostenida.',actions:[{label:'→ Ir al Lab 2',fn:"showScreen('lab2')"},{label:'→ Lab 3',fn:"showScreen('lab3')"}]}
   ],
   'lab1':[
-    {msg:'Este lab entrena tu Memoria de Trabajo — la pizarra mental del cerebro. Te recomiendo empezar con el Span de Dígitos si es tu primera sesión.',tip:'🧠 dlPFC + Parietal Superior · Acoplamiento Theta-Gamma',actions:[{label:'→ Span de Dígitos',fn:"document.querySelector('#screen-lab1 .card').scrollIntoView({behavior:'smooth'})"},{label:'→ Dual N-Back',fn:"document.getElementById('nb-ses-panel').scrollIntoView({behavior:'smooth'})"}]},
-    {msg:'El Dual N-Back es la actividad más exigente de este lab. Recuerda: necesitas recordar tanto la POSICIÓN como la LETRA de N turnos atrás.',tip:'💡 Empieza en N1 hasta alcanzar 80% de precisión, luego sube a N2.',actions:[{label:'→ Iniciar N-Back',fn:"nbStart()"}]},
-    {msg:'El Corsi Block mide tu memoria visuoespacial — la misma capacidad que usan los arquitectos y cirujanos. El promedio adulto es span 5-6.',tip:'🏛️ Hipocampo · Corteza Parietal · Vía "dónde" del cerebro',actions:[{label:'→ Iniciar Corsi',fn:"corsiStart()"}]}
+    {msg:'Bienvenido al Lab de Memoria. Empieza con el Span de Dígitos — es el más fácil para comenzar.',tip:'🧠 dlPFC + Parietal Superior · Theta-Gamma',actions:[{label:'→ Empezar fácil',fn:"document.getElementById('span-start-btn').scrollIntoView({behavior:'smooth'})"},{label:'→ N-Back',fn:"document.getElementById('nb-start-btn').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'En el N-Back debes recordar lo que viste N turnos atrás. Empieza en N1 y sube cuando superes 80% de precisión.',tip:'💡 N-Back nivel 2 activa el acoplamiento theta-gamma en el dlPFC.',actions:[{label:'→ Iniciar N-Back',fn:"nbStart()"}]},
+    {msg:'El Corsi Block mide tu memoria visuoespacial. El promedio adulto es span 5-6. ¿Puedes superarlo?',tip:'🏛️ Hipocampo · Corteza Parietal · Vía espacial dorsal',actions:[{label:'→ Iniciar Corsi',fn:"corsiStart()"}]}
   ],
   'lab2':[
-    {msg:'El Control Inhibitorio es el "freno" del cerebro. El Stroop activa el conflicto entre la respuesta automática y la respuesta correcta.',tip:'🧠 Circuito Fronto-striatal · Theta frontal · ACC',actions:[{label:'→ Iniciar Stroop',fn:"stroopStart()"}]},
-    {msg:'El Go/No-Go mide tu capacidad de inhibir respuestas impulsivas. En adultos sanos, las falsas alarmas deben ser menores al 15%.',tip:'⚡ Cada error en Go/No-Go es información valiosa — no es un fallo.',actions:[{label:'→ Iniciar Go/No-Go',fn:"gngStart()"}]}
+    {msg:'En el Stroop verás una palabra de color — debes decir el COLOR, no la palabra. Parece fácil... no lo es.',tip:'🧠 Circuito Fronto-striatal · ACC · Theta frontal',actions:[{label:'→ Iniciar Stroop',fn:"stroopStart()"}]},
+    {msg:'El Go/No-Go entrena tu freno mental. Presiona solo cuando veas la señal correcta. Cero falsas alarmas es el objetivo.',tip:'⚡ Cada respuesta inhibida fortalece el circuito fronto-striatal.',actions:[{label:'→ Iniciar Go/No-Go',fn:"gngStart()"}]}
   ],
   'lab3':[
-    {msg:'La Flexibilidad Cognitiva te permite cambiar de perspectiva cuando las reglas cambian. El Task Switching mide exactamente eso.',tip:'🧠 DMN · Ganglios Basales · Red de control ejecutivo',actions:[{label:'→ Ver actividades',fn:"document.getElementById('screen-lab3').querySelector('.card').scrollIntoView({behavior:'smooth'})"}]},
-    {msg:'La Torre de Hanói no es solo un juego — activa la planificación prospectiva del aPFC. Intenta resolverla en el mínimo de movimientos.',tip:'💡 Mínimo movimientos para N discos = 2ᴺ−1',actions:[{label:'→ Ir a Hanói',fn:"hanoiReset(3)"}]}
+    {msg:'En el Task Switching alternarás entre dos reglas sin aviso previo. El "costo de cambio" que sientes es neuroplasticidad en acción.',tip:'🧠 DMN · Ganglios Basales · Red de control ejecutivo',actions:[{label:'→ Ver actividades',fn:"document.getElementById('screen-lab3').scrollIntoView({behavior:'smooth'})"}]},
+    {msg:'La Torre de Hanói activa tu planificación prospectiva. Intenta resolverla en el mínimo de movimientos posible.',tip:'💡 Para N discos el mínimo es 2ᴺ−1 movimientos.',actions:[{label:'→ Ir a Hanói',fn:"hanoiReset(3);document.getElementById('hanoi-board').scrollIntoView({behavior:'smooth'})"}]}
   ],
   'lab4':[
-    {msg:'La Técnica 3-2-1 activa el aPFC antes de cualquier sesión de trabajo. Solo 6 minutos cambian completamente la calidad de lo que sigue.',tip:'🧠 aPFC · Red Frontoparietal · Planificación prospectiva',actions:[{label:'→ Iniciar 3-2-1',fn:"document.getElementById('p321-obj').scrollIntoView({behavior:'smooth'})"}]},
-    {msg:'El Pomodoro no es solo gestión del tiempo — fortalece la anticorrelación DMN-ECN, el mecanismo neural del foco profundo.',tip:'💡 25 min de foco + 5 min de descanso. El descanso NO es opcional.',actions:[{label:'→ Iniciar Pomodoro',fn:"pomStart()"}]}
+    {msg:'La Técnica 3-2-1 solo toma 6 minutos pero cambia completamente la calidad de lo que viene después. ¡Úsala antes de estudiar!',tip:'🧠 aPFC · Red Frontoparietal · Planificación prospectiva',actions:[{label:'→ Hacer 3-2-1',fn:"document.getElementById('p321-obj').focus()"}]},
+    {msg:'Un Pomodoro es 25 min de foco total + 5 min de descanso. Sin excepciones. El descanso también es parte del entrenamiento.',tip:'💡 Fortalece la anticorrelación DMN-ECN — el mecanismo del foco profundo.',actions:[{label:'→ Iniciar Pomodoro',fn:"pomStart()"}]}
   ],
   'lab5':[
-    {msg:'El Diario Metacognitivo es la actividad con mayor impacto a largo plazo. 5 minutos al finalizar cada sesión consolida el aprendizaje.',tip:'🧠 Triple Red DMN–SN–ECN · Theta frontal aumentada',actions:[{label:'→ Escribir hoy',fn:"document.getElementById('meta-learned').scrollIntoView({behavior:'smooth'})"}]},
-    {msg:'La Escritura Expresiva de Pennebaker libera recursos cognitivos bloqueados por la rumiación. 15 minutos reduce el cortisol mediblemente.',tip:'📚 Pennebaker & Smyth: mejoras de hasta 30% en rendimiento posterior.',actions:[{label:'→ Comenzar escritura',fn:"document.getElementById('ew-exam').scrollIntoView({behavior:'smooth'})"}]}
+    {msg:'El Diario Metacognitivo son solo 5 minutos pero tienen el mayor impacto a largo plazo. Hazlo justo después de practicar.',tip:'🧠 Triple Red DMN–SN–ECN · Theta frontal aumentada',actions:[{label:'→ Escribir entrada',fn:"document.getElementById('meta-learned').focus()"}]},
+    {msg:'La Escritura Expresiva de Pennebaker libera recursos cognitivos bloqueados por el estrés. 15 minutos, sin juzgarte.',tip:'📚 Reduce cortisol y mejora rendimiento hasta 30% — Pennebaker & Smyth.',actions:[{label:'→ Comenzar',fn:"document.getElementById('ew-exam').focus()"}]}
   ],
   'lab6':[
-    {msg:'El Método de Loci es la técnica mnemotécnica más antigua y más potente. Construirás un palacio mental para anclar información.',tip:'🧠 Hipocampo · Corteza Temporal · aPFC · Memoria episódica',actions:[{label:'→ Construir palacio',fn:"document.getElementById('loci-tema').scrollIntoView({behavior:'smooth'})"}]},
-    {msg:'La Técnica Feynman activa la auto-explicación — el proceso cognitivo con mayor tamaño de efecto en el aprendizaje profundo.',tip:'💡 Si no puedes explicarlo con palabras simples, aún no lo entiendes.',actions:[{label:'→ Aplicar Feynman',fn:"document.getElementById('fey-concept').scrollIntoView({behavior:'smooth'})"}]}
+    {msg:'El Método de Loci es la técnica más antigua y más potente. Vas a construir un palacio mental para anclar información.',tip:'🧠 Hipocampo · Corteza Temporal · aPFC · Memoria episódica',actions:[{label:'→ Construir palacio',fn:"document.getElementById('loci-tema').focus()"}]},
+    {msg:'La Técnica Feynman es simple: explica el concepto como si se lo enseñaras a alguien que no sabe nada. Ahí descubres tus lagunas.',tip:'💡 Auto-explicación = mayor tamaño de efecto en aprendizaje profundo.',actions:[{label:'→ Aplicar Feynman',fn:"document.getElementById('fey-concept').focus()"}]}
   ],
   'labd1':[
-    {msg:'El Calentamiento Cognitivo de 5 minutos puede aumentar la retención de tus estudiantes hasta un 40%. Es la intervención con mejor ratio costo-beneficio.',tip:'📚 Activación prefrontal · LTP hipocampal · Dopamina anticipatoria',actions:[{label:'→ Ver protocolo',fn:"document.getElementById('screen-labd1').querySelector('.collapse-btn').click()"}]}
+    {msg:'El Calentamiento Cognitivo de 5 minutos puede aumentar la retención de tus estudiantes hasta un 40%. Mejor inversión de tiempo posible.',tip:'📚 Activación prefrontal · LTP hipocampal · Dopamina anticipatoria',actions:[{label:'→ Ver protocolo',fn:"document.querySelector('#screen-labd1 .collapse-btn').click()"}]}
   ],
   'labd2':[
-    {msg:'Los primeros 3 minutos de clase determinan el nivel de atención del resto de la sesión. El gancho cognitivo es tu herramienta más poderosa.',tip:'📚 Locus Coeruleus · Norepinefrina · Red Atencional Dorsal',actions:[{label:'→ Ver protocolo',fn:"document.getElementById('screen-labd2').querySelector('.collapse-btn').click()"}]}
+    {msg:'Los primeros 3 minutos de clase determinan el nivel de atención del resto. El gancho cognitivo es tu herramienta más poderosa.',tip:'📚 Locus Coeruleus · Norepinefrina · Red Atencional Dorsal',actions:[{label:'→ Ver protocolo',fn:"document.querySelector('#screen-labd2 .collapse-btn').click()"}]}
   ],
   'labd3':[
-    {msg:'Sin repaso espaciado, tus estudiantes olvidan el 70% en 24 horas. El diseño con espaciado revierte esto con mínimo esfuerzo adicional.',tip:'📚 Curva del olvido de Ebbinghaus · Consolidación hipocampal · LTP',actions:[{label:'→ Ver protocolo',fn:"document.getElementById('screen-labd3').querySelector('.collapse-btn').click()"}]}
+    {msg:'Sin repaso espaciado, tus estudiantes olvidan el 70% en 24 horas. Este lab te enseña a diseñar clases que evitan eso.',tip:'📚 Curva del olvido de Ebbinghaus · Consolidación hipocampal',actions:[{label:'→ Ver protocolo',fn:"document.querySelector('#screen-labd3 .collapse-btn').click()"}]}
   ],
   'labd4':[
-    {msg:'Puedes leer la fatiga mental de tu grupo antes de que sea demasiado tarde. Aprende las señales neuroconductuales que preceden a la desconexión.',tip:'📚 Cortisol · Agotamiento prefrontal · BDNF',actions:[{label:'→ Ver indicadores',fn:"document.getElementById('screen-labd4').querySelector('.collapse-btn').click()"}]}
+    {msg:'Puedes leer la fatiga mental de tu grupo antes de que sea tarde. Aprende las señales antes de perder la atención colectiva.',tip:'📚 Cortisol · Agotamiento prefrontal · BDNF',actions:[{label:'→ Ver indicadores',fn:"document.querySelector('#screen-labd4 .collapse-btn').click()"}]}
   ],
   'diario':[
-    {msg:'El diario es donde todo se integra. Registrar lo que practicaste activa la metacognición — el proceso que más acelera el aprendizaje futuro.',tip:'💡 Escribe siempre en los primeros 5 minutos después de practicar.',actions:[{label:'→ Nueva entrada',fn:"document.getElementById('d-text').focus()"}]}
+    {msg:'El diario integra todo lo que practicaste. Registrar activa la metacognición — el proceso que más acelera el aprendizaje futuro.',tip:'💡 Escribe en los primeros 5 minutos después de practicar.',actions:[{label:'→ Nueva entrada',fn:"document.getElementById('d-text').focus()"}]}
   ]
 };
 
@@ -6005,6 +6037,36 @@ function neuroStartRotation(lab){
 
 function neuroShow(lab){
   neuroState.currentLab=lab||'home';
+  // Detectar inactividad (3+ días sin practicar)
+  var diary=S.get('diary')||[];
+  if(lab==='home'&&diary.length>0){
+    var lastEntry=diary[0];
+    var lastDate=new Date(lastEntry.ts||Date.now());
+    var daysSince=Math.floor((Date.now()-lastDate.getTime())/86400000);
+    if(daysSince>=3){
+      var inactMsgs=[
+        {msg:'¡Han pasado '+daysSince+' días desde tu última sesión! Tu cerebro te extraña. ¿Volvemos?',tip:'⚡ La neuroplasticidad se mantiene con práctica regular — no con intensidad.',actions:[{label:'→ Retomar ahora',fn:"showScreen('lab1')"}]},
+        {msg:'La consistencia vale más que la intensidad. 5 minutos hoy son mejores que 2 horas en 3 días.',tip:'💡 Las conexiones sinápticas no usadas se debilitan gradualmente.',actions:[{label:'→ Practicar 5 min',fn:"showScreen('lab1')"}]}
+      ];
+      var idx=Math.floor(Math.random()*inactMsgs.length);
+      document.getElementById('neuro-msg').textContent=inactMsgs[idx].msg;
+      var tipEl=document.getElementById('neuro-tip');
+      tipEl.textContent=inactMsgs[idx].tip;tipEl.style.display='block';
+      var actEl=document.getElementById('neuro-actions');
+      actEl.innerHTML='';
+      inactMsgs[idx].actions.forEach(function(a){
+        var btn=document.createElement('button');
+        btn.className='neuro-action-btn';
+        btn.textContent=a.label;
+        btn.onclick=function(){try{eval(a.fn);}catch(e){}neuroClose();};
+        actEl.appendChild(btn);
+      });
+      var dotsEl=document.getElementById('neuro-dots');
+      if(dotsEl)dotsEl.innerHTML='';
+      setTimeout(function(){neuroOpen();},1000);
+      return;
+    }
+  }
   neuroRenderMsg(neuroState.currentLab,0);
   neuroStartRotation(neuroState.currentLab);
   var visto=S.get('neuro_visto')||{};
@@ -6036,6 +6098,37 @@ function neuroClose(){
 function neuroToggle(){
   if(neuroState.open){neuroClose();}
   else{neuroRenderMsg(neuroState.currentLab,neuroState.msgIdx);neuroOpen();}
+}
+
+function neuroSesionCompletada(lab, stats){
+  // Mensajes de respuesta al progreso según resultado
+  var msgs=[];
+  if(stats&&stats.aciertos!==undefined){
+    var pct=stats.pct||0;
+    if(pct>=80){
+      msgs=['¡Excelente! '+pct+'% de precisión. Tu corteza prefrontal está trabajando al máximo.','¡'+stats.aciertos+' aciertos! Eso es neuroplasticidad en acción.'];
+    } else if(pct>=50){
+      msgs=['Buen trabajo — '+pct+'% de precisión. Con práctica regular ese número subirá.','Cada sesión cuenta. La plasticidad no requiere perfección, requiere consistencia.'];
+    } else {
+      msgs=['La dificultad que sientes ES la señal de que está funcionando. El cerebro crece con el esfuerzo.','No te preocupes por el resultado de hoy. Lo importante es que viniste. Vuelve mañana.'];
+    }
+  } else {
+    msgs=['¡Sesión completada! Cada práctica deja una huella en tu conectoma.','Bien hecho. Tu cerebro registró esta sesión como una señal para crecer.'];
+  }
+  var msg=msgs[Math.floor(Math.random()*msgs.length)];
+  document.getElementById('neuro-msg').textContent=msg;
+  var tipEl=document.getElementById('neuro-tip');
+  tipEl.textContent='⚡ Sesión registrada en tu diario de neuroplasticidad.';
+  tipEl.style.display='block';
+  var actEl=document.getElementById('neuro-actions');
+  actEl.innerHTML='';
+  var btn=document.createElement('button');
+  btn.className='neuro-action-btn';
+  btn.textContent='→ Continuar entrenando';
+  btn.onclick=function(){neuroClose();};
+  actEl.appendChild(btn);
+  neuroOpen();
+  setTimeout(function(){neuroClose();},6000);
 }
 
 function neuroSayLogro(logro){
