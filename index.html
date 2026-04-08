@@ -382,6 +382,7 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
 /* ── TEXTOS POR ROL ── */
 .txt-est,.txt-doc,.txt-adm{display:none}
 
+
 /* ── NEURO — Personaje guía ── */
 .neuro-fab{position:fixed;bottom:16px;left:12px;z-index:160;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
 .neuro-character{width:160px;height:190px;cursor:pointer;filter:drop-shadow(0 16px 40px rgba(139,127,245,.65));transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;display:block}
@@ -480,6 +481,29 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
   .g4{grid-template-columns:1fr 1fr}
   .header{padding:0 1rem}
 }
+
+/* ── NEURO TUTORIAL ── */
+.neuro-overlay{position:fixed;inset:0;z-index:500;pointer-events:none;transition:opacity .4s}
+.neuro-overlay.active{pointer-events:all}
+.neuro-overlay-bg{position:absolute;inset:0;background:rgba(0,0,0,.75);transition:opacity .4s}
+.neuro-spotlight{position:absolute;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.75),0 0 0 3px #8b7ff5,0 0 24px rgba(139,127,245,.5);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.neuro-tutorial-bubble{position:absolute;background:linear-gradient(145deg,#1a1840,#100e2a);border:1.5px solid rgba(139,127,245,.6);border-radius:20px;padding:18px 20px;max-width:300px;min-width:220px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:neuro-pop .4s cubic-bezier(.34,1.56,.64,1);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.neuro-tutorial-bubble::before{content:'';position:absolute;width:0;height:0;border:10px solid transparent}
+.neuro-tutorial-bubble.arrow-bottom::before{bottom:-20px;left:30px;border-top-color:rgba(139,127,245,.6)}
+.neuro-tutorial-bubble.arrow-top::before{top:-20px;left:30px;border-bottom-color:rgba(139,127,245,.6)}
+.neuro-tutorial-bubble.arrow-left::before{left:-20px;top:20px;border-right-color:rgba(139,127,245,.6)}
+.neuro-tutorial-step{font-size:10px;color:#5a5888;font-family:monospace;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.neuro-tutorial-msg{font-size:13px;color:#d4d0f0;line-height:1.6;margin-bottom:14px}
+.neuro-tutorial-actions{display:flex;gap:8px;align-items:center}
+.neuro-tutorial-next{flex:1;padding:8px 14px;background:#8b7ff5;border:none;border-radius:10px;font-size:12px;font-weight:600;color:white;cursor:pointer;transition:all .2s;font-family:monospace}
+.neuro-tutorial-next:hover{background:#a090ff;transform:translateY(-1px)}
+.neuro-tutorial-skip{padding:6px 10px;background:none;border:1px solid rgba(139,127,245,.2);border-radius:8px;font-size:11px;color:#4a4870;cursor:pointer;font-family:monospace;transition:all .2s}
+.neuro-tutorial-skip:hover{color:#8b7ff5;border-color:rgba(139,127,245,.4)}
+.neuro-tutorial-dots{display:flex;gap:5px;align-items:center;margin-right:8px}
+.neuro-tutorial-dot{width:6px;height:6px;border-radius:50%;background:#2a2850;transition:all .2s}
+.neuro-tutorial-dot.active{background:#8b7ff5;transform:scale(1.3)}
+/* NEURO en posición tutorial */
+.neuro-tutorial-char{position:absolute;transition:all .5s cubic-bezier(.4,0,.2,1)}
 </style>
 </head>
 <body>
@@ -622,6 +646,58 @@ label.lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-tr
         <div style="font-size:10px;color:#5c5a7a;font-family:monospace;text-align:center;margin-bottom:12px">UNICIENCIA · Centro SINAPSIA · Neuroeducación basada en evidencia</div>
         <button class="btn btn-v btn-full" id="ob-finish-btn" onclick="obFinish()">Comenzar mi entrenamiento →</button>
       </div>
+    </div>
+  </div>
+
+  <!-- NEURO TUTORIAL OVERLAY -->
+  <div class="neuro-overlay" id="neuro-tutorial-overlay" style="display:none">
+    <div class="neuro-overlay-bg" id="neuro-overlay-bg"></div>
+    <div class="neuro-spotlight" id="neuro-spotlight"></div>
+    <div class="neuro-tutorial-bubble" id="neuro-tutorial-bubble">
+      <div class="neuro-tutorial-step" id="neuro-tut-step">Paso 1 de 5</div>
+      <div class="neuro-tutorial-msg" id="neuro-tut-msg">Mensaje del tutorial</div>
+      <div class="neuro-tutorial-actions">
+        <div class="neuro-tutorial-dots" id="neuro-tut-dots"></div>
+        <button class="neuro-tutorial-skip" onclick="neuroTutorialSkip()">Saltar</button>
+        <button class="neuro-tutorial-next" id="neuro-tut-next" onclick="neuroTutorialNext()">Siguiente →</button>
+      </div>
+    </div>
+    <!-- NEURO posicionado en el tutorial -->
+    <div class="neuro-tutorial-char" id="neuro-tut-char">
+      <svg viewBox="0 0 165 210" width="110" height="140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ts3d" cx="36%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#e0d8ff"/>
+            <stop offset="25%" stop-color="#b8acff"/>
+            <stop offset="55%" stop-color="#8070e8"/>
+            <stop offset="100%" stop-color="#2010708"/>
+          </radialGradient>
+          <radialGradient id="teye" cx="32%" cy="28%" r="68%">
+            <stop offset="0%" stop-color="#6050d0"/>
+            <stop offset="100%" stop-color="#0a0520"/>
+          </radialGradient>
+        </defs>
+        <g class="neuro-float-g">
+          <path d="M52 40 Q36 24 18 12" fill="none" stroke="#9080f0" stroke-width="3" stroke-linecap="round" class="n-d1"/>
+          <path d="M112 40 Q128 24 146 12" fill="none" stroke="#9080f0" stroke-width="3" stroke-linecap="round" class="n-d2"/>
+          <path d="M82 36 Q80 20 82 4" fill="none" stroke="#9080f0" stroke-width="3" stroke-linecap="round" class="n-d3"/>
+          <path d="M28 80 Q12 72 4 58" fill="none" stroke="#9080f0" stroke-width="3" stroke-linecap="round" class="n-d4"/>
+          <path d="M136 80 Q152 72 160 58" fill="none" stroke="#9080f0" stroke-width="3" stroke-linecap="round" class="n-d5"/>
+          <path d="M74 142 Q68 158 64 178" fill="none" stroke="#6d5fd4" stroke-width="5" stroke-linecap="round" class="n-axon"/>
+          <path d="M90 142 Q96 158 100 178" fill="none" stroke="#6d5fd4" stroke-width="4" stroke-linecap="round" class="n-axon" opacity=".7"/>
+          <circle cx="64" cy="180" r="6" fill="#3020a0"/><circle cx="64" cy="180" r="3" fill="#6050c0"/>
+          <circle cx="100" cy="180" r="5" fill="#3020a0" opacity=".8"/><circle cx="100" cy="180" r="2.5" fill="#6050c0"/>
+          <ellipse cx="84" cy="152" rx="30" ry="7" fill="#0a0a1a" opacity=".25"/>
+          <circle cx="82" cy="88" r="52" fill="#15104a"/>
+          <circle cx="82" cy="88" r="50" fill="url(#ts3d)"/>
+          <ellipse cx="62" cy="56" rx="18" ry="11" fill="white" opacity=".16" transform="rotate(-28,62,56)"/>
+          <g class="n-eye-l"><ellipse cx="62" cy="82" rx="13" ry="13" fill="white"/><ellipse cx="64" cy="84" rx="9" ry="9" fill="url(#teye)"/><circle cx="64" cy="84" r="5.5" fill="#06030f"/><circle cx="66" cy="81" r="2.5" fill="white" opacity=".95"/></g>
+          <g class="n-eye-r"><ellipse cx="102" cy="82" rx="13" ry="13" fill="white"/><ellipse cx="104" cy="84" rx="9" ry="9" fill="url(#teye)"/><circle cx="104" cy="84" r="5.5" fill="#06030f"/><circle cx="106" cy="81" r="2.5" fill="white" opacity=".95"/></g>
+          <path d="M66 110 Q82 122 98 110" stroke="#d4d0ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="50" cy="104" rx="9" ry="5.5" fill="#f97066" opacity=".2"/>
+          <ellipse cx="114" cy="104" rx="9" ry="5.5" fill="#f97066" opacity=".2"/>
+        </g>
+      </svg>
     </div>
   </div>
 
@@ -5031,6 +5107,7 @@ function dpdSave(){
   updateHome();
 }
 
+
 /* ── NEURO — Personaje guía ── */
 var neuroState={open:false,currentLab:'home'};
 
@@ -5633,7 +5710,8 @@ function obFinish(){
   document.getElementById('onboarding-overlay').style.display='none';
   applyUserProfile();
   dashUpdate();
-  neuroInit();
+  // Mostrar tutorial la primera vez
+  setTimeout(function(){neuroTutorialStart(obData.nombre);},800);
   setTimeout(function(){neuroShow('home');},600);
 }
 function applyUserProfile(){
@@ -5927,7 +6005,71 @@ if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
 }
 /* ── INIT ── */
-renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);
+renderTasks();renderII();updateHome();hanoiReset(3);sm2RenderList();sdInitTable();mxInitGrid();obCheck();setTimeout(applyRolTextos,500);/* ── NEURO TUTORIAL ── */
+var NEURO_TUTORIAL=[
+  {msg:'¡Hola, [nombre]! Soy NEURO, tu guía de entrenamiento cognitivo. Voy a mostrarte cómo funciona SINAPSIA en 4 pasos rápidos.',target:null,pos:'center',charPos:{bottom:'20px',left:'20px'}},
+  {msg:'Esta es tu barra de navegación. Cada botón te lleva a un laboratorio diferente — cada uno entrena una función ejecutiva distinta de tu cerebro.',target:'.nav-wrap',pos:'below',charPos:{top:'160px',left:'20px'}},
+  {msg:'Este es tu Mapa de Conectividad Neural. Las zonas se iluminan cuando practicas y se enfrían si llevas más de 72 horas sin usar ese laboratorio.',target:'.brain-container',pos:'right',charPos:{bottom:'20px',left:'20px'}},
+  {msg:'Aquí están tus métricas: racha sináptica, puntos de plasticidad y minutos de foco. Cada sesión las actualiza en tiempo real.',target:'.dash-metrics',pos:'above',charPos:{bottom:'20px',left:'20px'}},
+  {msg:'¡Y aquí estoy yo siempre! Presióname en cualquier momento para recibir instrucciones o ir directo a una actividad. ¿Empezamos con el Lab 1?',target:null,pos:'center',charPos:{bottom:'20px',left:'20px'}}
+];
+var neuroTutState={step:0,active:false};
+function neuroTutorialStart(nombre){
+  if(S.get('neuro_tutorial_done'))return;
+  neuroTutState={step:0,active:true};
+  var overlay=document.getElementById('neuro-tutorial-overlay');
+  overlay.style.display='block';
+  setTimeout(function(){neuroTutorialRender();},300);
+}
+function neuroTutorialRender(){
+  var step=NEURO_TUTORIAL[neuroTutState.step];
+  var total=NEURO_TUTORIAL.length;
+  document.getElementById('neuro-tut-step').textContent='Paso '+(neuroTutState.step+1)+' de '+total;
+  document.getElementById('neuro-tut-msg').textContent=step.msg.replace('[nombre]',obData.nombre||'');
+  var dotsEl=document.getElementById('neuro-tut-dots');
+  dotsEl.innerHTML='';
+  for(var i=0;i<total;i++){var d=document.createElement('div');d.className='neuro-tutorial-dot'+(i===neuroTutState.step?' active':'');dotsEl.appendChild(d);}
+  var nextBtn=document.getElementById('neuro-tut-next');
+  nextBtn.textContent=neuroTutState.step===total-1?'¡Comenzar! 🚀':'Siguiente →';
+  var spotlight=document.getElementById('neuro-spotlight');
+  var bubble=document.getElementById('neuro-tutorial-bubble');
+  var charEl=document.getElementById('neuro-tut-char');
+  if(step.target){
+    var el=document.querySelector(step.target);
+    if(el){
+      var rect=el.getBoundingClientRect();
+      var pad=12;
+      spotlight.style.cssText='display:block;left:'+(rect.left-pad)+'px;top:'+(rect.top-pad)+'px;width:'+(rect.width+pad*2)+'px;height:'+(rect.height+pad*2)+'px;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.78),0 0 0 3px #8b7ff5,0 0 24px rgba(139,127,245,.5)';
+      if(step.pos==='below'){bubble.style.cssText='top:'+(rect.bottom+20)+'px;left:'+Math.max(16,rect.left)+'px';bubble.className='neuro-tutorial-bubble arrow-top';}
+      else if(step.pos==='above'){bubble.style.cssText='top:'+(rect.top-180)+'px;left:'+Math.max(16,rect.left)+'px';bubble.className='neuro-tutorial-bubble arrow-bottom';}
+      else if(step.pos==='right'){bubble.style.cssText='top:'+rect.top+'px;left:'+(rect.right+20)+'px';bubble.className='neuro-tutorial-bubble arrow-left';}
+    }
+  } else {
+    spotlight.style.display='none';
+    bubble.style.cssText='top:50%;left:50%;transform:translate(-50%,-60%)';
+    bubble.className='neuro-tutorial-bubble';
+  }
+  charEl.style.cssText='position:absolute;transition:all .5s cubic-bezier(.4,0,.2,1);'+Object.keys(step.charPos).map(function(k){return k+':'+step.charPos[k];}).join(';');
+}
+function neuroTutorialNext(){
+  neuroTutState.step++;
+  if(neuroTutState.step>=NEURO_TUTORIAL.length){neuroTutorialFinish();return;}
+  document.getElementById('neuro-tutorial-bubble').style.transform='';
+  neuroTutorialRender();
+}
+function neuroTutorialSkip(){neuroTutorialFinish();}
+function neuroTutorialFinish(){
+  neuroTutState.active=false;
+  S.set('neuro_tutorial_done',true);
+  var overlay=document.getElementById('neuro-tutorial-overlay');
+  overlay.style.opacity='0';
+  setTimeout(function(){
+    overlay.style.display='none';overlay.style.opacity='';
+    neuroInit();
+    setTimeout(function(){neuroShow('home');},600);
+    if(neuroTutState.step>=NEURO_TUTORIAL.length)showScreen('lab1');
+  },400);
+}
 
 /* ── NEURO — Personaje guía ── */
 var NEURO_MSGS={
@@ -6638,7 +6780,8 @@ function obFinish(){
   document.getElementById('onboarding-overlay').style.display='none';
   applyUserProfile();
   dashUpdate();
-  neuroInit();
+  // Mostrar tutorial la primera vez
+  setTimeout(function(){neuroTutorialStart(obData.nombre);},800);
   setTimeout(function(){neuroShow('home');},600);
 }
 function applyUserProfile(){
